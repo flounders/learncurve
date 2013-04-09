@@ -1,0 +1,12 @@
+#ifndef REVIEW_H_
+#define REVIEW_H_
+
+#include <string>
+#include <vector>
+#include "types.h"
+
+int learnc_review_control(instance &data, std::vector<std::string> input, std::string &page);
+int learnc_review_check_answer(std::vector<std::string> userinput, std::vector<std::string> cardinput);
+int test_review_check_answer(void);
+
+#endif

@@ -1,0 +1,15 @@
+dd {
+    display: block;
+    float: left;
+    width: 200px;
+    height: 16px;
+    margin: 0 0 2px;
+}
+
+dd div.progress {
+    background-color: blue;
+    height: 16px;
+    width: 75%;
+    text-align: left;
+    display: block;
+}
