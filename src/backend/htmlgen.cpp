@@ -102,7 +102,7 @@ int learnc_html_view_boxes(instance &current, std::string &page)
         page += convert.str();
         convert.str("");
         page += ":<dd><div class=\"progress\" style=\"width:";
-        convert << (current.boxes[i].stack.size() / current.boxes[i].size) * 100.0;
+        convert << (current.boxes[i].stack.size() * 100.0) / current.boxes[i].size;
         page += convert.str();
         page += "%;\"></dd>";
         page += convert.str();

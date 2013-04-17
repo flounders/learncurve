@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include <string>
 #include <webkit/webkit.h>
 #include "../../backend/htmlgen.h"
+#include "../../backend/initialize.h"
 #include "control.h"
 
 int learnc_gtk3_gui_init(int &argc, char **argv[])
@@ -71,9 +72,7 @@ int learnc_gtk3_instance_init(gtk_instance *data)
     data->file_name = NULL;
     data->webview = NULL;
     data->window = NULL;
-    data->data.boxes = NULL;
-    data->data.known = NULL;
-    data->data.stack.empty();
+    learnc_init_instance(data->data);
 
     return 1;
 }

@@ -74,7 +74,7 @@ int learnc_box_promote(box *box1, box *box2, voc_card *card)
 
 int learnc_load_box(box *dest, instance *current)
 {
-    int i, status = 13;
+    int i, status;
 
     if (dest == NULL || current == NULL)
         return 0;
@@ -83,6 +83,9 @@ int learnc_load_box(box *dest, instance *current)
         status = learnc_is_in_boxes(current->stack[i].number, current->boxes, current->known);
         if (status == 0) {
             dest->stack.push_back(&(current->stack[i]));
+        }
+        else if (status == 1) {
+            ;
         }
     }
 

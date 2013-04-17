@@ -71,24 +71,16 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
 
     status = learnc_parse_file(reader, gtk_data->data.stack);
     if (status == 0) {
-        gtk_widget_destroy(file_dialog);
         std::cerr << "learnc_gtk_open_cb: Encountered error with learnc_parse_file().\n";
         return;
     }
 
-    status = learnc_init_boxes(&gtk_data->data.boxes);
-    if (status == 0) {
-        gtk_widget_destroy(file_dialog);
-        std::cerr << "learnc_gtk_open_cb: Encountered error with learnc_init_boxes().\n";
-        return;
-    }
-    gtk_data->data.known = new box;
     gtk_data->data.known->size = gtk_data->data.stack.size();
 
     learnc_make_storage_directory(gtk_data->file_name);
 
     if (learnc_get_storage_path(gtk_data->file_name, path) == 1) {
-        strcat(path, "boxcards");
+        strcat(path, "/boxcards");
         infile.open(path);
         if (!infile.fail()) {
             learnc_restore_boxes(gtk_data->data.boxes, infile, gtk_data->data.stack);
@@ -101,7 +93,7 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
 
 
     if (learnc_get_storage_path(gtk_data->file_name, path) == 1) {
-        strcat(path, "knowncards");
+        strcat(path, "/knowncards");
         infile.open(path);
         if (!infile.fail()) {
             learnc_restore_known(gtk_data->data.known, infile, gtk_data->data.stack);
@@ -112,10 +104,13 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
         std::cerr << "learnc_gtk_open_cb: Received failure on learnc_get_storage_path().\n";
     }
 
-
     gtk_widget_destroy(file_dialog);
 
     review_state = OUT_REVIEW;
+
+    std::cout << "learnc_gtk_open_cb: box1->stack.size() = "
+              << gtk_data->data.boxes->stack.size()
+              << std::endl;
 }
 
 extern "C"
