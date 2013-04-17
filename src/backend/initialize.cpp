@@ -106,3 +106,11 @@ int learnc_init_linux_storage(void)
 
     return 1;
 }
+
+int learnc_init_instance(instance &data)
+{
+    data.stack.clear();
+    learnc_init_boxes(&data.boxes);
+    data.known = new box;
+    data.known->size = 0;
+}

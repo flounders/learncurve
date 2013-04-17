@@ -28,6 +28,13 @@ int learnc_is_in_boxes(int number, box *boxes, box *known)
     return 0;
 }
 
+int test_is_in_boxes(void)
+{
+    instance data;
+
+    return 1;
+}
+
 int learnc_box_promote(box *box1, box *box2, voc_card *card)
 {
     int i;
@@ -37,8 +44,8 @@ int learnc_box_promote(box *box1, box *box2, voc_card *card)
     }
 
     i = learnc_find_in_stack(card->number, box1->stack);
-    if (i != 0 && box2->stack.size() < box2->size) {
-        box2->stack.push_back(box1->stack[i]);
+    if (i >= 0) {
+        box2->stack.push_back(card);
         box1->stack.erase(box1->stack.begin()+i);
     }
     else {
@@ -50,13 +57,14 @@ int learnc_box_promote(box *box1, box *box2, voc_card *card)
 
 int learnc_load_box(box *dest, instance *current)
 {
-    int i;
+    int i, status = 13;
 
     if (dest == NULL || current == NULL)
         return 0;
 
     for (i = 0; i < current->stack.size() && dest->stack.size() < dest->size; i++) {
-        if (learnc_is_in_boxes(i, current->boxes, current->known) == 0) {
+        status = learnc_is_in_boxes(current->stack[i].number, current->boxes, current->known);
+        if (status == 0) {
             dest->stack.push_back(&(current->stack[i]));
         }
     }

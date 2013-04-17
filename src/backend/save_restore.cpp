@@ -102,7 +102,7 @@ int learnc_restore_boxes(box *boxes, std::ifstream &fin, std::vector<voc_card> &
 int learnc_find_in_stack(int number, std::vector<voc_card> &stack)
 {
     if (number <= 0)
-        return 0;
+        return -1;
 
     int i;
 
@@ -110,7 +110,7 @@ int learnc_find_in_stack(int number, std::vector<voc_card> &stack)
         if (stack[i].number == number)
             return i;
 
-    return 0;
+    return -1;
 }
 
 int learnc_find_in_stack(int number, std::vector<voc_card *> &stack)

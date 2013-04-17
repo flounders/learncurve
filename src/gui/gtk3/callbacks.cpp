@@ -320,6 +320,4 @@ void learnc_gtk_review_cb(gtk_instance *gtk_data)
         webkit_web_view_load_html_string(gtk_data->webview, page.c_str(),
                                          "../../backend");
     }
-
-    std::cout << "Review clicked.\n";
 }

@@ -65,26 +65,61 @@ int learnc_review_control(instance &data, std::vector<std::string> input, std::s
             learnc_load_box(data.boxes, &data);
             learnc_html_card_front(*(data.boxes->stack[0]), page);
         }
+        else {
+            learnc_html_card_front(*(((data.boxes)+current_box)->stack[0]), page);
+        }
 
         review_state = IN_REVIEW;
         return 1;
 
         break;
     case IN_REVIEW:
-/*        if (current_box < 4) {
-            if (((data->boxes)+current_box)->stack.size() == 0 || ((data->boxes)+current_box+1)->stack.size() == data->boxes+current_box+1->size) {
+        static int check_state;
+        int answer;
+        if (current_box < 4) {
+            if (((data.boxes)+current_box)->stack.empty()|| ((data.boxes)+current_box+1)->stack.size() == ((data.boxes)+current_box+1)->size) {
                 review_state = OUT_REVIEW;
                 return 1;
+            }
+            else if (check_state == 0) {
+                answer = learnc_review_check_answer(input, ((data.boxes)+current_box)->stack[0]->back);
+                std::cout << "Anwser was " << answer << std::endl;
+                learnc_html_card_back_and_front(*(((data.boxes)+current_box)->stack[0]), page);
+                if (answer == 1) {
+                    learnc_box_promote((data.boxes)+current_box, (data.boxes)+current_box+1, ((data.boxes)+current_box)->stack[0]);
+                }
+                else if (answer == 0) {
+                    ((data.boxes)+current_box)->stack.erase(((data.boxes)+current_box)->stack.begin());
+                }
+                check_state = 1;
+            }
+            else if (check_state == 1) {
+                learnc_html_card_front(*(((data.boxes)+current_box)->stack[0]), page);
+                check_state = 0;
             }
         }
         else if (current_box == 4) {
-            if (((data->boxes)+current_box)->stack.size() == 0) {
+            if (((data.boxes)+current_box)->stack.empty()) {
                 review_state = OUT_REVIEW;
                 return 1;
             }
+            else if (check_state == 0) {
+                answer = learnc_review_check_answer(input, ((data.boxes)+current_box)->stack[0]->back);
+                learnc_html_card_back_and_front(*(((data.boxes)+current_box)->stack[0]), page);
+                if (answer == 1) {
+                    learnc_box_promote((data.boxes)+current_box, data.known, ((data.boxes)+current_box)->stack[0]);
+                }
+                else if (answer == 0) {
+                    ((data.boxes)+current_box)->stack.erase(((data.boxes)+current_box)->stack.begin());
+                }
+                check_state = 1;
+            }
+            else if (check_state == 1) {
+                learnc_html_card_front(*(((data.boxes)+current_box)->stack[0]), page);
+                check_state = 0;
+            }
             // keep going
-            } */
-        review_state = OUT_REVIEW;
+        }
         break; 
     }
 

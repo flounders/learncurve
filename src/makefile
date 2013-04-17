@@ -8,7 +8,7 @@ LIBS := `pkg-config --libs libxml-2.0 gmodule-2.0 gtk+-3.0 webkitgtk-3.0`
 all: learncurve
 
 learncurve: main.o htmlgen.o initialize.o read_vocab_file.o save_restore.o callbacks.o control.o boxes.o review.o
-	$(LD) $(CFLAGS) $(LIBS) $^ -o $@
+	$(LD) $(CFLAGS) $(LIBS) $^ -o ../build/$@
 
 main.o: main.cpp
 	$(LD) $(CFLAGS) $(LIBS) -c $^
