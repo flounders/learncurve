@@ -26,6 +26,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "types.h"
 #include "save_restore.h"
 
+// save_restore.cpp contains the functions that deal with saving and resuming
+// your progress in the box system.
+
+// learnc_save_box takes the numbers of the cards inside the box and writes
+// them out to a file
+// 
+// returns 0 for failure and 1 for success
+// takes a pointer to box for the box it is going to save and an ofstream
+// object that is passed by reference to write out the numbers with.
+
 int learnc_save_box(box *box_to_save, std::ofstream &fout)
 {
     if (box_to_save == NULL)
@@ -38,6 +48,15 @@ int learnc_save_box(box *box_to_save, std::ofstream &fout)
 
     return 1;
 }
+
+// learnc_save_boxes saves all of the boxes into one file. It is assisted
+// by learnc_save_box. This is done by writing out the integers after a line
+// containing a code like "B3#" which stands for Box number 3.
+//
+// returns 0 for failure and 1 for success
+// takes a pointer to box that contains the initial address for all the boxes
+// and a ofstream object passed by reference that all of the boxes data is written
+// out to.
 
 int learnc_save_boxes(box *boxes, std::ofstream &fout)
 {
@@ -53,6 +72,14 @@ int learnc_save_boxes(box *boxes, std::ofstream &fout)
     return 1;
 }
 
+// learnc_restore_box restores a single box's progress from a list of integers
+// that are the card numbers it held last time. These numbers are read from the
+// file that was written out earlier.
+//
+// returns 1, but should have some way of checking for failure
+// takes a vector of ints that is passed by reference for storage and an
+// ifstream object passed by reference for reading from the storage file.
+
 int learnc_restore_box(std::vector<int> &card_numbers, std::ifstream &fin)
 {
     std::string buf;
@@ -60,8 +87,9 @@ int learnc_restore_box(std::vector<int> &card_numbers, std::ifstream &fin)
 
     while (!fin.eof()) {
         getline(fin, buf);
-        if (buf.find_first_not_of("0123456789") == std::string::npos)
+        if (buf.find_first_not_of("0123456789") == std::string::npos) {
             return 1;
+        }
         std::istringstream ss(buf);
         ss >> i;
         card_numbers.push_back(i);
@@ -69,6 +97,15 @@ int learnc_restore_box(std::vector<int> &card_numbers, std::ifstream &fin)
 
     return 1;
 }
+
+// learnc_restore_known puts back all the pointers to the cards that were in known
+// before the program closed last time. It does this by getting the integers from a
+// file just for known and loading the pointers back in from the stack after it finds
+// the cards that match.
+//
+// returns 0 for failure and 1 for success
+// takes a pointer to box for known, an ifstream object to read the file, and a vector
+// of voc_card passed by reference that is the stack of an instance.
 
 int learnc_restore_known(box *known, std::ifstream &fin, std::vector<voc_card> &stack)
 {
@@ -82,13 +119,20 @@ int learnc_restore_known(box *known, std::ifstream &fin, std::vector<voc_card> &
     learnc_restore_box(card_numbers, fin);
     for (i = 0; i < card_numbers.size(); i++) {
         address = learnc_find_in_stack(card_numbers[i], stack);
-        if (address != 0) {
+        if (address != -1) {
             known->stack.push_back(&stack[address]);
         }
     }
 
     return 1;
 }
+
+// learnc_restore_boxes brings back the progress for all of the boxes back into the program.
+//
+// returns 0 for failure and 1 for success
+// takes a pointer to box for the initial address of all the boxes, an ifstream object
+// passed by reference to read the file back in, and a vector of voc_card passed by
+// reference that is the stack of an instance.
 
 int learnc_restore_boxes(box *boxes, std::ifstream &fin, std::vector<voc_card> &stack)
 {
@@ -106,7 +150,7 @@ int learnc_restore_boxes(box *boxes, std::ifstream &fin, std::vector<voc_card> &
         learnc_restore_box(card_numbers, fin);
         for (j = 0; j < card_numbers.size(); j++) {
             address = learnc_find_in_stack(card_numbers[j], stack);
-            if (address != 0 && (boxes+i)->stack.size() < (boxes+i)->size)
+            if (address != -1 && (boxes+i)->stack.size() < (boxes+i)->size)
                 (boxes+i)->stack.push_back(&stack[address]);
         }
         card_numbers.clear();
@@ -115,6 +159,17 @@ int learnc_restore_boxes(box *boxes, std::ifstream &fin, std::vector<voc_card> &
 
     return 1;
 }
+
+// learnc_find_in_stack finds where a card is located in the stack.
+// It does this by the card's number which it looks for in the stack.
+// When it is found, it returns the integer value of the index it
+// found the card at.
+//
+// returns -1 for error or failure to find and 0 and any positive
+// integer for the index of the card's position in the stack.
+// takes an integer for the card number it is looking for, and a
+// vector of voc_cards or voc_card pointers passed by reference to
+// look for the card in.
 
 int learnc_find_in_stack(int number, std::vector<voc_card> &stack)
 {
@@ -133,7 +188,7 @@ int learnc_find_in_stack(int number, std::vector<voc_card> &stack)
 int learnc_find_in_stack(int number, std::vector<voc_card *> &stack)
 {
     if (number <= 0)
-        return 0;
+        return -1;
 
     int i;
 
@@ -141,8 +196,17 @@ int learnc_find_in_stack(int number, std::vector<voc_card *> &stack)
         if (stack[i]->number == number)
             return i;
 
-    return 0;
+    return -1;
 }
+
+// learnc_get_storage_path takes the filename of the card XML file
+// and uses it to determine what the directory name should be to
+// store our progress.
+//
+// returns 0 for failure and 1 for success
+// takes two pointers to char, the first for the filename of the
+// XML file, and the second for the directory name it will be giving
+// back.
 
 int learnc_get_storage_path(char *filename, char *dirname)
 {
@@ -181,7 +245,14 @@ int learnc_get_storage_path(char *filename, char *dirname)
     return 1;
 }
 
-int learnc_make_storage_directory(char *filename)
+// learnc_make_storage_directory does as the name implies; it makes a storage
+// directory. It is POSIX specific as of 4-18-13.
+//
+// returns 0 for failure and 1 for success
+// takes a pointer to char that is meant to contain the filename of the XML file
+// we read our cards from.
+
+int learnc_make_storage_directory(const char *filename)
 {
     if (filename == NULL) {
         std::cerr << "learnc_make_storace_directory:"

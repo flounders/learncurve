@@ -29,7 +29,6 @@ static int current_box;
 int learnc_review_control(instance &data, std::vector<std::string> input, std::string &page, int &review_state)
 {
     int address = 0;
-//    int i;
 
     if (data.boxes == NULL || data.known == NULL) {
         return 0;

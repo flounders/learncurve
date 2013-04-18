@@ -25,6 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "backend/types.h"
 #include "gui/gtk3/control.h"
 
+// main is where everything starts and ends
+// TODO add processing for command-line arguments and freeing all allocated memory
+
 int main(int argc, char *argv[])
 {
 

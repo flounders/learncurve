@@ -31,6 +31,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #define BODY_CLOSE   "</body>"
 #define META_CHARSET "<meta charset=\"UTF-8\">\n"
 
+// htmlgen.cpp deals with generating HTML for the program
+// to display its content with.
+
+// learnc_html_welcome_page generates html for the
+// opening page when learncurve is launched
+//
+// returns 1, but should probably be made a void function
+// as there are no NULL pointers to check for. Takes
+// C++ string as an argument passed by reference to load
+// the html content into.
+
 int learnc_html_welcome_page(std::string &page)
 {
     learnc_html_gen_open(page);
@@ -41,6 +52,15 @@ int learnc_html_welcome_page(std::string &page)
 
     return 1;
 }
+
+// learnc_html_card_front generates html for the front
+// of a card to be reviewed
+//
+// returns 1, but should probably be made a void function
+// as there are no NULL pointers to check for. Takes
+// C++ string as an argument passed by reference to load
+// the html content into.
+
 
 int learnc_html_card_front(voc_card card, std::string &page)
 {
@@ -66,6 +86,15 @@ int learnc_html_card_front(voc_card card, std::string &page)
     return 1;
 }
 
+// learnc_html_card_back_and_front generates html for the front
+// and back of a card to be viewed. This is used for showing
+// what was the correct answer.
+//
+// returns 1, but should probably be made a void function
+// as there are no NULL pointers to check for. Takes
+// C++ string as an argument passed by reference to load
+// the html content into.
+
 int learnc_html_card_back_and_front(voc_card card, std::string &page)
 {
     int i;
@@ -89,6 +118,15 @@ int learnc_html_card_back_and_front(voc_card card, std::string &page)
     return 1;
 }
 
+// learnc_html_view_boxes generates html that shows how many
+// cards are in the boxes (known included) and generates a 
+// graphic as well.
+//
+// returns 1, but should probably be made a void function
+// as there are no NULL pointers to check for. Takes
+// C++ string as an argument passed by reference to load
+// the html content into.
+
 int learnc_html_view_boxes(instance &current, std::string &page)
 {
     std::ostringstream convert;
@@ -111,7 +149,7 @@ int learnc_html_view_boxes(instance &current, std::string &page)
     }
 
     page += "Known:<dd><div class=\"progress\" style=\"width:";
-    convert << current.known->stack.size() / current.known->size * 100.0;
+    convert << current.known->stack.size() * 100.0 / current.known->size;
     page += convert.str();
     page += "%;\"></dd>";
     page += convert.str();
@@ -121,6 +159,16 @@ int learnc_html_view_boxes(instance &current, std::string &page)
 
     return 1;
 }
+
+// learnc_html_review_menu generates html for the review menu.
+// At this point (4-17-13) gives a simple message informing you
+// of your options for selection, but should be changed to show
+// which boxes you are able to review and which ones you cannot.
+//
+// returns 1, but should probably be made a void function
+// as there are no NULL pointers to check for. Takes
+// C++ string as an argument passed by reference to load
+// the html content into.
 
 int learnc_html_review_menu(std::string &page)
 {
@@ -132,6 +180,15 @@ int learnc_html_review_menu(std::string &page)
 
     return 1;
 }
+
+// learnc_html_input_usage generates html to inform the user
+// they entered invalid input and what input they can enter.
+//
+// returns 1, but should probably be made a void function
+// as there are no NULL pointers to check for. Takes
+// C++ string as an argument passed by reference to load
+// the html content into and another string passed by value
+// that tells the user what the proper usage is.
 
 int learnc_html_input_usage(std::string &page, const std::string usage)
 {
@@ -146,6 +203,15 @@ int learnc_html_input_usage(std::string &page, const std::string usage)
 
     return 1;
 }
+
+// learnc_html_gen_open generates html for the other functions for the
+// doctype, head section which indicates character set and page sytling
+// and finishes with opening the body to our content.
+//
+// returns 1, but should probably be made a void function
+// as there are no NULL pointers to check for. Takes
+// C++ string as an argument passed by reference to load
+// the html content into.
 
 int learnc_html_gen_open(std::string &page)
 {
@@ -173,6 +239,14 @@ int learnc_html_gen_open(std::string &page)
     return 1;
 }
 
+// learnc_html_gen_close generates html for the closing section of a page
+// after we have inserted our specific content.
+//
+// returns 1, but should probably be made a void function
+// as there are no NULL pointers to check for. Takes
+// C++ string as an argument passed by reference to load
+// the html content into.
+
 int learnc_html_gen_close(std::string &page)
 {
     page += BODY_CLOSE;
@@ -180,6 +254,15 @@ int learnc_html_gen_close(std::string &page)
 
     return 1;
 }
+
+// learnc_html_remove_close removes the generated html by learnc_html_gen_close
+// so that we can append more content to a page generated by another function
+// as is the case with learnc_html_card_back_and_front.
+//
+// returns 1, but should probably be made a void function
+// as there are no NULL pointers to check for. Takes
+// C++ string as an argument passed by reference to load
+// the html content into.
 
 int learnc_html_remove_close(std::string &page)
 {

@@ -25,6 +25,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "types.h"
 #include "initialize.h"
 
+// learnc_init_charset takes character set such as en_US.UTF-8 as
+// an argument and takes care of setting the different locale
+// properties to the character set given.
+//
+// returns 0 for failure and 1 for success
+
 int learnc_init_charset(char *charset)
 {
     int properties[5] = {LC_ALL, LC_CTYPE, LC_MESSAGES,
@@ -45,6 +51,11 @@ int learnc_init_charset(char *charset)
     return 1;
 }
 
+// learnc_init_chset_setloc takes a property such as LC_ALL or
+// LC_CTYPE and sets it to a specific charset such as en_US.UTF-8
+//
+// returns 0 for failure and 1 for success
+
 int learnc_init_chset_setloc(int property, char *charset)
 {
     char *p;
@@ -58,6 +69,16 @@ int learnc_init_chset_setloc(int property, char *charset)
 
     return 1;
 }
+
+// learnc_init_box sets the box's size integer so that it
+// only holds that many cards when used later. This function
+// also clears the box's stack that will hold the pointers
+// to cards in the instance's stack. This helps avoid memory
+// errors should they sneak in.
+//
+// returns 0 for failure and 1 for success
+// takes a pointer to box for what you will be initializing
+// and an integer indicating which box this is to be
 
 int learnc_init_box(box *boxvar, int number)
 {
@@ -91,6 +112,14 @@ int learnc_init_box(box *boxvar, int number)
     return 1;
 }
 
+// learnc_init_boxes takes care of setting all the boxes
+// up to their initial values and allocating memory for
+// them.
+//
+// returns 0 for failure and 1 for success
+// takes a pointer to pointer to box for an argument
+// which will be the instance's address value for boxes
+
 int learnc_init_boxes(box **boxes)
 {
     int i, status;
@@ -108,6 +137,13 @@ int learnc_init_boxes(box **boxes)
     return 1;
 }
 
+// learnc_init_linux_storage checks to see if storage
+// for the program's configuration and progress files
+// exists. If not it creates it.
+//
+// returns 0 for failure and 1 for success 
+// takes no arguments
+
 int learnc_init_linux_storage(void)
 {
     struct stat st = {0};
@@ -123,6 +159,14 @@ int learnc_init_linux_storage(void)
 
     return 1;
 }
+
+// learnc_init_instance initializes an instance to
+// help with error checking and making sure seg faults
+// and other memory related issues don't happen
+//
+// returns nothing
+// takes an instance as an argument that is passed by
+// reference
 
 void learnc_init_instance(instance &data)
 {

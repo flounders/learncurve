@@ -31,9 +31,9 @@
   <card><num>12</num><front><sub>ζωή</sub><sub>ζωῆς</sub></front><back><sub>life</sub></back></card>
   <card><num>13</num><front><sub>θεός</sub><sub>θεοῦ</sub></front><back><sub>God</sub><sub>god</sub></back></card>
   <card><num>14</num><front><sub>καί</sub></front><back><sub>and</sub><sub>even</sub><sub>also</sub><sub>namely</sub></back></card>
-  <card><num>15</num><front><sub>καρδὶα</sub><sub>καρδιας</sub></front><back><sub>heart</sub></back></card>
-  <card><num>16</num><front><sub>κοσμος</sub><sub>κοσμου</sub></front><back><sub>world</sub><sub>universe</sub><sub>humankind</sub></back></card>
-  <card><num>17</num><front><sub>λόγος</sub><sub>λογου</sub></front><back><sub>word</sub><sub>Word</sub><sub>statement</sub><sub>message</sub></back></card>
+  <card><num>15</num><front><sub>καρδία</sub><sub>καρδίας</sub></front><back><sub>heart</sub></back></card>
+  <card><num>16</num><front><sub>κόσμος</sub><sub>κόσμου</sub></front><back><sub>world</sub><sub>universe</sub><sub>humankind</sub></back></card>
+  <card><num>17</num><front><sub>λόγος</sub><sub>λόγου</sub></front><back><sub>word</sub><sub>Word</sub><sub>statement</sub><sub>message</sub></back></card>
   <card><num>18</num><front><sub>Παῦλος</sub><sub>Παῦλου</sub></front><back><sub>Paul</sub></back></card>
   <card><num>19</num><front><sub>Πέτρος</sub><sub>Πέτρου</sub></front><back><sub>Peter</sub></back></card>
   <card><num>20</num><front><sub>Πιλᾶτος</sub><sub>Πιλᾶτου</sub></front><back><sub>Pilate</sub></back></card>
@@ -41,8 +41,8 @@
   <card><num>22</num><front><sub>προφήτης</sub><sub>προφήτου</sub></front><back><sub>prophet</sub></back></card>
   <card><num>23</num><front><sub>σάββατον</sub><sub>σάββατου</sub></front><back><sub>Sabbath</sub><sub>week</sub></back></card>
   <card><num>24</num><front><sub>Σίμων</sub><sub>Σίμωνος</sub></front><back><sub>Simon</sub></back></card>
-  <card><num>25</num><front><sub>φωνή</sub><sub>φωνής</sub></front><back><sub>sound</sub><sub>noise</sub><sub>voice</sub></back></card>
-  <card><num>26</num><front><sub>Χριστός</sub><sub>Χριστού</sub></front><back><sub>Christ</sub><sub>Messiah</sub><sub>Annointed One</sub></back></card>
+  <card><num>25</num><front><sub>φωνή</sub><sub>φωνῆς</sub></front><back><sub>sound</sub><sub>noise</sub><sub>voice</sub></back></card>
+  <card><num>26</num><front><sub>Χριστός</sub><sub>Χριστού</sub></front><back><sub>Christ</sub><sub>Messiah</sub><sub>Anointed One</sub></back></card>
   <card><num>27</num><front><sub>ἀγάπη</sub><sub>ἀγάπης</sub></front><back><sub>love</sub></back></card>
   <card><num>28</num><front><sub>ἄλλος</sub><sub>ἄλλη</sub><sub>ἄλλο</sub></front><back><sub>other</sub><sub>another</sub></back></card>
   <card><num>29</num><front><sub>αὑτός</sub><sub>αὐτή</sub><sub>αὐτό</sub></front><back><sub>he, she, it</sub><sub>him/her/itself</sub><sub>same</sub></back></card>
@@ -51,7 +51,7 @@
   <card><num>32</num><front><sub>ἐν</sub></front><back><sub>in</sub><sub>on</sub><sub>among</sub></back></card>
   <card><num>33</num><front><sub>ἔργον</sub><sub>ἔργου</sub></front><back><sub>work</sub><sub>deed</sub><sub>action</sub></back></card>
   <card><num>34</num><front><sub>καιρός</sub><sub>καιροῦ</sub></front><back><sub>(appointed) time</sub><sub>season</sub></back></card>
-  <card><num>35</num><front><sub>νῦν</sub></front><back><sub>Adverb: now</sub><sub>Noun: (the) present</sub></back></card>
+  <card><num>35</num><front><sub>νῦν</sub></front><back><sub>adverb: now</sub><sub>noun: (the) present</sub></back></card>
   <card><num>36</num><front><sub>ὁ</sub><sub>ἡ</sub><sub>τό</sub></front><back><sub>the</sub></back></card>
   <card><num>37</num><front><sub>ὅτι</sub></front><back><sub>that</sub><sub>since</sub><sub>because</sub></back></card>
   <card><num>38</num><front><sub>οὐ</sub><sub>οὐκ</sub><sub>οὐχ</sub></front><back><sub>not</sub></back></card>
@@ -60,15 +60,15 @@
   <card><num>41</num><front><sub>ἀρχή</sub><sub>ἀρχῆς</sub></front><back><sub>beginning</sub><sub>ruler</sub></back></card>
   <card><num>42</num><front><sub>γάρ</sub></front><back><sub>for</sub><sub>then</sub></back></card>
   <card><num>43</num><front><sub>εἶπεν</sub></front><back><sub>he/she/it said</sub></back></card>
-  <card><num>44</num><front><sub>εἰς</sub></front><back><sub>acc: into, in, among</sub></back></card>
+  <card><num>44</num><front><sub>εἰς</sub></front><back><sub>into</sub><sub>in</sub><sub>among</sub></back></card>
   <card><num>45</num><front><sub>ἐξουσία</sub><sub>ἐξουσίας</sub></front><back><sub>authority</sub><sub>power</sub></back></card>
   <card><num>46</num><front><sub>εὐαγγέλιον</sub><sub>εὐαγγέλιου</sub></front><back><sub>good news</sub><sub>Gospel</sub></back></card>
   <card><num>47</num><front><sub>Ἰησοῦς</sub><sub>Ἰησου</sub></front><back><sub>Jesus</sub><sub>Joshua</sub></back></card>
   <card><num>48</num><front><sub>κύριος</sub><sub>κύριου</sub></front><back><sub>Lord</sub><sub>lord</sub><sub>master</sub><sub>sir</sub></back></card>
   <card><num>49</num><front><sub>μή</sub></front><back><sub>not</sub><sub>lest</sub></back></card>
   <card><num>50</num><front><sub>οὐρανός</sub><sub>οὐρανοῦ</sub></front><back><sub>heaven</sub><sub>sky</sub></back></card>
-  <card><num>51</num><front><sub>οὗτος</sub><sub>αὕτη</sub><sub>τοῦτο</sub></front><back><sub>sg:this, he, she, it</sub><sub>pl:these, they</sub></back></card>
-  <card><num>52</num><front><sub>σύ</sub></front><back><sub>you(sg)</sub></back></card>
+  <card><num>51</num><front><sub>οὗτος</sub><sub>αὕτη</sub><sub>τοῦτο</sub></front><back><sub>sg: this; he, she, it</sub><sub>pl: these; they</sub></back></card>
+  <card><num>52</num><front><sub>σύ</sub></front><back><sub>you (sg)</sub></back></card>
   <card><num>53</num><front><sub>υἱός</sub><sub>υἱοῦ</sub></front><back><sub>son</sub><sub>descendant</sub></back></card>
   <card><num>54</num><front><sub>ὥστε</sub></front><back><sub>therefore</sub><sub>so that</sub></back></card>
   <card><num>55</num><front><sub>ἀλλά</sub></front><back><sub>but</sub><sub>yet</sub><sub>except</sub></back></card>
@@ -84,7 +84,7 @@
   <card><num>65</num><front><sub>Ἰωάννης</sub><sub>Ἰωάννου</sub></front><back><sub>John</sub></back></card>
   <card><num>66</num><front><sub>λέγω</sub></front><back><sub>Ι say</sub><sub>speak</sub></back></card>
   <card><num>67</num><front><sub>μετά</sub></front><back><sub>gen: with</sub><sub>acc: after</sub></back></card>
-  <card><num>68</num><front><sub>οἰκία</sub><sub>οἰκιας</sub></front><back><sub>house</sub><sub>home</sub></back></card>
+  <card><num>68</num><front><sub>οἰκία</sub><sub>οἰκίας</sub></front><back><sub>house</sub><sub>home</sub></back></card>
   <card><num>69</num><front><sub>οἶκος</sub><sub>οἶκου</sub></front><back><sub>house</sub><sub>home</sub></back></card>
   <card><num>70</num><front><sub>ὄχλος</sub><sub>ὄχλου</sub></front><back><sub>crowd</sub><sub>multitude</sub></back></card>
   <card><num>71</num><front><sub>παρά</sub></front><back><sub>gen: from</sub><sub>dat: beside, in presence of</sub><sub>acc: alongside of</sub></back></card>
@@ -98,17 +98,17 @@
   <card><num>79</num><front><sub>ἀπεκρίθη</sub></front><back><sub>he/she/it answered</sub></back></card>
   <card><num>80</num><front><sub>δοῦλος</sub><sub>δοῦλου</sub></front><back><sub>slave</sub><sub>servant</sub></back></card>
   <card><num>81</num><front><sub>ἐάν</sub></front><back><sub>if</sub><sub>when</sub></back></card>
-  <card><num>82</num><front><sub>ἐμός</sub><sub>ἐμἠ</sub><sub>ἐμόν</sub></front><back><sub>my</sub><sub>mine</sub></back></card>
-  <card><num>83</num><front><sub>ἐντολἠ</sub><sub>ἐντολῆς</sub></front><back><sub>commandment</sub></back></card>
+  <card><num>82</num><front><sub>ἐμός</sub><sub>ἐμή</sub><sub>ἐμόν</sub></front><back><sub>my</sub><sub>mine</sub></back></card>
+  <card><num>83</num><front><sub>ἐντολή</sub><sub>ἐντολῆς</sub></front><back><sub>commandment</sub></back></card>
   <card><num>84</num><front><sub>καθώς</sub></front><back><sub>as</sub><sub>even as</sub></back></card>
   <card><num>85</num><front><sub>κακός</sub><sub>κακή</sub><sub>κακόν</sub></front><back><sub>bad</sub><sub>evil</sub></back></card>
   <card><num>86</num><front><sub>μου</sub></front><back><sub>my</sub></back></card>
   <card><num>87</num><front><sub>νεκρός</sub><sub>νεκρά</sub><sub>νεκρόν</sub></front><back><sub>adj: dead</sub><sub>noun: dead body, corpse</sub></back></card>
   <card><num>88</num><front><sub>πιστός</sub><sub>πιστή</sub><sub>πιστόν</sub></front><back><sub>faithful</sub><sub>believing</sub></back></card>
-  <card><num>89</num><front><sub>πονηρός</sub><sub>ποναρά</sub><sub>πονηρόν</sub></front><back><sub>evil</sub><sub>bad</sub></back></card>
+  <card><num>89</num><front><sub>πονηρός</sub><sub>πονηρά</sub><sub>πονηρόν</sub></front><back><sub>evil</sub><sub>bad</sub></back></card>
   <card><num>90</num><front><sub>πρῶτος</sub><sub>πρῶτη</sub><sub>πρῶτον</sub></front><back><sub>first</sub><sub>earlier</sub></back></card>
   <card><num>91</num><front><sub>τρίτος</sub><sub>τρίτη</sub><sub>τρίτον</sub></front><back><sub>third</sub></back></card>
-  <card><num>92</num><front><sub>ἅγιος</sub><sub>ἅγία</sub><sub>ἅγιον</sub></front><back><sub>adj: holy</sub><sub>pl noun: saints</sub></back></card>
+  <card><num>92</num><front><sub>ἅγιος</sub><sub>ἁγία</sub><sub>ἅγιον</sub></front><back><sub>adj: holy</sub><sub>pl noun: saints</sub></back></card>
   <card><num>93</num><front><sub>εἰ</sub></front><back><sub>if</sub></back></card>
   <card><num>94</num><front><sub>εἰ μή</sub></front><back><sub>except</sub><sub>if not</sub></back></card>
   <card><num>95</num><front><sub>εἷς</sub><sub>μία</sub><sub>ἕν</sub></front><back><sub>one</sub></back></card>
@@ -118,13 +118,13 @@
   <card><num>99</num><front><sub>πᾶς</sub><sub>πᾶσα</sub><sub>πᾶν</sub></front><back><sub>sg: each, every</sub><sub>pl: all</sub></back></card>
   <card><num>100</num><front><sub>περί</sub></front><back><sub>gen: concerning, about</sub><sub>acc: around</sub></back></card>
   <card><num>101</num><front><sub>σάρξ</sub><sub>σαρκός</sub></front><back><sub>flesh</sub><sub>body</sub></back></card>
-  <card><num>102</num><front><sub>σύν</sub></front><back><sub>dat:with</sub></back></card>
+  <card><num>102</num><front><sub>σύν</sub></front><back><sub>dat: with</sub></back></card>
   <card><num>103</num><front><sub>σῶμα</sub><sub>σῶματος</sub></front><back><sub>body</sub></back></card>
   <card><num>104</num><front><sub>τέκνον</sub><sub>τέκνου</sub></front><back><sub>child</sub><sub>descendant</sub></back></card>
   <card><num>105</num><front><sub>τις</sub><sub>τι</sub></front><back><sub>a certain one (or) thing</sub><sub>anyone</sub><sub>someone</sub></back></card>
   <card><num>106</num><front><sub>τίς</sub><sub>τί</sub></front><back><sub>who?</sub><sub>what?</sub><sub>which?</sub><sub>why?</sub></back></card>
-  <card><num>107</num><front><sub>ἀδελφός</sub><sub>ἀδελπηοῦ</sub></front><back><sub>brother</sub></back></card>
-  <card><num>108</num><front><sub>ἄν</sub></front><back><sub>UNTRANSLATABLE...Makes definite statement contingent</sub></back></card>
+  <card><num>107</num><front><sub>ἀδελφός</sub><sub>ἀδελφοῦ</sub></front><back><sub>brother</sub></back></card>
+  <card><num>108</num><front><sub>ἄν</sub></front><back><sub>Untranslatable. Makes definite statement contingent</sub></back></card>
   <card><num>109</num><front><sub>ἀνήρ</sub><sub>ἀνδρός</sub></front><back><sub>man</sub><sub>male</sub><sub>husband</sub></back></card>
   <card><num>110</num><front><sub>ἐκκλησία</sub><sub>ἐκκλησίας</sub></front><back><sub>church</sub><sub>Church</sub><sub>assembly</sub><sub>congregation</sub></back></card>
   <card><num>111</num><front><sub>ἐλπίς</sub><sub>ἐλπίδος</sub></front><back><sub>hope</sub><sub>expectation</sub></back></card>

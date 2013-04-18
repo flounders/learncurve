@@ -24,6 +24,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "types.h"
 #include "read_vocab_file.h"
 
+// learnc_parse_file takes an XML file and walks through its elements.
+// As it walks through the document tree, it takes the data from the
+// appropriate elements and puts it into a card which when it comes
+// across another card element pushes the card it has just worked on
+// into the stack.
+//
+// returns 0 for failure and 1 for success
+// takes an xmlTextReaderPtr for walking through our XML file and
+// a vector holding voc_cards passed by reference for the stack
+
 int learnc_parse_file(xmlTextReaderPtr reader, std::vector<voc_card> &stack)
 {
     if (reader == NULL)
@@ -111,6 +121,14 @@ int test_parse_file(void)
     return 1;
 }
 
+// learnc_element_check tests to see what element we are currently
+// in and returns a value to indicate which element we are in. This
+// function is made for use with learnc_parse_file.
+//
+// returns a value assosciated with a type of element or 0 for failure
+// takes xmlTextReaderPtr for an argument which is what is used to
+// walk through the XML file containing our data.
+
 int learnc_element_check(xmlTextReaderPtr reader)
 {
     const char *temp;
@@ -137,6 +155,13 @@ int learnc_element_check(xmlTextReaderPtr reader)
 
     return 0;
 }
+
+// learnc_card_clear is used to reinitialize all of the data in a
+// card. It is used in learnc_parse_file to clear the buffer card
+// after the card that has just been read in is stored.
+//
+// returns nothing
+// takes a voc_card that is passed by reference
 
 void learnc_card_clear(voc_card &card)
 {

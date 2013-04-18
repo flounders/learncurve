@@ -19,6 +19,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "save_restore.h"
 #include "types.h"
 
+// learnc_is_in_boxes tests to see if a specific card is
+// in any of the boxes or the known deck that way it doesn't
+// test the same card through the system twice.
+//
+// returns -1 for error, 0 for not present, and 1 for present
+// takes an int number to represent the card number being checked
+// for and a pointer to the boxes starting with number one and a
+// pointer to the known box
+
 int learnc_is_in_boxes(int number, box *boxes, box *known)
 {
     int i, j;
@@ -45,6 +54,9 @@ int learnc_is_in_boxes(int number, box *boxes, box *known)
     return 0;
 }
 
+// test_is_in_boxes is incomplete but is meant to make sure
+// learnc_is_in_boxes is working.
+
 int test_is_in_boxes(void)
 {
     instance data;
@@ -52,18 +64,28 @@ int test_is_in_boxes(void)
     return 1;
 }
 
-int learnc_box_promote(box *box1, box *box2, voc_card *card)
+// learnc_box_promote takes a card that has just been tested
+// and the user got the right result, and pushes it up to the
+// next box. Thus promoting the card from the box it was in
+// to the next box in the system.
+//
+// returns 0 for failure and 1 for success
+// takes two pointers to box one for source the second for
+// destination, and it takes a pointer to a voc_card for
+// to id the right card
+
+int learnc_box_promote(box *src, box *dest, voc_card *card)
 {
     int i;
 
-    if (card == NULL || box1 == NULL || box2 == NULL) {
+    if (card == NULL || src == NULL || dest == NULL) {
         return 0;
     }
 
-    i = learnc_find_in_stack(card->number, box1->stack);
+    i = learnc_find_in_stack(card->number, src->stack);
     if (i >= 0) {
-        box2->stack.push_back(card);
-        box1->stack.erase(box1->stack.begin()+i);
+        dest->stack.push_back(card);
+        src->stack.erase(src->stack.begin()+i);
     }
     else {
         return 0;
@@ -71,6 +93,16 @@ int learnc_box_promote(box *box1, box *box2, voc_card *card)
 
     return 1;
 }
+
+// learnc_load_box is used to load typically the first box
+// in the system with pointers to cards to be tested on. 
+// Could be used on any of the others, but it isn't designed
+// for that.
+//
+// returns 0 for error and 1 for success
+// takes a pointer to box for the destination of where to load
+// to, and a pointer to the instance to obtain the stack to
+// load from
 
 int learnc_load_box(box *dest, instance *current)
 {
