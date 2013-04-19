@@ -26,6 +26,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 
 static int current_box;
 
+// learnc_review_control is what takes care of details such as
+// what page to load on the screen for the user to interact with
+// and how to deal with that interaction. It is meant to load
+// the menu page for selecting which box to review, and load the
+// pages for the individual cards tested on. In addition to this
+// it checks the user's answer(s) and depending on if they got it
+// write or wrong moves the card in the boxes accordingly.
+//
+// returns 0 for error or failure and 1 for success.
+// takes an instance passed by reference as first argument, vector
+// of strings for input as second, string passed by reference for
+// preparing the HTML, and an int passed by reference for keeping
+// track of where we are in the function's role of the review
+// process.
+
 int learnc_review_control(instance &data, std::vector<std::string> input, std::string &page, int &review_state)
 {
     int address = 0;
@@ -142,6 +157,15 @@ int learnc_review_control(instance &data, std::vector<std::string> input, std::s
     return 0;
 }
 
+// learnc_review_check_answer does a simple check by comparing the text
+// that a user inputed against what is written on the card. It is flexible
+// in that you just pass a vector of strings from either the front or the
+// back. 
+// 
+// returns 0 for an incorrect answer and 1 for a correct answer
+// Takes two vectors of strings for arguments. The first one for what the user
+// entered, and the second for the content you are checking against.
+
 int learnc_review_check_answer(const std::vector<std::string> userinput, const std::vector<std::string> cardinput)
 {
     int i, j;
@@ -175,6 +199,13 @@ int learnc_review_check_answer(const std::vector<std::string> userinput, const s
 
     return 0;
 }
+
+// test_review_check_answer simply tests learnc_review_check_answer.
+// It goes through a few simple test cases to make sure this unit of
+// code still works as it should.
+//
+// returns 0 for error and 1 for success
+// Takes no arguments.
 
 int test_review_check_answer(void)
 {

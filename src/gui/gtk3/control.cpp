@@ -23,6 +23,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "../../backend/initialize.h"
 #include "control.h"
 
+// learnc_gtk3_gui_init takes care of setting up the GTK3
+// UI. It mostly just loads in what we need from the glade
+// file and adds what can't be or would be convenient to add
+// in through Glade.
+//
+// returns 0 for error and 1 for success
+// takes a reference to main's argc and a pointer to argv
+
 int learnc_gtk3_gui_init(int &argc, char **argv[])
 {
     GtkBuilder *builder;
@@ -63,6 +71,13 @@ int learnc_gtk3_gui_init(int &argc, char **argv[])
 
     return 1;
 }
+
+// learnc_gtk3_instance_init initializes the gtk3 specific
+// data for our instance, and initializes the instance
+// structure setup in backend/types.h
+//
+// returns 0 for failure and 1 for success
+// takes a pointer to gtk_instance
 
 int learnc_gtk3_instance_init(gtk_instance *data)
 {

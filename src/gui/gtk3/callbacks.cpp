@@ -31,6 +31,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "../../backend/types.h"
 #include "control.h"
 
+// callbacks.cpp contains all the callbacks for the GTK3 UI
+
 static int review_state;
 
 extern "C"
