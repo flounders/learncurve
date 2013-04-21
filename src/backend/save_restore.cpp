@@ -87,8 +87,8 @@ int learnc_restore_box(std::vector<int> &card_numbers, std::ifstream &fin)
 
     while (!fin.eof()) {
         getline(fin, buf);
-        if (buf.find_first_not_of("0123456789") == std::string::npos) {
-            return 1;
+        if (buf.find_first_not_of("0123456789") != std::string::npos) {
+            break;
         }
         std::istringstream ss(buf);
         ss >> i;
@@ -148,14 +148,18 @@ int learnc_restore_boxes(box *boxes, std::ifstream &fin, std::vector<voc_card> &
     getline(fin, temp);
     while (i < 5) {
         learnc_restore_box(card_numbers, fin);
-        for (j = 0; j < card_numbers.size(); j++) {
-            address = learnc_find_in_stack(card_numbers[j], stack);
-            if (address != -1 && (boxes+i)->stack.size() < (boxes+i)->size)
-                (boxes+i)->stack.push_back(&stack[address]);
+        if (!(card_numbers.empty())) {
+            for (j = 0; j < card_numbers.size(); j++) {
+                address = learnc_find_in_stack(card_numbers[j], stack);
+                if (address != -1 && (boxes+i)->stack.size() < (boxes+i)->size)
+                    (boxes+i)->stack.push_back(&stack[address]);
+            }
+            card_numbers.clear();
         }
-        card_numbers.clear();
         ++i;
     }
+
+
 
     return 1;
 }
@@ -252,7 +256,7 @@ int learnc_get_storage_path(char *filename, char *dirname)
 // takes a pointer to char that is meant to contain the filename of the XML file
 // we read our cards from.
 
-int learnc_make_storage_directory(const char *filename)
+int learnc_make_storage_directory(char *filename)
 {
     if (filename == NULL) {
         std::cerr << "learnc_make_storace_directory:"

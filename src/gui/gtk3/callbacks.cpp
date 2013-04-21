@@ -85,6 +85,8 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
         strcat(path, "/boxcards");
         infile.open(path);
         if (!infile.fail()) {
+            std::cout << "learnc_gtk_open_cb: learnc_restore_boxes() in same block "
+                      << "of execution.\n";
             learnc_restore_boxes(gtk_data->data.boxes, infile, gtk_data->data.stack);
             infile.close();
         }
@@ -98,6 +100,8 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
         strcat(path, "/knowncards");
         infile.open(path);
         if (!infile.fail()) {
+            std::cout << "learnc_gtk_open_cb: learnc_restore_known() in same block "
+                      << "of execution.\n";
             learnc_restore_known(gtk_data->data.known, infile, gtk_data->data.stack);
             infile.close();
         }
@@ -110,9 +114,6 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
 
     review_state = OUT_REVIEW;
 
-    std::cout << "learnc_gtk_open_cb: box1->stack.size() = "
-              << gtk_data->data.boxes->stack.size()
-              << std::endl;
 }
 
 extern "C"
@@ -140,7 +141,7 @@ void learnc_gtk_save_cb(gtk_instance *gtk_data)
     char path[PATH_MAX];
 
     if (learnc_get_storage_path(gtk_data->file_name, path) == 1) {
-        strcat(path, "boxcards");
+        strcat(path, "/boxcards");
         outfile.open(path);
     }
     else {
@@ -155,7 +156,7 @@ void learnc_gtk_save_cb(gtk_instance *gtk_data)
     outfile.close();
 
     if (learnc_get_storage_path(gtk_data->file_name, path) == 1) {
-        strcat(path, "knowncards");
+        strcat(path, "/knowncards");
         outfile.open(path);
     }
     else {
@@ -274,7 +275,21 @@ void learnc_gtk_about_cb(gtk_instance *gtk_data)
                           NULL);
 }
 
+// input is our way of sharing text collected from the
+// text entry box with review in its different phases
+
 static std::vector<std::string> input;
+
+// learnc_gtk_text_entry_cb will pass text straight
+// to the review function when we are not in a review
+// session, but when we are it will just push that text
+// onto input and not send it leaving the learnc_gtk
+// _button_done_cb to handle sending our data when we
+// are finished.
+//
+// returns nothing
+// takes a pointer to GtkWidget for the text entry box
+// and our gtk_instance for other necessary odds and ends
 
 extern "C"
 void learnc_gtk_text_entry_cb(GtkWidget *entry, gtk_instance *gtk_data)
@@ -300,6 +315,14 @@ void learnc_gtk_text_entry_cb(GtkWidget *entry, gtk_instance *gtk_data)
     gtk_entry_set_text(GTK_ENTRY(entry), "");
 }
 
+// learnc_gtk_button_done_cb controls the button clicked signal
+// but it helps us keep multiple text entries seperated until
+// we are ready to send them.
+//
+// returns nothing
+// takes pointer to GtkWidget as first argument for passing button
+// and gtk_instance for page loading
+
 extern "C"
 void learnc_gtk_button_done_cb(GtkWidget *button, gtk_instance *gtk_data)
 {
@@ -314,13 +337,17 @@ void learnc_gtk_button_done_cb(GtkWidget *button, gtk_instance *gtk_data)
         flag = 0;
         gtk_button_set_label(GTK_BUTTON(button), "Done");
     }
+    else if (review_state == OUT_REVIEW) {
+        flag = 0;
+        gtk_button_set_label(GTK_BUTTON(button), "Done");
+// possibly load a stats page here for how many right and wrong
+    }
 
     if (review_state == IN_REVIEW) {
         learnc_review_control(gtk_data->data, input, page, review_state);
         webkit_web_view_load_html_string(gtk_data->webview, page.c_str(),
                                          "../../backend");
     }
-
     input.clear();
 }
 

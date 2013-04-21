@@ -24,6 +24,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 
 #define LEARNC_GTK3_GLADE "/home/swilliams/workspace/learncurve++/src/gui/gtk3/main_gtk3.glade"
 
+// gtk_instance is only for the GTK UI as it makes it the only
+// way to pass arguments through GTK applications at all.
+// file_name is what our cards file is. data comes from the backend
+// and works with it. window is needed for different odds and ends.
+// about is easier to pass this way. The webview needed to be included
+// so different callbacks could handle page loading.
+
 struct gtk_instance {
     char *file_name;
     instance data;
