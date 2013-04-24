@@ -23,6 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "../../backend/initialize.h"
 #include "control.h"
 
+using namespace std;
+
 // learnc_gtk3_gui_init takes care of setting up the GTK3
 // UI. It mostly just loads in what we need from the glade
 // file and adds what can't be or would be convenient to add
@@ -36,7 +38,7 @@ int learnc_gtk3_gui_init(int &argc, char **argv[])
     GtkBuilder *builder;
     gtk_instance cb_args;
     GtkWidget *webcon;
-    std::string page;
+    string page;
 
     gtk_init(&argc, argv);
 
@@ -47,7 +49,7 @@ int learnc_gtk3_gui_init(int &argc, char **argv[])
                               NULL);
 
     if (builder == NULL) {
-        std::cerr << "learnc_gtk3_gui_init: Encountered error adding glade file.\n";
+        cerr << "learnc_gtk3_gui_init: Encountered error adding glade file.\n";
         return 0;
     }
 

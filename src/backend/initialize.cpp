@@ -25,6 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "types.h"
 #include "initialize.h"
 
+using namespace std;
+
 // learnc_init_charset takes character set such as en_US.UTF-8 as
 // an argument and takes care of setting the different locale
 // properties to the character set given.
@@ -83,7 +85,7 @@ int learnc_init_chset_setloc(int property, char *charset)
 int learnc_init_box(box *boxvar, int number)
 {
     if (boxvar == NULL) {
-        std::cerr << "learnc_init_box: boxvar is NULL.\n";
+        cerr << "learnc_init_box: boxvar is NULL.\n";
         return 0;
     }
 
@@ -129,7 +131,7 @@ int learnc_init_boxes(box **boxes)
     for (i = 0; i < MAX_BOXES; i++) {
         status = learnc_init_box((*boxes+i), i+1);
         if (status == 0) {
-            std::cerr << "learnc_init_boxes: Encountered error with learnc_init_box().\n";
+            cerr << "learnc_init_boxes: Encountered error with learnc_init_box().\n";
             return 0;
         }
     }

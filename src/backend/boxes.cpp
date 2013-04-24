@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "save_restore.h"
 #include "types.h"
 
+using namespace std;
+
 // learnc_is_in_boxes tests to see if a specific card is
 // in any of the boxes or the known deck that way it doesn't
 // test the same card through the system twice.
@@ -33,7 +35,7 @@ int learnc_is_in_boxes(int number, box *boxes, box *known)
     int i, j;
 
     if (boxes == NULL || known == NULL) {
-        std::cerr << "learnc_is_in_boxes: Received NULL pointer.\n";
+        cerr << "learnc_is_in_boxes: Received NULL pointer.\n";
         return -1;
     }
 

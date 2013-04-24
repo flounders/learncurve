@@ -24,6 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "types.h"
 #include "read_vocab_file.h"
 
+using namespace std;
+
 // learnc_parse_file takes an XML file and walks through its elements.
 // As it walks through the document tree, it takes the data from the
 // appropriate elements and puts it into a card which when it comes
@@ -40,7 +42,7 @@ int learnc_parse_file(xmlTextReaderPtr reader, std::vector<voc_card> &stack)
         return 0;
 
     short state = 0;
-    std::string buf;
+    string buf;
     char *ptr;
     voc_card tmp;
 
@@ -91,27 +93,27 @@ int test_parse_file(void)
 
     xmlTextReaderPtr reader;
     int retval = 0;
-    std::vector<voc_card> stack;
+    vector<voc_card> stack;
 
     reader = xmlReaderForDoc((xmlChar *) testxml, NULL, NULL, 0);
     if (reader == NULL) {
-        std::cerr << "test_parse_file: problem with xmlReaderForDoc\n";
+        cerr << "test_parse_file: problem with xmlReaderForDoc\n";
         return 0;
     }
 
     retval = learnc_parse_file(reader, stack);
     if (retval == 0) {
-        std::cerr << "test_parse_file: learnc_parse_file failed on reader\n";
+        cerr << "test_parse_file: learnc_parse_file failed on reader\n";
         return 0;
     }
 
     if (stack.size() == 3) 
         ;
     else {
-        std::cerr << "test_parse_file: stack vector unexpected size of "
-                  << stack.size() << std::endl;
+        cerr << "test_parse_file: stack vector unexpected size of "
+                  << stack.size() << endl;
         for (retval = 0; retval < stack.size(); retval++)
-            std::cout << stack[retval].number << std::endl;
+            cout << stack[retval].number << endl;
         return 0;
     }
 

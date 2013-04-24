@@ -31,6 +31,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #define BODY_CLOSE   "</body>"
 #define META_CHARSET "<meta charset=\"UTF-8\">\n"
 
+using namespace std;
+
 // htmlgen.cpp deals with generating HTML for the program
 // to display its content with.
 
@@ -64,7 +66,7 @@ int learnc_html_welcome_page(std::string &page)
 
 int learnc_html_card_front(voc_card card, std::string &page)
 {
-    std::ostringstream convert;
+    ostringstream convert;
     int i;
 
     learnc_html_gen_open(page);
@@ -129,7 +131,7 @@ int learnc_html_card_back_and_front(voc_card card, std::string &page)
 
 int learnc_html_view_boxes(instance &current, std::string &page)
 {
-    std::ostringstream convert;
+    ostringstream convert;
     int i;
 
     learnc_html_gen_open(page);
@@ -215,8 +217,8 @@ int learnc_html_input_usage(std::string &page, const std::string usage)
 
 int learnc_html_gen_open(std::string &page)
 {
-    std::ifstream css_file;
-    std::string buf;
+    ifstream css_file;
+    string buf;
 
     css_file.open("/home/swilliams/workspace/learncurve++/src/backend/program.css");
 
@@ -266,7 +268,7 @@ int learnc_html_gen_close(std::string &page)
 
 int learnc_html_remove_close(std::string &page)
 {
-    std::string ext = HTML_CLOSE;
+    string ext = HTML_CLOSE;
 
     if (page.size() > ext.size() &&
         page.substr(page.size() - ext.size()) == HTML_CLOSE) {

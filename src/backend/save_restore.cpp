@@ -26,6 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "types.h"
 #include "save_restore.h"
 
+using namespace std;
+
 // save_restore.cpp contains the functions that deal with saving and resuming
 // your progress in the box system.
 
@@ -82,15 +84,15 @@ int learnc_save_boxes(box *boxes, std::ofstream &fout)
 
 int learnc_restore_box(std::vector<int> &card_numbers, std::ifstream &fin)
 {
-    std::string buf;
+    string buf;
     int i;
 
     while (!fin.eof()) {
         getline(fin, buf);
-        if (buf.find_first_not_of("0123456789") != std::string::npos) {
+        if (buf.find_first_not_of("0123456789") != string::npos) {
             break;
         }
-        std::istringstream ss(buf);
+        istringstream ss(buf);
         ss >> i;
         card_numbers.push_back(i);
     }
@@ -114,7 +116,7 @@ int learnc_restore_known(box *known, std::ifstream &fin, std::vector<voc_card> &
 
     int i;
     int address;
-    std::vector<int> card_numbers;
+    vector<int> card_numbers;
 
     learnc_restore_box(card_numbers, fin);
     for (i = 0; i < card_numbers.size(); i++) {
@@ -141,8 +143,8 @@ int learnc_restore_boxes(box *boxes, std::ifstream &fin, std::vector<voc_card> &
 
     int i = 0;
     int j, address;
-    std::string temp;
-    std::vector<int> card_numbers;
+    string temp;
+    vector<int> card_numbers;
 
 
     getline(fin, temp);
@@ -240,7 +242,7 @@ int learnc_get_storage_path(char *filename, char *dirname)
         snprintf(buf, sizeof (buf), "%s/.config/learncurve/%s", file_begin, last_pos);
     }
     else {
-        std::cerr << "learnc_get_storage_path: Encountered a problem with getenv().\n";
+        cerr << "learnc_get_storage_path: Encountered a problem with getenv().\n";
         return 0;
     }
 
@@ -259,7 +261,7 @@ int learnc_get_storage_path(char *filename, char *dirname)
 int learnc_make_storage_directory(char *filename)
 {
     if (filename == NULL) {
-        std::cerr << "learnc_make_storace_directory:"
+        cerr << "learnc_make_storace_directory:"
                   << " received NULL pointer for filename.\n";
         return 0;
     }

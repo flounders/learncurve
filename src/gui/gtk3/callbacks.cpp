@@ -33,6 +33,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 
 // callbacks.cpp contains all the callbacks for the GTK3 UI
 
+using namespace std;
+
 static int review_state;
 
 extern "C"
@@ -40,12 +42,12 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
 {
     xmlTextReaderPtr reader;
     GtkWidget *file_dialog;
-    std::ifstream infile;
+    ifstream infile;
     char path[PATH_MAX];
     int status;
 
     if (gtk_data == NULL) {
-        std::cerr << "learnc_gtk_open_cb: Received NULL on gtk_data.\n";
+        cerr << "learnc_gtk_open_cb: Received NULL on gtk_data.\n";
         return;
     }
 
@@ -62,7 +64,7 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
 
         if (reader == NULL) {
             gtk_widget_destroy(file_dialog);
-            std::cerr << "learnc_gtk_open_cb: Encountered error opening XML file.\n";
+            cerr << "learnc_gtk_open_cb: Encountered error opening XML file.\n";
             return;
         }
     }
@@ -73,7 +75,7 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
 
     status = learnc_parse_file(reader, gtk_data->data.stack);
     if (status == 0) {
-        std::cerr << "learnc_gtk_open_cb: Encountered error with learnc_parse_file().\n";
+        cerr << "learnc_gtk_open_cb: Encountered error with learnc_parse_file().\n";
         return;
     }
 
@@ -85,14 +87,14 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
         strcat(path, "/boxcards");
         infile.open(path);
         if (!infile.fail()) {
-            std::cout << "learnc_gtk_open_cb: learnc_restore_boxes() in same block "
-                      << "of execution.\n";
+            cout << "learnc_gtk_open_cb: learnc_restore_boxes() in same block "
+                 << "of execution.\n";
             learnc_restore_boxes(gtk_data->data.boxes, infile, gtk_data->data.stack);
             infile.close();
         }
     }
     else {
-        std::cerr << "learnc_gtk_open_cb: Received failure on learnc_get_storage_path().\n";
+        cerr << "learnc_gtk_open_cb: Received failure on learnc_get_storage_path().\n";
     }
 
 
@@ -100,14 +102,14 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
         strcat(path, "/knowncards");
         infile.open(path);
         if (!infile.fail()) {
-            std::cout << "learnc_gtk_open_cb: learnc_restore_known() in same block "
-                      << "of execution.\n";
+            cout << "learnc_gtk_open_cb: learnc_restore_known() in same block "
+                 << "of execution.\n";
             learnc_restore_known(gtk_data->data.known, infile, gtk_data->data.stack);
             infile.close();
         }
     }
     else {
-        std::cerr << "learnc_gtk_open_cb: Received failure on learnc_get_storage_path().\n";
+        cerr << "learnc_gtk_open_cb: Received failure on learnc_get_storage_path().\n";
     }
 
     gtk_widget_destroy(file_dialog);
@@ -120,24 +122,24 @@ extern "C"
 void learnc_gtk_save_cb(gtk_instance *gtk_data)
 {
     if (gtk_data == NULL) {
-        std::cerr << "learnc_gtk_save_cb: Received NULL on gtk_data.\n";
+        cerr << "learnc_gtk_save_cb: Received NULL on gtk_data.\n";
         return;
     }
 
     if (gtk_data->data.boxes == NULL) {
-        std::cerr << "learnc_gtk_save_cb: Boxes is uninitialized.\n";
+        cerr << "learnc_gtk_save_cb: Boxes is uninitialized.\n";
         return;
     }
     else if (gtk_data->data.known == NULL) {
-        std::cerr << "learnc_gtk_save_cb: Known is uninitialized.\n";
+        cerr << "learnc_gtk_save_cb: Known is uninitialized.\n";
         return;
     }
     else {
-        std::cout << "learnc_gtk_save_cb: " << gtk_data->data.boxes
-                  << std::endl;
+        cout << "learnc_gtk_save_cb: " << gtk_data->data.boxes
+                  << endl;
     }
 
-    std::ofstream outfile;
+    ofstream outfile;
     char path[PATH_MAX];
 
     if (learnc_get_storage_path(gtk_data->file_name, path) == 1) {
@@ -145,13 +147,13 @@ void learnc_gtk_save_cb(gtk_instance *gtk_data)
         outfile.open(path);
     }
     else {
-        std::cerr << "learnc_gtk_save_cb: Received failure on learnc_get_storage_path().\n";
+        cerr << "learnc_gtk_save_cb: Received failure on learnc_get_storage_path().\n";
         return;
     }
 
     if (learnc_save_boxes(gtk_data->data.boxes, outfile) == 0) {
-        std::cerr << "learnc_gtk_save_cb: Encountered problem with boxes pointer in "
-                  << "learnc_save_boxes().\n";
+        cerr << "learnc_gtk_save_cb: Encountered problem with boxes pointer in "
+             << "learnc_save_boxes().\n";
     }
     outfile.close();
 
@@ -160,12 +162,12 @@ void learnc_gtk_save_cb(gtk_instance *gtk_data)
         outfile.open(path);
     }
     else {
-        std::cerr << "learnc_gtk_save_cb: Received failure on learnc_get_storage_path().\n";
+        cerr << "learnc_gtk_save_cb: Received failure on learnc_get_storage_path().\n";
         return;
     }
     if (learnc_save_box(gtk_data->data.known, outfile) == 0) {
-        std::cerr << "learnc_gtk_save_cb: Encountered problem with boxes pointer in "
-                  << "learnc_save_box().\n";
+        cerr << "learnc_gtk_save_cb: Encountered problem with boxes pointer in "
+             << "learnc_save_box().\n";
     }
 
     outfile.close();
@@ -176,7 +178,7 @@ void learnc_gtk_save_cb(gtk_instance *gtk_data)
 extern "C"
 void learnc_gtk_view_boxes_cb(gtk_instance *gtk_data)
 {
-    std::string page;
+    string page;
 
     if (review_state != OUT_REVIEW) {
         return;
@@ -278,7 +280,7 @@ void learnc_gtk_about_cb(gtk_instance *gtk_data)
 // input is our way of sharing text collected from the
 // text entry box with review in its different phases
 
-static std::vector<std::string> input;
+static vector<std::string> input;
 
 // learnc_gtk_text_entry_cb will pass text straight
 // to the review function when we are not in a review
@@ -295,8 +297,8 @@ extern "C"
 void learnc_gtk_text_entry_cb(GtkWidget *entry, gtk_instance *gtk_data)
 {
 
-    std::string buffer;
-    std::string page;
+    string buffer;
+    string page;
 
     if (review_state != IN_REVIEW) {
         input.clear();
@@ -327,7 +329,7 @@ extern "C"
 void learnc_gtk_button_done_cb(GtkWidget *button, gtk_instance *gtk_data)
 {
     static int flag;
-    std::string page;
+    string page;
 
     if (flag == 0 && review_state == IN_REVIEW) {
         flag = 1;
@@ -354,7 +356,7 @@ void learnc_gtk_button_done_cb(GtkWidget *button, gtk_instance *gtk_data)
 extern "C"
 void learnc_gtk_review_cb(gtk_instance *gtk_data)
 {
-    std::string page;
+    string page;
 
     if (review_state == OUT_REVIEW) {
         learnc_review_control(gtk_data->data, input, page, review_state);
