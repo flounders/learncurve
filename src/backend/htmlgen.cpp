@@ -15,12 +15,17 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. */
 
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include "htmlgen.h"
 #include "types.h"
+
+#ifdef __linux__
+#define CSS_FILE "/.config/learncurve/program.css"
+#endif
 
 #define HTML_DOCTYPE "<!DOCTYPE html>"
 #define HTML_OPEN    "<html>"
@@ -44,11 +49,13 @@ using namespace std;
 // C++ string as an argument passed by reference to load
 // the html content into.
 
-int learnc_html_welcome_page(std::string &page)
+int learnc_html_welcome_page(void)
 {
+    ofstream page;
+
     learnc_html_gen_open(page);
 
-    page += "<div class=\"welcome\">Welcome to Learncurve!</div>";
+    page << "<div class=\"welcome\">Welcome to Learncurve!</div>";
 
     learnc_html_gen_close(page);
 
@@ -63,25 +70,23 @@ int learnc_html_welcome_page(std::string &page)
 // C++ string as an argument passed by reference to load
 // the html content into.
 
-
-int learnc_html_card_front(voc_card card, std::string &page)
+int learnc_html_card_front(voc_card card)
 {
-    ostringstream convert;
+    ofstream page;
     int i;
 
     learnc_html_gen_open(page);
 
-    page += "<div class=\"number\">";
-    convert << card.number;
-    page += convert.str();
-    page += "</div><div id=front>";
+    page << "<div class=\"number\">";
+    page << card.number;
+    page << "</div><div id=front>";
 
     for (i = 0; i < card.front.size(); i++) {
-        page += "<li>";
-        page += card.front[i];
-        page += "</li>";
+        page << "<li>";
+        page << card.front[i];
+        page << "</li>";
     }
-    page += "</div>";
+    page << "</div>";
 
     learnc_html_gen_close(page);
 
@@ -97,23 +102,33 @@ int learnc_html_card_front(voc_card card, std::string &page)
 // C++ string as an argument passed by reference to load
 // the html content into.
 
-int learnc_html_card_back_and_front(voc_card card, std::string &page)
+int learnc_html_card_back_and_front(voc_card card)
 {
     int i;
+    ofstream page;
 
-    learnc_html_card_front(card, page);
+    learnc_html_gen_open(page);
 
-    learnc_html_remove_close(page);
+    page << "<div class=\"number\">";
+    page << card.number;
+    page << "</div><div id=front>";
 
-    page += "<div class=\"back\">";
+    for (i = 0; i < card.front.size(); i++) {
+        page << "<li>";
+        page << card.front[i];
+        page << "</li>";
+    }
+    page << "</div>";
+
+    page << "<div class=\"back\">";
 
     for (i = 0; i < card.back.size(); i++) {
-        page += "<li>";
-        page += card.back[i];
-        page += "</li>";
+        page << "<li>";
+        page << card.back[i];
+        page << "</li>";
     }
 
-    page += "</div>";
+    page << "</div>";
 
     learnc_html_gen_close(page);
 
@@ -129,33 +144,28 @@ int learnc_html_card_back_and_front(voc_card card, std::string &page)
 // C++ string as an argument passed by reference to load
 // the html content into.
 
-int learnc_html_view_boxes(instance &current, std::string &page)
+int learnc_html_view_boxes(instance &current)
 {
-    ostringstream convert;
+    ofstream page;
     int i;
 
     learnc_html_gen_open(page);
 
     for (i = 0; i < 5; i++) {
-        page += "Box ";
-        convert << i+1;
-        page += convert.str();
-        convert.str("");
-        page += ":<dd><div class=\"progress\" style=\"width:";
-        convert << (current.boxes[i].stack.size() * 100.0) / current.boxes[i].size;
-        page += convert.str();
-        page += "%;\"></dd>";
-        page += convert.str();
-        page += "%<br>";
-        convert.str("");
+        page << "Box ";
+        page << i+1;
+        page << ":<dd><div class=\"progress\" style=\"width:";
+        page << (current.boxes[i].stack.size() * 100.0) / current.boxes[i].size;
+        page << "%;\"></dd>";
+        page << (current.boxes[i].stack.size() * 100.0) / current.boxes[i].size;
+        page << "%<br>";
     }
 
-    page += "Known:<dd><div class=\"progress\" style=\"width:";
-    convert << current.known->stack.size() * 100.0 / current.known->size;
-    page += convert.str();
-    page += "%;\"></dd>";
-    page += convert.str();
-    page += "%<br>";
+    page << "Known:<dd><div class=\"progress\" style=\"width:";
+    page << current.known->stack.size() * 100.0 / current.known->size;
+    page << "%;\"></dd>";
+    page << current.known->stack.size() * 100.0 / current.known->size;
+    page << "%<br>";
     
     learnc_html_gen_close(page);
 
@@ -172,14 +182,17 @@ int learnc_html_view_boxes(instance &current, std::string &page)
 // C++ string as an argument passed by reference to load
 // the html content into.
 
-int learnc_html_review_menu(std::string &page)
+int learnc_html_review_menu(void)
 {
+
+    ofstream page;
+
     learnc_html_gen_open(page);
 
-    page += "<div>Enter the box number you would like to review.</div>";
+    page << "<div>Enter the box number you would like to review.</div>";
 
     learnc_html_gen_close(page);
-
+    
     return 1;
 }
 
@@ -192,19 +205,23 @@ int learnc_html_review_menu(std::string &page)
 // the html content into and another string passed by value
 // that tells the user what the proper usage is.
 
-int learnc_html_input_usage(std::string &page, const std::string usage)
+int learnc_html_input_usage(const std::string usage)
 {
+    ofstream page;
+
     learnc_html_gen_open(page);
 
-    page += "<div>Invalid input.</div>";
-    page += "<div>Proper input: ";
-    page += usage;
-    page += "</div>";
+    page << "<div>Invalid input.</div>";
+    page << "<div>Proper input: ";
+    page << usage;
+    page << "</div>";
 
     learnc_html_gen_close(page);
 
     return 1;
 }
+
+
 
 // learnc_html_gen_open generates html for the other functions for the
 // doctype, head section which indicates character set and page sytling
@@ -215,28 +232,28 @@ int learnc_html_input_usage(std::string &page, const std::string usage)
 // C++ string as an argument passed by reference to load
 // the html content into.
 
-int learnc_html_gen_open(std::string &page)
+int learnc_html_gen_open(std::ofstream &page)
 {
-    ifstream css_file;
-    string buf;
+    char *homepath;
 
-    css_file.open("/home/swilliams/workspace/learncurve++/src/backend/program.css");
+    homepath = getenv("HOME");
 
-    page = HTML_DOCTYPE;
-    page += HTML_OPEN;
-    page += HEAD_OPEN;
-    page += META_CHARSET;
-    page += "<style>\n";
-    while (!css_file.eof()) {
-        getline(css_file, buf);
-        page += buf;
-        page += '\n';
-    }
-    page += "</style>\n";
-    page += HEAD_CLOSE;
-    page += BODY_OPEN;
+    page.open(OUTPUT_PAGE);
 
-    css_file.close();
+    page << HTML_DOCTYPE;
+    page << HTML_OPEN;
+    page << HEAD_OPEN;
+    page << META_CHARSET;
+    page << "<link rel=\"stylesheet\" type=\"text/css\" href=\"";
+    page << homepath;
+
+#ifdef CSS_FILE
+    page << CSS_FILE;
+#endif
+
+    page << "\">";
+    page << HEAD_CLOSE;
+    page << BODY_OPEN;
 
     return 1;
 }
@@ -249,39 +266,12 @@ int learnc_html_gen_open(std::string &page)
 // C++ string as an argument passed by reference to load
 // the html content into.
 
-int learnc_html_gen_close(std::string &page)
+int learnc_html_gen_close(std::ofstream &page)
 {
-    page += BODY_CLOSE;
-    page += HTML_CLOSE;
+    page << BODY_CLOSE;
+    page << HTML_CLOSE;
 
-    return 1;
-}
-
-// learnc_html_remove_close removes the generated html by learnc_html_gen_close
-// so that we can append more content to a page generated by another function
-// as is the case with learnc_html_card_back_and_front.
-//
-// returns 1, but should probably be made a void function
-// as there are no NULL pointers to check for. Takes
-// C++ string as an argument passed by reference to load
-// the html content into.
-
-int learnc_html_remove_close(std::string &page)
-{
-    string ext = HTML_CLOSE;
-
-    if (page.size() > ext.size() &&
-        page.substr(page.size() - ext.size()) == HTML_CLOSE) {
-
-        page = page.substr(0, page.size() - ext.size());
-    }
-
-    ext = BODY_CLOSE;
-    if (page.size() > ext.size() &&
-        page.substr(page.size() - ext.size()) == BODY_CLOSE) {
-
-        page = page.substr(0, page.size() - ext.size());
-    }
+    page.close();
 
     return 1;
 }

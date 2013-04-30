@@ -38,7 +38,6 @@ int learnc_gtk3_gui_init(int &argc, char **argv[])
     GtkBuilder *builder;
     gtk_instance cb_args;
     GtkWidget *webcon;
-    string page;
 
     gtk_init(&argc, argv);
 
@@ -59,9 +58,8 @@ int learnc_gtk3_gui_init(int &argc, char **argv[])
 
     cb_args.webview = WEBKIT_WEB_VIEW(webkit_web_view_new());
     gtk_container_add(GTK_CONTAINER(webcon), GTK_WIDGET(cb_args.webview));
-    learnc_html_welcome_page(page);
-    webkit_web_view_load_html_string(cb_args.webview, page.c_str(),
-                                     "../../backend");
+    learnc_html_welcome_page();
+    webkit_web_view_load_uri(cb_args.webview, OUTPUT_PAGE_URI);
 
     gtk_widget_show_all(cb_args.window);
 

@@ -20,14 +20,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 
 #include "types.h"
 
-int learnc_html_card_front(voc_card card, std::string &page);
-int learnc_html_card_back_and_front(voc_card card, std::string &page);
-int learnc_html_welcome_page(std::string &page);
-int learnc_html_view_boxes(instance &current, std::string &page);
-int learnc_html_review_menu(std::string &page);
-int learnc_html_input_usage(std::string &page, const std::string usage);
-int learnc_html_gen_open(std::string &page);
-int learnc_html_gen_close(std::string &page);
-int learnc_html_remove_close(std::string &page);
+#ifdef __linux__
+#define OUTPUT_PAGE     "/tmp/page.html"
+#define OUTPUT_PAGE_URI "file:///tmp/page.html"
+#endif
+
+int learnc_html_card_front(voc_card card);
+int learnc_html_card_back_and_front(voc_card card);
+int learnc_html_welcome_page(void);
+int learnc_html_view_boxes(instance &current);
+int learnc_html_review_menu(void);
+int learnc_html_input_usage(const std::string usage);
+int learnc_html_gen_open(std::ofstream &page);
+int learnc_html_gen_close(std::ofstream &page);
 
 #endif

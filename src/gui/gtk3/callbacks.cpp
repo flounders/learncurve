@@ -178,15 +178,13 @@ void learnc_gtk_save_cb(gtk_instance *gtk_data)
 extern "C"
 void learnc_gtk_view_boxes_cb(gtk_instance *gtk_data)
 {
-    string page;
-
     if (review_state != OUT_REVIEW) {
         return;
     }
 
-    learnc_html_view_boxes(gtk_data->data, page);
-    webkit_web_view_load_html_string(gtk_data->webview, page.c_str(),
-                                     "../../backend");
+    learnc_html_view_boxes(gtk_data->data);
+    webkit_web_view_load_uri(gtk_data->webview, OUTPUT_PAGE_URI);
+
 }
 
 extern "C"
@@ -298,7 +296,6 @@ void learnc_gtk_text_entry_cb(GtkWidget *entry, gtk_instance *gtk_data)
 {
 
     string buffer;
-    string page;
 
     if (review_state != IN_REVIEW) {
         input.clear();
@@ -308,9 +305,8 @@ void learnc_gtk_text_entry_cb(GtkWidget *entry, gtk_instance *gtk_data)
     input.push_back(buffer);
 
     if (review_state == MENU_REVIEW) {
-        learnc_review_control(gtk_data->data, input, page, review_state);
-        webkit_web_view_load_html_string(gtk_data->webview, page.c_str(),
-                                         "../../backend");
+        learnc_review_control(gtk_data->data, input, review_state);
+        webkit_web_view_load_uri(gtk_data->webview, OUTPUT_PAGE_URI);
         input.clear();
     }
 
@@ -329,7 +325,6 @@ extern "C"
 void learnc_gtk_button_done_cb(GtkWidget *button, gtk_instance *gtk_data)
 {
     static int flag;
-    string page;
 
     if (flag == 0 && review_state == IN_REVIEW) {
         flag = 1;
@@ -346,9 +341,9 @@ void learnc_gtk_button_done_cb(GtkWidget *button, gtk_instance *gtk_data)
     }
 
     if (review_state == IN_REVIEW) {
-        learnc_review_control(gtk_data->data, input, page, review_state);
-        webkit_web_view_load_html_string(gtk_data->webview, page.c_str(),
-                                         "../../backend");
+        learnc_review_control(gtk_data->data, input, review_state);
+        webkit_web_view_load_uri(gtk_data->webview, OUTPUT_PAGE_URI);
+
     }
     input.clear();
 }
@@ -356,11 +351,8 @@ void learnc_gtk_button_done_cb(GtkWidget *button, gtk_instance *gtk_data)
 extern "C"
 void learnc_gtk_review_cb(gtk_instance *gtk_data)
 {
-    string page;
-
     if (review_state == OUT_REVIEW) {
-        learnc_review_control(gtk_data->data, input, page, review_state);
-        webkit_web_view_load_html_string(gtk_data->webview, page.c_str(),
-                                         "../../backend");
+        learnc_review_control(gtk_data->data, input, review_state);
+        webkit_web_view_load_uri(gtk_data->webview, OUTPUT_PAGE_URI);
     }
 }
