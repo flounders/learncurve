@@ -128,26 +128,26 @@
   <card><num>109</num><front><sub>ἀνήρ</sub><sub>ἀνδρός</sub></front><back><sub>man</sub><sub>male</sub><sub>husband</sub></back></card>
   <card><num>110</num><front><sub>ἐκκλησία</sub><sub>ἐκκλησίας</sub></front><back><sub>church</sub><sub>Church</sub><sub>assembly</sub><sub>congregation</sub></back></card>
   <card><num>111</num><front><sub>ἐλπίς</sub><sub>ἐλπίδος</sub></front><back><sub>hope</sub><sub>expectation</sub></back></card>
-  <card><num>112</num><front><sub>ἕξω</sub></front><back><sub>adverb: without</sub><sub>prep (gen): outside</sub></back></card>
-  <card><num>113</num><front><sub>ἑπί</sub></front><back><sub>gen: on, over, when</sub><sub>dat: on the basis of, at</sub><sub>acc: on, to, against</sub></back></card>
+  <card><num>112</num><front><sub>ἔξω</sub></front><back><sub>adverb: without</sub><sub>prep (gen): outside</sub></back></card>
+  <card><num>113</num><front><sub>ἐπί</sub></front><back><sub>gen: on, over, when</sub><sub>dat: on the basis of, at</sub><sub>acc: on, to, against</sub></back></card>
   <card><num>114</num><front><sub>ἡμεῖς</sub></front><back><sub>we</sub></back></card>
   <card><num>115</num><front><sub>θέλημα</sub><sub>θέληματος</sub></front><back><sub>will</sub><sub>desire</sub></back></card>
   <card><num>116</num><front><sub>ἴδε</sub></front><back><sub>See!</sub><sub>Behold!</sub></back></card>
   <card><num>117</num><front><sub>ἰδού</sub></front><back><sub>See!</sub><sub>Behold!</sub></back></card>
   <card><num>118</num><front><sub>καλός</sub><sub>καλή</sub><sub>καλόν</sub></front><back><sub>beautiful</sub><sub>good</sub></back></card>
   <card><num>119</num><front><sub>μήτηρ</sub><sub>ματρός</sub></front><back><sub>mother</sub></back></card>
-  <card><num>120</num><front><sub>ούδέ</sub></front><back><sub>and not</sub><sub>not even</sub><sub>neither</sub><sub>nor</sub></back></card>
+  <card><num>120</num><front><sub>οὐδέ</sub></front><back><sub>and not</sub><sub>not even</sub><sub>neither</sub><sub>nor</sub></back></card>
   <card><num>121</num><front><sub>πατήρ</sub><sub>πατρός</sub></front><back><sub>father</sub></back></card>
   <card><num>122</num><front><sub>πίστις</sub><sub>πίστεως</sub></front><back><sub>faith</sub><sub>belief</sub><sub>trust</sub><sub>faithfulness</sub></back></card>
   <card><num>123</num><front><sub>ὕδωρ</sub><sub>ὕδατος</sub></front><back><sub>water</sub></back></card>
-  <card><num>124</num><front><sub>ύμεῖς</sub></front><back><sub>you(pl)</sub></back></card>
+  <card><num>124</num><front><sub>ὑμεῖς</sub></front><back><sub>you (pl)</sub></back></card>
   <card><num>125</num><front><sub>φῶς</sub><sub>φωτός</sub></front><back><sub>light</sub></back></card>
   <card><num>126</num><front><sub>χάρις</sub><sub>χάριτος</sub></front><back><sub>grace</sub><sub>favor</sub><sub>kindness</sub></back></card>
   <card><num>127</num><front><sub>ὧδε</sub></front><back><sub>here</sub></back></card>
   <card><num>128</num><front><sub>αἰών</sub><sub>αἰῶνος</sub></front><back><sub>age</sub><sub>eternity</sub></back></card>
   <card><num>129</num><front><sub>διδάσκαλος</sub><sub>διδάσκαλου</sub></front><back><sub>teacher</sub></back></card>
   <card><num>130</num><front><sub>εὐθύς</sub></front><back><sub>immediately</sub></back></card>
-  <card><num>131</num><front><sub>ἔως</sub></front><back><sub>conj:until</sub><sub>prep(gen):as far as</sub></back></card>
+  <card><num>131</num><front><sub>ἕως</sub></front><back><sub>conj: until</sub><sub>prep (gen): as far as</sub></back></card>
   <card><num>132</num><front><sub>μαθητής</sub><sub>μαθητοῦ</sub></front><back><sub>disciple</sub></back></card>
   <card><num>133</num><front><sub>μέν</sub></front><back><sub>on the one hand</sub><sub>indeed</sub></back></card>
   <card><num>134</num><front><sub>μηδείς</sub><sub>μηδεμία</sub><sub>μηδέν</sub></front><back><sub>no one</sub><sub>nothing</sub></back></card>
@@ -158,41 +158,41 @@
   <card><num>139</num><front><sub>ὀφθαλμός</sub><sub>ὀφθαλμοῦ</sub></front><back><sub>eye</sub><sub>sight</sub></back></card>
   <card><num>140</num><front><sub>πάλιν</sub></front><back><sub>again</sub></back></card>
   <card><num>141</num><front><sub>πούς</sub><sub>ποδός</sub></front><back><sub>foot</sub></back></card>
-  <card><num>142</num><front><sub>ὑπέρ</sub></front><back><sub>gen:in behalf of</sub><sub>acc:above</sub></back></card>
+  <card><num>142</num><front><sub>ὑπέρ</sub></front><back><sub>gen: in behalf of</sub><sub>acc: above</sub></back></card>
   <card><num>143</num><front><sub>γυνή</sub><sub>γυναικός</sub></front><back><sub>woman</sub><sub>wife</sub></back></card>
   <card><num>144</num><front><sub>δικαιοσύνη</sub><sub>δικαιοσύνης</sub></front><back><sub>righteousness</sub></back></card>
   <card><num>145</num><front><sub>δώδεκα</sub></front><back><sub>twelve</sub></back></card>
   <card><num>146</num><front><sub>ἑαυτοῦ</sub><sub>ἑαυτῆς</sub></front><back><sub>of himself</sub><sub>herself</sub><sub>itself</sub><sub>plural: of themselves</sub></back></card>
-  <card><num>147</num><front><sub>ἐκεῖνος</sub><sub>εκεῖνη</sub><sub>εκεῖνο</sub></front><back><sub>sg:that</sub><sub>pl:those</sub></back></card>
+  <card><num>147</num><front><sub>ἐκεῖνος</sub><sub>ἐκεῖνη</sub><sub>ἐκεῖνο</sub></front><back><sub>sg: that</sub><sub>pl: those</sub></back></card>
   <card><num>148</num><front><sub>ἤ</sub></front><back><sub>or</sub><sub>either</sub><sub>than</sub></back></card>
   <card><num>149</num><front><sub>κἀγώ</sub></front><back><sub>and I</sub><sub>but I</sub></back></card>
   <card><num>150</num><front><sub>μακάριος</sub><sub>μακάρια</sub><sub>μακάριον</sub></front><back><sub>blessed</sub><sub>happy</sub></back></card>
   <card><num>151</num><front><sub>μέγας</sub><sub>μεγάλη</sub><sub>μέγα</sub></front><back><sub>large</sub><sub>great</sub></back></card>
   <card><num>152</num><front><sub>πόλις</sub><sub>πόλεως</sub></front><back><sub>city</sub></back></card>
-  <card><num>153</num><front><sub>πολύς</sub><sub>πολλή</sub><sub>πολύ</sub></front><back><sub>sg:much</sub><sub>pl:many</sub><sub>adverb:often</sub></back></card>
+  <card><num>153</num><front><sub>πολύς</sub><sub>πολλή</sub><sub>πολύ</sub></front><back><sub>sg: much</sub><sub>pl: many</sub><sub>adverb: often</sub></back></card>
   <card><num>154</num><front><sub>πῶς</sub></front><back><sub>how?</sub></back></card>
   <card><num>155</num><front><sub>σημεῖον</sub><sub>σημεῖου</sub></front><back><sub>sign</sub><sub>miracle</sub></back></card>
   <card><num>156</num><front><sub>ἀλήθεια</sub><sub>ἀλήθειας</sub></front><back><sub>truth</sub></back></card>
   <card><num>157</num><front><sub>εἰρήνη</sub><sub>εἰρήνης</sub></front><back><sub>peace</sub></back></card>
-  <card><num>158</num><front><sub>ἐνὼπιον</sub></front><back><sub>gen:before</sub></back></card>
+  <card><num>158</num><front><sub>ἐνώπιον</sub></front><back><sub>gen: before</sub></back></card>
   <card><num>159</num><front><sub>ἐπαγγελία</sub><sub>ἐπαγγελίας</sub></front><back><sub>promise</sub></back></card>
-  <card><num>160</num><front><sub>ἑπτα</sub></front><back><sub>seven</sub></back></card>
+  <card><num>160</num><front><sub>ἑπτά</sub></front><back><sub>seven</sub></back></card>
   <card><num>161</num><front><sub>θρόνος</sub><sub>θρόνου</sub></front><back><sub>throne</sub></back></card>
   <card><num>162</num><front><sub>Ἰερουσαλήμ</sub></front><back><sub>Jerusalem</sub></back></card>
-  <card><num>163</num><front><sub>κατά</sub></front><back><sub>gen:against</sub><sub>acc:according to</sub></back></card>
-  <card><num>164</num><front><sub>κεφαλή</sub><sub>κεφαλῦς</sub></front><back><sub>head</sub></back></card>
+  <card><num>163</num><front><sub>κατά</sub></front><back><sub>gen: against</sub><sub>acc: according to</sub></back></card>
+  <card><num>164</num><front><sub>κεφαλή</sub><sub>κεφαλῆς</sub></front><back><sub>head</sub></back></card>
   <card><num>165</num><front><sub>ὁδός</sub><sub>ὁδοῦ</sub></front><back><sub>way</sub><sub>road</sub><sub>journey</sub><sub>conduct</sub></back></card>
   <card><num>166</num><front><sub>ὅς</sub><sub>ἥ</sub><sub>ὅ</sub></front><back><sub>who</sub><sub>whom</sub><sub>that</sub><sub>which</sub></back></card>
   <card><num>167</num><front><sub>ὅτε</sub></front><back><sub>when</sub></back></card>
   <card><num>168</num><front><sub>οὕτως</sub></front><back><sub>thus</sub><sub>so</sub><sub>in this manner</sub></back></card>
   <card><num>169</num><front><sub>πλοῖον</sub><sub>πλοῖου</sub></front><back><sub>ship</sub><sub>boat</sub></back></card>
   <card><num>170</num><front><sub>ῥῆμα</sub><sub>ῥῆματος</sub></front><back><sub>word</sub><sub>saying</sub></back></card>
-  <card><num>171</num><front><sub>τε</sub></front><back><sub>and(so)</sub><sub>so</sub></back></card>
+  <card><num>171</num><front><sub>τε</sub></front><back><sub>and (so)</sub><sub>so</sub></back></card>
   <card><num>172</num><front><sub>χείρ</sub><sub>χειρός</sub></front><back><sub>hand</sub><sub>arm</sub><sub>finger</sub></back></card>
   <card><num>173</num><front><sub>φυχή</sub><sub>φυχῆς</sub></front><back><sub>soul</sub><sub>life</sub><sub>self</sub></back></card>
-  <card><num>174</num><front><sub>ἀκούω</sub></front><back><sub>I hear</sub><sub>lear</sub><sub>obey</sub><sub>understand</sub></back></card>
+  <card><num>174</num><front><sub>ἀκούω</sub></front><back><sub>I hear</sub><sub>learn</sub><sub>obey</sub><sub>understand</sub></back></card>
   <card><num>175</num><front><sub>βλέπω</sub></front><back><sub>I see</sub><sub>look at</sub></back></card>
-  <card><num>176</num><front><sub>ἔχω</sub></front><back><sub>I have</sub><sub>hold</sub><sub>intrasitive: I am</sub></back></card>
+  <card><num>176</num><front><sub>ἔχω</sub></front><back><sub>I have</sub><sub>hold</sub><sub>intrans: I am</sub></back></card>
   <card><num>177</num><front><sub>λύω</sub></front><back><sub>Ι loose</sub><sub>set free</sub><sub>destroy</sub></back></card>
   <card><num>178</num><front><sub>νόμος</sub><sub>νόμου</sub></front><back><sub>law</sub><sub>principle</sub></back></card>
   <card><num>179</num><front><sub>ὅπου</sub></front><back><sub>where</sub></back></card>

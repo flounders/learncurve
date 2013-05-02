@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. */
 
+#include <cstdlib>
 #include <gtk/gtk.h>
 #include <iostream>
 #include <string>
@@ -57,11 +58,22 @@ int learnc_gtk3_gui_init(int &argc, char **argv[])
 //    cb_args.about = GTK_WIDGET(gtk_builder_get_object(builder, "aboutdialog"));
 
     cb_args.webview = WEBKIT_WEB_VIEW(webkit_web_view_new());
+    if (webcon == NULL) {
+        cerr << "learnc_gtk3_gui_init: gtk_builder_get_object failed "
+             << "to get scrolledwindow.\n";
+    }
     gtk_container_add(GTK_CONTAINER(webcon), GTK_WIDGET(cb_args.webview));
     learnc_html_welcome_page();
     webkit_web_view_load_uri(cb_args.webview, OUTPUT_PAGE_URI);
 
-    gtk_widget_show_all(cb_args.window);
+    if (cb_args.window == NULL) {
+        cerr << "learnc_gtk3_gui_init: gtk_builder_get_object failed "
+             << "to get main_window.\n";
+        exit(1);
+    }
+    else {
+        gtk_widget_show_all(cb_args.window);
+    }
 
     gtk_builder_connect_signals(builder, &cb_args);
 

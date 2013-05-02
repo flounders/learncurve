@@ -1,5 +1,5 @@
-CC := clang++
-LD := clang++
+CC := g++
+LD := g++
 
 BIN = learncurve
 
@@ -11,18 +11,17 @@ OBJS = $(SRCS:.cpp=.o)
 
 OBJECTS = $(OBJS)
 
-INCLS = -I/usr/include/libxml2 -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/gtk-3.0 -I/usr/include/atk-1.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/pixman-1 -I/usr/include/libpng15 -I/usr/include/libdrm -I/usr/include/webkitgtk-3.0 -I/usr/include/libsoup-2.4
+INCLS = `pkg-config --cflags gtk+-3.0 webkitgtk-3.0 gmodule-2.0 libxml-2.0`
+CPPFLAGS = $(INCLS) -Wall
 
-CPPFLAGS = $(INCLS) -pthread -Wall
-
-LDLIBS = -Wl,--export-dynamic -pthread -lxml2 -lgmodule-2.0 -lrt -lwebkitgtk-3.0 -lgtk-3 -lsoup-2.4 -ljavascriptcoregtk-3.0 -lgdk-3 -latk-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgio-2.0 -lgobject-2.0 -lglib-2.0
+LDLIBS =  `pkg-config --libs gtk+-3.0 webkitgtk-3.0 gmodule-2.0 libxml-2.0`
 
 .PHONY: all
 
 all: $(BIN)
 
 $(BIN): $(OBJS)
-	$(LD) $(CPPFLAGS) $(LDLIBS) $^ -o ../build/$@
+	$(LD) $^ -o ../build/$@ $(CPPFLAGS) $(LDLIBS) 
 
 .PHONY:	depend clean
 
