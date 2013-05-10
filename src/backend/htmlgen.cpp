@@ -46,8 +46,7 @@ using namespace std;
 //
 // returns 1, but should probably be made a void function
 // as there are no NULL pointers to check for. Takes
-// C++ string as an argument passed by reference to load
-// the html content into.
+// no arguments.
 
 int learnc_html_welcome_page(void)
 {
@@ -67,8 +66,7 @@ int learnc_html_welcome_page(void)
 //
 // returns 1, but should probably be made a void function
 // as there are no NULL pointers to check for. Takes
-// C++ string as an argument passed by reference to load
-// the html content into.
+// voc_card as argument for content to load on page.
 
 int learnc_html_card_front(voc_card card)
 {
@@ -79,7 +77,7 @@ int learnc_html_card_front(voc_card card)
 
     page << "<div class=\"number\">";
     page << card.number;
-    page << "</div><div id=front>";
+    page << "</div><div class=\"front\">";
 
     for (i = 0; i < card.front.size(); i++) {
         page << "<li>";
@@ -99,8 +97,7 @@ int learnc_html_card_front(voc_card card)
 //
 // returns 1, but should probably be made a void function
 // as there are no NULL pointers to check for. Takes
-// C++ string as an argument passed by reference to load
-// the html content into.
+// voc_card as argument for content to load on page.
 
 int learnc_html_card_back_and_front(voc_card card)
 {
@@ -111,7 +108,7 @@ int learnc_html_card_back_and_front(voc_card card)
 
     page << "<div class=\"number\">";
     page << card.number;
-    page << "</div><div id=front>";
+    page << "</div><div class=\"front\">";
 
     for (i = 0; i < card.front.size(); i++) {
         page << "<li>";
@@ -141,8 +138,8 @@ int learnc_html_card_back_and_front(voc_card card)
 //
 // returns 1, but should probably be made a void function
 // as there are no NULL pointers to check for. Takes
-// C++ string as an argument passed by reference to load
-// the html content into.
+// an instance passed by reference as an argument to
+// retrieve information to display.
 
 int learnc_html_view_boxes(instance &current)
 {
@@ -179,8 +176,8 @@ int learnc_html_view_boxes(instance &current)
 //
 // returns 1, but should probably be made a void function
 // as there are no NULL pointers to check for. Takes
-// C++ string as an argument passed by reference to load
-// the html content into.
+// no arguments.
+
 
 int learnc_html_review_menu(void)
 {
@@ -201,9 +198,8 @@ int learnc_html_review_menu(void)
 //
 // returns 1, but should probably be made a void function
 // as there are no NULL pointers to check for. Takes
-// C++ string as an argument passed by reference to load
-// the html content into and another string passed by value
-// that tells the user what the proper usage is.
+// a string passed by value that tells the user what the
+// proper usage is.
 
 int learnc_html_input_usage(const std::string usage)
 {
@@ -229,8 +225,7 @@ int learnc_html_input_usage(const std::string usage)
 //
 // returns 1, but should probably be made a void function
 // as there are no NULL pointers to check for. Takes
-// C++ string as an argument passed by reference to load
-// the html content into.
+// an ofstream object passed by reference to write out the content to.
 
 int learnc_html_gen_open(std::ofstream &page)
 {
@@ -263,8 +258,7 @@ int learnc_html_gen_open(std::ofstream &page)
 //
 // returns 1, but should probably be made a void function
 // as there are no NULL pointers to check for. Takes
-// C++ string as an argument passed by reference to load
-// the html content into.
+// an ofstream object passed by reference to write out the content to.
 
 int learnc_html_gen_close(std::ofstream &page)
 {

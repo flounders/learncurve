@@ -221,16 +221,16 @@
   <card><num>202</num><front><sub>πορεύομαι</sub></front><back><sub>Ι go</sub><sub>proceed</sub><sub>live</sub></back></card>
   <card><num>203</num><front><sub>συνάγω</sub></front><back><sub>I gather together</sub><sub>invite</sub></back></card>
   <card><num>204</num><front><sub>τόπος</sub><sub>τόπου</sub></front><back><sub>place</sub><sub>location</sub></back></card>
-  <card><num>205</num><front><sub>ὡς</sub></front><back><sub>as</sub><sub>like</sub><sub>when</sub><sub>that</sub><sub>how</sub></back></card>
-  <card><num>206</num><front><sub>βασιλεύς</sub><sub>βασδιλέως</sub></front><back><sub>king</sub></back></card>
+  <card><num>205</num><front><sub>ὡς</sub></front><back><sub>as</sub><sub>like</sub><sub>when</sub><sub>that</sub><sub>how</sub><sub>about</sub></back></card>
+  <card><num>206</num><front><sub>βασιλεύς</sub><sub>βασιλέως</sub></front><back><sub>king</sub></back></card>
   <card><num>207</num><front><sub>γεννάω</sub></front><back><sub>Ι beget</sub><sub>give birth to</sub><sub>produce</sub></back></card>
   <card><num>208</num><front><sub>ζάω</sub></front><back><sub>Ι live</sub></back></card>
-  <card><num>209</num><front><sub>Ἰουδαία</sub><sub>Ἰουδιας</sub></front><back><sub>Judea</sub></back></card>
-  <card><num>210</num><front><sub>Ἰουδαῖος</sub><sub>Ἰουδαῖα</sub><sub>Ἰουδαῖον</sub></front><back><sub>adj: Jewish</sub><sub>noun: a Jew</sub></back></card>
+  <card><num>209</num><front><sub>Ἰουδαία</sub><sub>Ἰουδίας</sub></front><back><sub>Judea</sub></back></card>
+  <card><num>210</num><front><sub>Ἰουδαῖος</sub><sub>Ἰουδαία</sub><sub>Ἰουδαῖον</sub></front><back><sub>adj: Jewish</sub><sub>noun: a Jew</sub></back></card>
   <card><num>211</num><front><sub>Ἰσραήλ</sub></front><back><sub>Israel</sub></back></card>
-  <card><num>212</num><front><sub>καρπός</sub><sub>καρποῦ</sub></front><back><sub>fruit</sub><sub>result</sub></back></card>
+  <card><num>212</num><front><sub>καρπός</sub><sub>καρποῦ</sub></front><back><sub>fruit</sub><sub>result</sub><sub>crop</sub></back></card>
   <card><num>213</num><front><sub>μείζων</sub></front><back><sub>greater</sub></back></card>
-  <card><num>214</num><front><sub>ὅλος</sub><sub>ὅλη</sub><sub>ὅλον</sub></front><back><sub>adj:whole, complete</sub><sub>adv:entirely</sub></back></card>
+  <card><num>214</num><front><sub>ὅλος</sub><sub>ὅλη</sub><sub>ὅλον</sub></front><back><sub>adj: whole, complete</sub><sub>adv: entirely</sub></back></card>
   <card><num>215</num><front><sub>προσκυνέω</sub></front><back><sub>I worship</sub></back></card>
   <card><num>216</num><front><sub>αἴρω</sub></front><back><sub>I raise</sub><sub>take up</sub><sub>take away</sub></back></card>
   <card><num>217</num><front><sub>ἀποκτείνω</sub></front><back><sub>I kill</sub></back></card>
@@ -251,17 +251,17 @@
   <card><num>232</num><front><sub>ἀκολουθέω</sub></front><back><sub>I follow</sub><sub>accompany</sub></back></card>
   <card><num>233</num><front><sub>διδάσκω</sub></front><back><sub>I teach</sub></back></card>
   <card><num>234</num><front><sub>ἐπερωτάω</sub></front><back><sub>I ask (for)</sub><sub>question</sub><sub>demand of</sub></back></card>
-  <card><num>235</num><front><sub>ἐρωτάω</sub></front><back><sub>Ι ask (for)</sub><sub>request</sub><sub>entreat</sub></back></card>
+  <card><num>235</num><front><sub>ἐρωτάω</sub></front><back><sub>Ι ask</sub><sub>request</sub><sub>entreat</sub></back></card>
   <card><num>236</num><front><sub>θέλω</sub></front><back><sub>Ι will</sub><sub>wish</sub><sub>desire</sub><sub>enjoy</sub></back></card>
   <card><num>237</num><front><sub>περιπατέω</sub></front><back><sub>Ι walk (around)</sub><sub>live</sub></back></card>
   <card><num>238</num><front><sub>συναγωγή</sub><sub>συναγωγῆς</sub></front><back><sub>synagogue</sub><sub>meeting</sub></back></card>
   <card><num>239</num><front><sub>Φαρισαῖος</sub><sub>Φαρισαῖου</sub></front><back><sub>Pharisee</sub></back></card>
   <card><num>240</num><front><sub>χρόνος</sub><sub>χρόνου</sub></front><back><sub>time</sub></back></card>
-  <card><num>241</num><front><sub>ἀποθνήσκω</sub></front><back><sub>Ι die</sub><sub>am about to die</sub><sub>am freed from</sub></back></card>
+  <card><num>241</num><front><sub>ἀποθνῄσκω</sub></front><back><sub>Ι die</sub><sub>am about to die</sub><sub>am freed from</sub></back></card>
   <card><num>242</num><front><sub>ἄρτος</sub><sub>ἄρτου</sub></front><back><sub>bread</sub><sub>loaf</sub><sub>food</sub></back></card>
   <card><num>243</num><front><sub>βάλλω</sub></front><back><sub>I throw</sub><sub>put</sub></back></card>
   <card><num>244</num><front><sub>γῆ</sub><sub>γῆς</sub></front><back><sub>earth</sub><sub>land</sub><sub>region</sub><sub>humanity</sub></back></card>
-  <card><num>245</num><front><sub>γίνομαι</sub></front><back><sub>I become</sub><sub>am</sub><sub>exist</sub><sub>am born</sub><sub>created</sub></back></card>
+  <card><num>245</num><front><sub>γίνομαι</sub></front><back><sub>I become</sub><sub>am</sub><sub>exist</sub><sub>am born</sub><sub>created</sub><sub>happen</sub></back></card>
   <card><num>246</num><front><sub>εἰσέρχομαι</sub></front><back><sub>I go in(to)</sub><sub>come in(to)</sub><sub>enter</sub></back></card>
   <card><num>247</num><front><sub>ἐξέρχομαι</sub></front><back><sub>I go out</sub><sub>I come out</sub></back></card>
   <card><num>248</num><front><sub>ἔτι</sub></front><back><sub>still</sub><sub>yet</sub><sub>even</sub></back></card>
@@ -272,7 +272,7 @@
   <card><num>253</num><front><sub>προσεύχομαι</sub></front><back><sub>I pray</sub></back></card>
   <card><num>254</num><front><sub>πῦρ</sub><sub>πυρός</sub></front><back><sub>fire</sub></back></card>
   <card><num>255</num><front><sub>ἀπέρχομαι</sub></front><back><sub>I depart</sub><sub>go away</sub></back></card>
-  <card><num>256</num><front><sub>ἄρχω</sub></front><back><sub>active:I rule</sub><sub>middle:I begin</sub></back></card>
+  <card><num>256</num><front><sub>ἄρχω</sub></front><back><sub>active: I rule</sub><sub>middle: I begin</sub></back></card>
   <card><num>257</num><front><sub>γράφω</sub></front><back><sub>I write</sub></back></card>
   <card><num>258</num><front><sub>διό</sub></front><back><sub>therefore</sub><sub>for this reason</sub></back></card>
   <card><num>259</num><front><sub>δοξάζω</sub></front><back><sub>I glorify</sub><sub>praise</sub><sub>honor</sub></back></card>
@@ -283,7 +283,7 @@
   <card><num>264</num><front><sub>αἷμα</sub><sub>αἷματος</sub></front><back><sub>blood</sub></back></card>
   <card><num>265</num><front><sub>ἕκαστος</sub><sub>ἕκαστη</sub><sub>ἕκαστον</sub></front><back><sub>each</sub><sub>every</sub></back></card>
   <card><num>266</num><front><sub>ἱμάτιον</sub><sub>ἱμάτιου</sub></front><back><sub>garment</sub></back></card>
-  <card><num>267</num><front><sub>ὄπος</sub><sub>ὄπους</sub></front><back><sub>mountain</sub><sub>hill</sub></back></card>
+  <card><num>267</num><front><sub>ὄρος</sub><sub>ὄρους</sub></front><back><sub>mountain</sub><sub>hill</sub></back></card>
   <card><num>268</num><front><sub>ὑπάγω</sub></front><back><sub>I depart</sub></back></card>
   <card><num>269</num><front><sub>φοβέομαι</sub></front><back><sub>I fear</sub></back></card>
   <card><num>270</num><front><sub>χαίρω</sub></front><back><sub>I rejoice</sub></back></card>
@@ -298,7 +298,7 @@
   <card><num>279</num><front><sub>εὐαγγελίζω</sub></front><back><sub>I bring good news</sub><sub>preach</sub></back></card>
   <card><num>280</num><front><sub>θεωρέω</sub></front><back><sub>I look at</sub><sub>behold</sub></back></card>
   <card><num>281</num><front><sub>Ἱεροσόλυμα</sub></front><back><sub>Jerusalem</sub></back></card>
-  <card><num>282</num><front><sub>κάθημαι</sub></front><back><sub>I sit(down)</sub><sub>live</sub></back></card>
+  <card><num>282</num><front><sub>κάθημαι</sub></front><back><sub>I sit (down)</sub><sub>live</sub></back></card>
   <card><num>283</num><front><sub>καταβαίνω</sub></front><back><sub>I go down</sub><sub>come down</sub></back></card>
   <card><num>284</num><front><sub>οὗ</sub></front><back><sub>where</sub></back></card>
   <card><num>285</num><front><sub>παρακαλέω</sub></front><back><sub>I call</sub><sub>urge</sub><sub>exhort</sub><sub>comfort</sub></back></card>
@@ -309,54 +309,54 @@
   <card><num>290</num><front><sub>ἐφή</sub></front><back><sub>he/she/it was saying</sub><sub>he/she/it said</sub></back></card>
   <card><num>291</num><front><sub>ἱερόν</sub><sub>ἱεροῦ</sub></front><back><sub>temple</sub></back></card>
   <card><num>292</num><front><sub>κράζω</sub></front><back><sub>I cry out</sub><sub>call out</sub></back></card>
-  <card><num>293</num><front><sub>οὑχί</sub></front><back><sub>not</sub></back></card>
+  <card><num>293</num><front><sub>οὐχί</sub></front><back><sub>not</sub></back></card>
   <card><num>294</num><front><sub>παιδίον</sub><sub>παιδίου</sub></front><back><sub>child</sub><sub>infant</sub></back></card>
   <card><num>295</num><front><sub>σπείρω</sub></front><back><sub>I sow</sub></back></card>
   <card><num>296</num><front><sub>δέχομαι</sub></front><back><sub>I take</sub><sub>receive</sub></back></card>
   <card><num>297</num><front><sub>δοκέω</sub></front><back><sub>I think</sub><sub>seem</sub></back></card>
   <card><num>298</num><front><sub>ἐσθίω</sub></front><back><sub>I eat</sub></back></card>
   <card><num>299</num><front><sub>πέμπω</sub></front><back><sub>I send</sub></back></card>
-  <card><num>300</num><front><sub>φέρω</sub></front><back><sub>I carry</sub><sub>bear</sub><sub>load</sub></back></card>
+  <card><num>300</num><front><sub>φέρω</sub></front><back><sub>I carry</sub><sub>bear</sub><sub>lead</sub></back></card>
   <card><num>301</num><front><sub>μηδέ</sub></front><back><sub>but not</sub><sub>nor</sub><sub>not even</sub></back></card>
   <card><num>302</num><front><sub>πρεσβύτερος</sub><sub>πρεσβύτερα</sub><sub>πρεσβύτερον</sub></front><back><sub>elder</sub></back></card>
   <card><num>303</num><front><sub>λίθος</sub><sub>λίθου</sub></front><back><sub>stone</sub></back></card>
   <card><num>304</num><front><sub>τοιοῦτος</sub><sub>τοιαύτη</sub><sub>τοιοῦτον</sub></front><back><sub>such</sub><sub>of such a kind</sub></back></card>
-  <card><num>305</num><front><sub>δίκαιος</sub><sub>δίκαία</sub><sub>δίκαιον</sub></front><back><sub>right</sub><sub>just</sub><sub>righteous</sub></back></card>
+  <card><num>305</num><front><sub>δίκαιος</sub><sub>δικαία</sub><sub>δίκαιον</sub></front><back><sub>right</sub><sub>just</sub><sub>righteous</sub></back></card>
   <card><num>306</num><front><sub>μέλλω</sub></front><back><sub>I am about to</sub></back></card>
-  <card><num>307</num><front><sub>ἀπόλλυμι</sub></front><back><sub>active:I destroy, kill</sub><sub>middle: I perish, die</sub></back></card>
+  <card><num>307</num><front><sub>ἀπόλλυμι</sub></front><back><sub>active: I destroy, kill</sub><sub>middle: I perish, die</sub></back></card>
   <card><num>308</num><front><sub>ἀπολύω</sub></front><back><sub>I release</sub></back></card>
   <card><num>309</num><front><sub>εἴτε</sub></front><back><sub>if</sub><sub>whether</sub></back></card>
   <card><num>310</num><front><sub>δίδωμι</sub></front><back><sub>I give (out)</sub><sub>entrust</sub><sub>give back</sub><sub>put</sub></back></card>
-  <card><num>311</num><front><sub>ἔθνος</sub><sub>ἔθνους</sub></front><back><sub>sg:nation</sub><sub>pl:gentiles</sub></back></card>
-  <card><num>312</num><front><sub>λοιπός</sub><sub>λοιπή</sub><sub>λοιπόν</sub></front><back><sub>adj:remaining</sub><sub>Noun: rest</sub><sub>Adverb: for the rest</sub></back></card>
-  <card><num>313</num><front><sub>Μωϋσῆς</sub><sub>Μωϋέως</sub></front><back><sub>Moses</sub></back></card>
+  <card><num>311</num><front><sub>ἔθνος</sub><sub>ἔθνους</sub></front><back><sub>sg: nation</sub><sub>pl: gentiles</sub></back></card>
+  <card><num>312</num><front><sub>λοιπός</sub><sub>λοιπή</sub><sub>λοιπόν</sub></front><back><sub>adj: remaining</sub><sub>noun: rest</sub><sub>adverb: for the rest</sub></back></card>
+  <card><num>313</num><front><sub>Μωϋσῆς</sub><sub>Μωϋσέως</sub></front><back><sub>Moses</sub></back></card>
   <card><num>314</num><front><sub>παραδίδωμι</sub></front><back><sub>I entrust</sub><sub>hand over</sub><sub>betray</sub></back></card>
   <card><num>315</num><front><sub>πίπτω</sub></front><back><sub>I fall</sub></back></card>
-  <card><num>316</num><front><sub>ὐπάρχω</sub></front><back><sub>I am</sub><sub>exist</sub></back></card>
-  <card><num>317</num><front><sub>ἀνίστημι</sub></front><back><sub>intrans:I rise, get up</sub><sub>trans: I raise</sub></back></card>
+  <card><num>316</num><front><sub>ὑπάρχω</sub></front><back><sub>I am</sub><sub>exist</sub></back></card>
+  <card><num>317</num><front><sub>ἀνίστημι</sub></front><back><sub>intrans: I rise, get up</sub><sub>trans: I raise</sub></back></card>
   <card><num>318</num><front><sub>ἀνοίγω</sub></front><back><sub>I open</sub></back></card>
   <card><num>319</num><front><sub>ἀφίημι</sub></front><back><sub>I let go</sub><sub>leave</sub><sub>permit</sub><sub>forgive</sub></back></card>
   <card><num>320</num><front><sub>δεικνύω</sub><sub>δείκνυμι</sub></front><back><sub>I show</sub><sub>explain</sub></back></card>
   <card><num>321</num><front><sub>ἴδιος</sub><sub>ἴδια</sub><sub>ἴδιον</sub></front><back><sub>one's own</sub></back></card>
-  <card><num>322</num><front><sub>ἵστημι</sub></front><back><sub>trans:I stand</sub><sub>intrans:I cause to stand</sub></back></card>
+  <card><num>322</num><front><sub>ἵστημι</sub></front><back><sub>trans: I stand</sub><sub>intrans: I cause to stand</sub></back></card>
   <card><num>323</num><front><sub>μέσος</sub><sub>μέση</sub><sub>μέσον</sub></front><back><sub>middle</sub><sub>in the midst</sub></back></card>
   <card><num>324</num><front><sub>τίθημι</sub></front><back><sub>I put</sub><sub>place</sub></back></card>
   <card><num>325</num><front><sub>φημί</sub></front><back><sub>I say</sub><sub>affirm</sub></back></card>
   <card><num>326</num><front><sub>ἄρα</sub></front><back><sub>then</sub><sub>therefore</sub></back></card>
-  <card><num>327</num><front><sub>ἄχρι</sub><sub>ἄχρις</sub></front><back><sub>prep (gen):until, as far as</sub><sub>conj:until</sub></back></card>
+  <card><num>327</num><front><sub>ἄχρι</sub><sub>ἄχρις</sub></front><back><sub>prep (gen): until, as far as</sub><sub>conj: until</sub></back></card>
   <card><num>328</num><front><sub>ἔτος</sub><sub>ἔτους</sub></front><back><sub>year</sub></back></card>
   <card><num>329</num><front><sub>παραλαμβάνω</sub></front><back><sub>I receive</sub><sub>take</sub><sub>take along</sub></back></card>
   <card><num>330</num><front><sub>φανερόω</sub></front><back><sub>I reveal</sub><sub>make known</sub></back></card>
   <card><num>331</num><front><sub>χρεία</sub><sub>χρείας</sub></front><back><sub>need</sub></back></card>
-  <card><num>332</num><front><sub>ἀποδίδωμι</sub></front><back><sub>active:I pay, give back</sub><sub>middle:I sell</sub></back></card>
+  <card><num>332</num><front><sub>ἀποδίδωμι</sub></front><back><sub>active: I pay, give back</sub><sub>middle: I sell</sub></back></card>
   <card><num>333</num><front><sub>ἔμπροσθεν</sub></front><back><sub>gen: in front of</sub><sub>before</sub></back></card>
-  <card><num>334</num><front><sub>ἔρημος</sub><sub>ἔρημον</sub></front><back><sub>adj:deserted, desolate</sub><sub>noun:desert, wilderness</sub></back></card>
+  <card><num>334</num><front><sub>ἔρημος</sub><sub>ἔρημον</sub></front><back><sub>adj: deserted, desolate</sub><sub>noun: desert, wilderness</sub></back></card>
   <card><num>335</num><front><sub>ποῦ</sub></front><back><sub>where?</sub></back></card>
-  <card><num>336</num><front><sub>ἁμαρτωλός</sub><sub>ἁμαρτωλόν</sub></front><back><sub>adj:sinful</sub><sub>noun:sinner</sub></back></card>
+  <card><num>336</num><front><sub>ἁμαρτωλός</sub><sub>ἁμαρτωλόν</sub></front><back><sub>adj: sinful</sub><sub>noun: sinner</sub></back></card>
   <card><num>337</num><front><sub>κρατέω</sub></front><back><sub>I grasp</sub><sub>seize</sub><sub>hold</sub></back></card>
   <card><num>338</num><front><sub>κρίσις</sub><sub>κρίσεως</sub></front><back><sub>judgment</sub><sub>condemnation</sub></back></card>
   <card><num>339</num><front><sub>οὐκέτι</sub></front><back><sub>no longer</sub></back></card>
-  <card><num>340</num><front><sub>πρό</sub></front><back><sub>gen:before</sub></back></card>
+  <card><num>340</num><front><sub>πρό</sub></front><back><sub>gen: before</sub></back></card>
   <card><num>341</num><front><sub>προσφέρω</sub></front><back><sub>I bring to</sub><sub>offer</sub><sub>present</sub></back></card>
   <card><num>342</num><front><sub>φόβος</sub><sub>φόβου</sub></front><back><sub>fear</sub><sub>reverence</sub></back></card>
   <card><num>343</num><front><sub>φυλακή</sub><sub>φυλακῆς</sub></front><back><sub>guard</sub><sub>prison</sub><sub>watch</sub></back></card>
@@ -370,7 +370,7 @@
   <card><num>351</num><front><sub>διώκω</sub></front><back><sub>I persecute</sub><sub>persue</sub></back></card>
   <card><num>352</num><front><sub>θλῖψις</sub><sub>θλῖψεως</sub></front><back><sub>affliction</sub><sub>tribulation</sub></back></card>
   <card><num>353</num><front><sub>ναός</sub><sub>ναοῦ</sub></front><back><sub>temple</sub></back></card>
-  <card><num>354</num><front><sub>ὅμοιος</sub><sub>ὅμοία</sub><sub>ὅμοιον</sub></front><back><sub>like</sub><sub>similar</sub></back></card>
+  <card><num>354</num><front><sub>ὅμοιος</sub><sub>ὁμοία</sub><sub>ὅμοιον</sub></front><back><sub>like</sub><sub>similar</sub></back></card>
   <card><num>355</num><front><sub>ἐπιγινώσκω</sub></front><back><sub>I know</sub><sub>come to know</sub><sub>recognize</sub></back></card>
   <card><num>356</num><front><sub>Ἰούδας</sub><sub>Ἰούδα</sub></front><back><sub>Judas</sub><sub>Judah</sub></back></card>
   <card><num>357</num><front><sub>κατοικέω</sub></front><back><sub>I inhabit</sub><sub>dwell</sub></back></card>
@@ -393,13 +393,13 @@
   <card><num>374</num><front><sub>πάσχω</sub></front><back><sub>I suffer</sub><sub>endure</sub></back></card>
   <card><num>375</num><front><sub>ἄξιος</sub><sub>ἄξια</sub><sub>ἄξιον</sub></front><back><sub>worthy</sub></back></card>
   <card><num>376</num><front><sub>ἐργάζομαι</sub></front><back><sub>I work</sub><sub>do</sub></back></card>
-  <card><num>377</num><front><sub>εύγολέω</sub></front><back><sub>I bless</sub></back></card>
+  <card><num>377</num><front><sub>εὐγολέω</sub></front><back><sub>I bless</sub></back></card>
   <card><num>378</num><front><sub>πάντοτε</sub></front><back><sub>always</sub></back></card>
   <card><num>379</num><front><sub>παρίστημι</sub></front><back><sub>I present</sub><sub>I am present</sub><sub>stand by</sub></back></card>
   <card><num>380</num><front><sub>σήμερον</sub></front><back><sub>today</sub></back></card>
   <card><num>381</num><front><sub>τέσσαρες</sub><sub>τέσσαρα</sub></front><back><sub>four</sub></back></card>
   <card><num>382</num><front><sub>τιμή</sub><sub>τιμῆς</sub></front><back><sub>honor</sub><sub>price</sub></back></card>
-  <card><num>383</num><front><sub>χωρίς</sub></front><back><sub>gen:without</sub><sub>apart from</sub></back></card>
+  <card><num>383</num><front><sub>χωρίς</sub></front><back><sub>gen: without</sub><sub>apart from</sub></back></card>
   <card><num>384</num><front><sub>ἑτοιμάζω</sub></front><back><sub>I prepare</sub></back></card>
   <card><num>385</num><front><sub>κλαίω</sub></front><back><sub>I weep</sub></back></card>
   <card><num>386</num><front><sub>λογίζομαι</sub></front><back><sub>I reckon</sub><sub>think</sub><sub>account</sub></back></card>
@@ -408,32 +408,32 @@
   <card><num>389</num><front><sub>οἰκοδομέω</sub></front><back><sub>I build</sub><sub>edify</sub></back></card>
   <card><num>390</num><front><sub>ὀλίγος</sub><sub>ὀλίγη</sub><sub>ὀλίγον</sub></front><back><sub>little</sub><sub>few</sub></back></card>
   <card><num>391</num><front><sub>τέλος</sub><sub>τέλους</sub></front><back><sub>end</sub><sub>goal</sub></back></card>
-  <card><num>392</num><front><sub>ἅπτω</sub></front><back><sub>active:I kindle</sub><sub>middle:I touch</sub></back></card>
+  <card><num>392</num><front><sub>ἅπτω</sub></front><back><sub>active: I kindle</sub><sub>middle: I touch</sub></back></card>
   <card><num>393</num><front><sub>δικαιόω</sub></front><back><sub>I justify</sub><sub>vindicate</sub><sub>pronounce righteous</sub></back></card>
   <card><num>394</num><front><sub>ἐπιτίθημι</sub></front><back><sub>I lay upon</sub></back></card>
   <card><num>395</num><front><sub>θύρα</sub><sub>θύρας</sub></front><back><sub>door</sub></back></card>
   <card><num>396</num><front><sub>ἱκανός</sub><sub>ἱκανή</sub><sub>ἱκανόν</sub></front><back><sub>considerable</sub><sub>many</sub><sub>able</sub><sub>sufficient</sub></back></card>
-  <card><num>397</num><front><sub>πρισσεύω</sub></front><back><sub>I abound</sub><sub>am rich</sub></back></card>
+  <card><num>397</num><front><sub>περισσεύω</sub></front><back><sub>I abound</sub><sub>am rich</sub></back></card>
   <card><num>398</num><front><sub>πλανάω</sub></front><back><sub>I go astray</sub><sub>mislead</sub></back></card>
   <card><num>399</num><front><sub>πράσσω</sub></front><back><sub>I do</sub><sub>perform</sub></back></card>
   <card><num>400</num><front><sub>πρόβατον</sub><sub>πρόβατου</sub></front><back><sub>sheep</sub></back></card>
-  <card><num>401</num><front><sub>ἐπιθυμία</sub><sub>ἐπιθμίας</sub></front><back><sub>lust</sub><sub>desire</sub><sub>passion</sub></back></card>
+  <card><num>401</num><front><sub>ἐπιθυμία</sub><sub>ἐπιθυμίας</sub></front><back><sub>lust</sub><sub>desire</sub><sub>passion</sub></back></card>
   <card><num>402</num><front><sub>εὐχαριστέω</sub></front><back><sub>I give thanks</sub></back></card>
   <card><num>403</num><front><sub>πειράζω</sub></front><back><sub>I test</sub><sub>tempt</sub></back></card>
   <card><num>404</num><front><sub>πέντε</sub></front><back><sub>five</sub></back></card>
   <card><num>405</num><front><sub>ὑποτάσσω</sub></front><back><sub>I subject</sub><sub>subordinate</sub></back></card>
   <card><num>406</num><front><sub>ἄρχων</sub><sub>ἄρχοντος</sub></front><back><sub>ruler</sub><sub>official</sub></back></card>
   <card><num>407</num><front><sub>βούλομαι</sub></front><back><sub>I intend</sub><sub>plan</sub><sub>wish</sub><sub>determine</sub></back></card>
-  <card><num>408</num><front><sub>διάβολος</sub><sub>διάβολον</sub></front><back><sub>adj:slanderous</sub><sub>noun:the devil</sub></back></card>
+  <card><num>408</num><front><sub>διάβολος</sub><sub>διάβολον</sub></front><back><sub>adj: slanderous</sub><sub>noun: the devil</sub></back></card>
   <card><num>409</num><front><sub>διακονέω</sub></front><back><sub>I serve</sub><sub>minister</sub><sub>wait upon</sub></back></card>
-  <card><num>410</num><front><sub>ἐκεοῖθεν</sub></front><back><sub>from there</sub></back></card>
+  <card><num>410</num><front><sub>ἐκεῖθεν</sub></front><back><sub>from there</sub></back></card>
   <card><num>411</num><front><sub>ἐμαυτου</sub><sub>ἐμαυτῆς</sub></front><back><sub>of myself</sub></back></card>
   <card><num>412</num><front><sub>καλῶς</sub></front><back><sub>well</sub><sub>commendably</sub></back></card>
   <card><num>413</num><front><sub>καυχάομαι</sub></front><back><sub>I boast</sub></back></card>
   <card><num>414</num><front><sub>μαρτυρία</sub><sub>μαρτυρίας</sub></front><back><sub>testimony</sub><sub>evidence</sub></back></card>
   <card><num>415</num><front><sub>παραγίνομαι</sub></front><back><sub>I come</sub><sub>arrive</sub></back></card>
   <card><num>416</num><front><sub>ἀγρός</sub><sub>ἁγροῦ</sub></front><back><sub>field</sub><sub>land</sub></back></card>
-  <card><num>417</num><front><sub>ἄρτι</sub></front><back><sub>now</sub><sub>just</sub><sub>now</sub></back></card>
+  <card><num>417</num><front><sub>ἄρτι</sub></front><back><sub>now</sub><sub>just now</sub></back></card>
   <card><num>418</num><front><sub>ἐπιστρέφω</sub></front><back><sub>I turn</sub><sub>return</sub></back></card>
   <card><num>419</num><front><sub>εὐθέως</sub></front><back><sub>immediately</sub></back></card>
   <card><num>420</num><front><sub>ὀργή</sub><sub>ὀργῆς</sub></front><back><sub>anger</sub><sub>wrath</sub></back></card>
@@ -445,18 +445,18 @@
   <card><num>426</num><front><sub>ὥσπερ</sub></front><back><sub>just as</sub><sub>even as</sub></back></card>
   <card><num>427</num><front><sub>Ἰωσήφ</sub></front><back><sub>Joseph</sub></back></card>
   <card><num>428</num><front><sub>μάρτυς</sub><sub>μάρτυρος</sub></front><back><sub>witness</sub></back></card>
-  <card><num>429</num><front><sub>ὀπίσω</sub></front><back><sub>gen:behind</sub><sub>after</sub></back></card>
+  <card><num>429</num><front><sub>ὀπίσω</sub></front><back><sub>gen: behind, after</sub></back></card>
   <card><num>430</num><front><sub>ὀφείλω</sub></front><back><sub>I owe</sub><sub>ought</sub></back></card>
   <card><num>431</num><front><sub>ὑποστρέφω</sub></front><back><sub>I turn back</sub><sub>return</sub></back></card>
   <card><num>432</num><front><sub>ἅπας</sub><sub>ἅπασα</sub><sub>ἅπαν</sub></front><back><sub>all</sub></back></card>
   <card><num>433</num><front><sub>βιβλίον</sub><sub>βιβλίου</sub></front><back><sub>scroll</sub><sub>book</sub></back></card>
   <card><num>434</num><front><sub>βλασφημέω</sub></front><back><sub>I blaspheme</sub><sub>revile</sub></back></card>
-  <card><num>435</num><front><sub>διακονία</sub><sub>διακονας</sub></front><back><sub>service</sub><sub>ministry</sub><sub>waiting at table</sub></back></card>
+  <card><num>435</num><front><sub>διακονία</sub><sub>διακονίας</sub></front><back><sub>service</sub><sub>ministry</sub><sub>waiting at table</sub></back></card>
   <card><num>436</num><front><sub>μέλος</sub><sub>μέλους</sub></front><back><sub>member</sub><sub>part</sub></back></card>
   <card><num>437</num><front><sub>μετανοέω</sub></front><back><sub>I repent</sub></back></card>
   <card><num>438</num><front><sub>μήτε</sub></front><back><sub>and not</sub><sub>neither</sub><sub>nor</sub></back></card>
   <card><num>439</num><front><sub>οἶνος</sub><sub>οἶνου</sub></front><back><sub>wine</sub></back></card>
-  <card><num>440</num><front><sub>πτωχός</sub><sub>πρωχή</sub><sub>πτωχόν</sub></front><back><sub>adj:poor</sub><sub>noun:poor person</sub></back></card>
+  <card><num>440</num><front><sub>πτωχός</sub><sub>πρωχή</sub><sub>πτωχόν</sub></front><back><sub>adj: poor</sub><sub>noun: poor person</sub></back></card>
   <card><num>441</num><front><sub>ἀρνέομαι</sub></front><back><sub>I deny</sub><sub>repudiate</sub></back></card>
   <card><num>442</num><front><sub>ἀσθενέω</sub></front><back><sub>I am sick</sub><sub>am weak</sub></back></card>
   <card><num>443</num><front><sub>διαθήκη</sub><sub>διαθήκης</sub></front><back><sub>covenant</sub></back></card>
@@ -466,8 +466,8 @@
   <card><num>447</num><front><sub>ἀκάθαρτος</sub><sub>ἀκάθαρτον</sub></front><back><sub>unclean</sub><sub>impure</sub></back></card>
   <card><num>448</num><front><sub>ἀναγινώσκω</sub></front><back><sub>I read</sub></back></card>
   <card><num>449</num><front><sub>δυνατός</sub><sub>δυνατή</sub><sub>δυνατόν</sub></front><back><sub>able</sub><sub>capable</sub><sub>powerful</sub><sub>possible</sub></back></card>
-  <card><num>450</num><front><sub>ἐχθρός</sub><sub>ἐχθρά</sub><sub>ἐχθρόν</sub></front><back><sub>adj:hostile</sub><sub>noun:enemy</sub></back></card>
-  <card><num>451</num><front><sub>ἥλιος</sub><sub>ἤλιου</sub></front><back><sub>sun</sub></back></card>
+  <card><num>450</num><front><sub>ἐχθρός</sub><sub>ἐχθρά</sub><sub>ἐχθρόν</sub></front><back><sub>adj: hostile</sub><sub>noun: enemy</sub></back></card>
+  <card><num>451</num><front><sub>ἥλιος</sub><sub>ἥλιου</sub></front><back><sub>sun</sub></back></card>
   <card><num>452</num><front><sub>παραγγέλλω</sub></front><back><sub>I command</sub><sub>charge</sub></back></card>
   <card><num>453</num><front><sub>ὑπομονή</sub><sub>ὑπομονῆς</sub></front><back><sub>endurance</sub><sub>perseverance</sub></back></card>
   <card><num>454</num><front><sub>ἄνεμος</sub><sub>ἄνεμου</sub></front><back><sub>wind</sub></back></card>
@@ -478,28 +478,28 @@
   <card><num>459</num><front><sub>καθαρίζω</sub></front><back><sub>I cleanse</sub><sub>purify</sub></back></card>
   <card><num>460</num><front><sub>παρρησία</sub><sub>παρρησίας</sub></front><back><sub>boldness</sub><sub>confidence</sub></back></card>
   <card><num>461</num><front><sub>πλῆθος</sub><sub>πλῆθους</sub></front><back><sub>multitude</sub></back></card>
-  <card><num>462</num><front><sub>πλήν</sub></front><back><sub>adverb:nevertheless, but</sub><sub>prep (gen):except</sub></back></card>
+  <card><num>462</num><front><sub>πλήν</sub></front><back><sub>adverb: nevertheless, but</sub><sub>prep (gen): except</sub></back></card>
   <card><num>463</num><front><sub>ποτήριον</sub><sub>ποτήριου</sub></front><back><sub>cup</sub></back></card>
   <card><num>464</num><front><sub>σκότος</sub><sub>σκότους</sub></front><back><sub>darkness</sub></back></card>
-  <card><num>465</num><front><sub>φαίνω</sub></front><back><sub>active:I shine</sub><sub>passive: I appear</sub></back></card>
+  <card><num>465</num><front><sub>φαίνω</sub></front><back><sub>active: I shine</sub><sub>passive: I appear</sub></back></card>
   <card><num>466</num><front><sub>φυλάσσω</sub></front><back><sub>I guard</sub><sub>observe</sub></back></card>
-  <card><num>467</num><front><sub>φυλή</sub><sub>φυλπῆς</sub></front><back><sub>tribe</sub><sub>nation</sub></back></card>
+  <card><num>467</num><front><sub>φυλή</sub><sub>φυλῆς</sub></front><back><sub>tribe</sub><sub>nation</sub></back></card>
   <card><num>468</num><front><sub>ἀγοράζω</sub></front><back><sub>I buy</sub></back></card>
   <card><num>469</num><front><sub>ἀρνίον</sub><sub>ἀρνίου</sub></front><back><sub>sheep</sub><sub>lamb</sub></back></card>
   <card><num>470</num><front><sub>διδαχή</sub><sub>διδαχῆς</sub></front><back><sub>teaching</sub></back></card>
-  <card><num>471</num><front><sub>ἐπικαλέω</sub></front><back><sub>active:I name, call</sub><sub>middle:I call upon</sub></back></card>
-  <card><num>472</num><front><sub>ὀμοίως</sub></front><back><sub>likewise</sub><sub>in the same way</sub></back></card>
+  <card><num>471</num><front><sub>ἐπικαλέω</sub></front><back><sub>active: I name, call</sub><sub>middle: I call upon</sub></back></card>
+  <card><num>472</num><front><sub>ὁμοίως</sub></front><back><sub>likewise</sub><sub>in the same way</sub></back></card>
   <card><num>473</num><front><sub>συνείδησις</sub><sub>δυνείδεως</sub></front><back><sub>conscience</sub></back></card>
   <card><num>474</num><front><sub>συνέρχομαι</sub></front><back><sub>I assemble</sub><sub>come together</sub><sub>travel with</sub></back></card>
-  <card><num>475</num><front><sub>γνῶσις</sub><sub>γνῦεως</sub></front><back><sub>knowledge</sub><sub>wisdom</sub></back></card>
+  <card><num>475</num><front><sub>γνῶσις</sub><sub>γνῶσεως</sub></front><back><sub>knowledge</sub><sub>wisdom</sub></back></card>
   <card><num>476</num><front><sub>διάκονος</sub><sub>διάκονου</sub></front><back><sub>assistant</sub><sub>servant</sub><sub>deacon</sub></back></card>
   <card><num>477</num><front><sub>ἐπιτιμάω</sub></front><back><sub>I rebuke</sub><sub>warm</sub></back></card>
   <card><num>478</num><front><sub>Ἠλίας</sub><sub>Ἠλίου</sub></front><back><sub>Elijah</sub></back></card>
   <card><num>479</num><front><sub>ἰσχυρός</sub><sub>ἰσχυρά</sub><sub>ἰσχυρόν</sub></front><back><sub>strong</sub></back></card>
-  <card><num>480</num><front><sub>Καῖσαρ</sub><sub>Καῖσος</sub></front><back><sub>Caesar</sub></back></card>
+  <card><num>480</num><front><sub>Καῖσαρ</sub><sub>Καῖσαρος</sub></front><back><sub>Caesar</sub></back></card>
   <card><num>481</num><front><sub>μάχαιρα</sub><sub>μάχαιρης</sub></front><back><sub>sword</sub></back></card>
   <card><num>482</num><front><sub>μισθός</sub><sub>μισθοῦ</sub></front><back><sub>wages</sub><sub>reward</sub></back></card>
-  <card><num>483</num><front><sub>παράκλησις</sub><sub>παράκλεως</sub></front><back><sub>comfort</sub><sub>encouragement</sub></back></card>
+  <card><num>483</num><front><sub>παράκλησις</sub><sub>παράκλησεως</sub></front><back><sub>comfort</sub><sub>encouragement</sub></back></card>
   <card><num>484</num><front><sub>παρέρχομαι</sub></front><back><sub>I pass away</sub><sub>pass by</sub></back></card>
   <card><num>485</num><front><sub>πάσχα</sub></front><back><sub>Passover</sub></back></card>
   <card><num>486</num><front><sub>πόθεν</sub></front><back><sub>from whom?</sub><sub>from where?</sub></back></card>
@@ -507,7 +507,7 @@
   <card><num>488</num><front><sub>προσκαλέω</sub></front><back><sub>I summon</sub></back></card>
   <card><num>489</num><front><sub>σκανδαλίζω</sub></front><back><sub>I cause to sin</sub><sub>cause to stumble</sub></back></card>
   <card><num>490</num><front><sub>φεύγω</sub></front><back><sub>I flee</sub></back></card>
-  <card><num>491</num><front><sub>φίλος</sub><sub>φίλη</sub><sub>φίλον</sub></front><back><sub>adj:beloved</sub><sub>noun:friend</sub></back></card>
+  <card><num>491</num><front><sub>φίλος</sub><sub>φίλη</sub><sub>φίλον</sub></front><back><sub>adj: beloved</sub><sub>noun: friend</sub></back></card>
   <card><num>492</num><front><sub>ἁγιάζω</sub></front><back><sub>I consecrate</sub><sub>sanctify</sub></back></card>
   <card><num>493</num><front><sub>ἀδικέω</sub></front><back><sub>I do wrong</sub><sub>injure</sub></back></card>
   <card><num>494</num><front><sub>ἀληθινός</sub><sub>ἀληθινή</sub><sub>ἀληθινόν</sub></front><back><sub>true</sub><sub>genuine</sub></back></card>
