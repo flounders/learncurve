@@ -255,6 +255,8 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="margin_left">2</property>
+                        <accelerator key="Return" signal="clicked" modifiers="GDK_SHIFT_MASK"/>
+                        <accelerator key="d" signal="clicked" modifiers="GDK_MOD1_MASK"/>
                         <signal name="clicked" handler="learnc_gtk_button_done_cb" swapped="no"/>
                       </object>
                       <packing>
