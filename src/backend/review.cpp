@@ -110,6 +110,8 @@ int learnc_review_control(instance &data, std::vector<std::string> input, int &r
         if (current_box < 4) {
             if (((data.boxes)+current_box)->stack.empty()|| ((data.boxes)+current_box+1)->stack.size() == ((data.boxes)+current_box+1)->size) {
                 review_state = OUT_REVIEW;
+                learnc_html_welcome_page();
+                check_state = 0;
                 return 1;
             }
             else if (check_state == 0) {
@@ -131,7 +133,9 @@ int learnc_review_control(instance &data, std::vector<std::string> input, int &r
         }
         else if (current_box == 4) {
             if (((data.boxes)+current_box)->stack.empty()) {
+                learnc_html_welcome_page();
                 review_state = OUT_REVIEW;
+                check_state = 0;
                 return 1;
             }
             else if (check_state == 0) {

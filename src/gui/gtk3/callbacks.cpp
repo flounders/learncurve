@@ -334,18 +334,17 @@ void learnc_gtk_button_done_cb(GtkWidget *button, gtk_instance *gtk_data)
         flag = 0;
         gtk_button_set_label(GTK_BUTTON(button), "Done");
     }
-    else if (review_state == OUT_REVIEW) {
-        flag = 0;
-        gtk_button_set_label(GTK_BUTTON(button), "Done");
-// possibly load a stats page here for how many right and wrong
-    }
 
     if (review_state == IN_REVIEW) {
         learnc_review_control(gtk_data->data, input, review_state);
         webkit_web_view_load_uri(gtk_data->webview, OUTPUT_PAGE_URI);
-
+        if (review_state != IN_REVIEW) {
+            gtk_button_set_label(GTK_BUTTON(button), "Done");
+            flag = 0;
+        }
+        input.clear();
     }
-    input.clear();
+
 }
 
 extern "C"
