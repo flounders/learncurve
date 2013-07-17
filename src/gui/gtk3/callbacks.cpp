@@ -183,7 +183,7 @@ void learnc_gtk_view_boxes_cb(gtk_instance *gtk_data)
     }
 
     learnc_html_view_boxes(gtk_data->data);
-    webkit_web_view_load_uri(gtk_data->webview, OUTPUT_PAGE_URI);
+    webkit_web_view_reload(gtk_data->webview);
 
 }
 
@@ -306,7 +306,7 @@ void learnc_gtk_text_entry_cb(GtkWidget *entry, gtk_instance *gtk_data)
 
     if (review_state == MENU_REVIEW) {
         learnc_review_control(gtk_data->data, input, review_state);
-        webkit_web_view_load_uri(gtk_data->webview, OUTPUT_PAGE_URI);
+        webkit_web_view_reload(gtk_data->webview);
         input.clear();
     }
 
@@ -337,7 +337,7 @@ void learnc_gtk_button_done_cb(GtkWidget *button, gtk_instance *gtk_data)
 
     if (review_state == IN_REVIEW) {
         learnc_review_control(gtk_data->data, input, review_state);
-        webkit_web_view_load_uri(gtk_data->webview, OUTPUT_PAGE_URI);
+        webkit_web_view_reload(gtk_data->webview);
         if (review_state != IN_REVIEW) {
             gtk_button_set_label(GTK_BUTTON(button), "Done");
             flag = 0;
@@ -350,8 +350,10 @@ void learnc_gtk_button_done_cb(GtkWidget *button, gtk_instance *gtk_data)
 extern "C"
 void learnc_gtk_review_cb(gtk_instance *gtk_data)
 {
+    cout << "learnc_gtk_review_cb: callback triggered\n";
     if (review_state == OUT_REVIEW) {
         learnc_review_control(gtk_data->data, input, review_state);
-        webkit_web_view_load_uri(gtk_data->webview, OUTPUT_PAGE_URI);
+	cout << "learnc_gtk_review_cb: Entered if statement.\n";
+        webkit_web_view_reload(gtk_data->webview);
     }
 }
