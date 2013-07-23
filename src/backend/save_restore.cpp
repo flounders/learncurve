@@ -43,7 +43,7 @@ int learnc_save_box(box *box_to_save, std::ofstream &fout)
     if (box_to_save == NULL)
         return 0;
 
-    int i;
+    unsigned int i;
 
     for (i = 0; i < box_to_save->stack.size(); i++)
         fout << box_to_save->stack[i]->number << "\n";
@@ -114,7 +114,7 @@ int learnc_restore_known(box *known, std::ifstream &fin, std::vector<voc_card> &
     if (known == NULL)
         return 0;
 
-    int i;
+    unsigned int i;
     int address;
     vector<int> card_numbers;
 
@@ -141,8 +141,8 @@ int learnc_restore_boxes(box *boxes, std::ifstream &fin, std::vector<voc_card> &
     if (boxes == NULL)
         return 0;
 
-    int i = 0;
-    int j, address;
+    unsigned int i = 0, j;
+    int address;
     string temp;
     vector<int> card_numbers;
 
@@ -153,7 +153,7 @@ int learnc_restore_boxes(box *boxes, std::ifstream &fin, std::vector<voc_card> &
         if (!(card_numbers.empty())) {
             for (j = 0; j < card_numbers.size(); j++) {
                 address = learnc_find_in_stack(card_numbers[j], stack);
-                if (address != -1 && (boxes+i)->stack.size() < (boxes+i)->size)
+                if (address != -1 && (int) (boxes+i)->stack.size() < (boxes+i)->size)
                     (boxes+i)->stack.push_back(&stack[address]);
             }
             card_numbers.clear();
@@ -182,7 +182,7 @@ int learnc_find_in_stack(int number, std::vector<voc_card> &stack)
     if (number <= 0)
         return -1;
 
-    int i;
+    unsigned int i;
 
     for (i = 0; i < stack.size(); i++)
         if (stack[i].number == number)
@@ -196,7 +196,7 @@ int learnc_find_in_stack(int number, std::vector<voc_card *> &stack)
     if (number <= 0)
         return -1;
 
-    int i;
+    unsigned int i;
 
     for (i = 0; i < stack.size(); i++)
         if (stack[i]->number == number)
@@ -223,30 +223,43 @@ int learnc_get_storage_path(char *filename, char *dirname)
     if (filename == NULL || dirname == NULL)
         return 0;
 
-    strncpy(buf, filename, strlen(filename) - 4);
-    buf[strlen(filename) - 4] = '\0';
-
-
-    file_begin = strchr(buf, '/');
-    while ((file_begin = strchr(file_begin+1, '/')) != NULL) {
-        if (file_begin == NULL)
-            break;
-
+    strncpy(buf, filename, strlen(filename));
+    buf[strlen(filename)] = '\0';
+    file_begin = strstr(buf, ".xml");
+    while (file_begin != NULL) {
         last_pos = file_begin;
+        file_begin = strstr(file_begin+1, ".xml");
+    }
+    
+    while (*last_pos != '\0') {
+        *last_pos = '\0';
+        last_pos++;
+    }
+
+    file_begin = strstr(buf, "/");
+    while (file_begin != NULL) {
+        last_pos = file_begin;
+        file_begin = strstr(file_begin+1, "/");
     } 
-    last_pos++;
 
-
-    file_begin = getenv("HOME");
+    file_begin = getenv("XDG_DATA_HOME");
     if (file_begin != NULL) {
-        snprintf(buf, sizeof (buf), "%s/.config/learncurve/%s", file_begin, last_pos);
+        strncpy(dirname, file_begin, PATH_MAX);
+        strncat(dirname, "/learncurve", PATH_MAX);
+        strncat(dirname, last_pos, PATH_MAX);
     }
     else {
-        cerr << "learnc_get_storage_path: Encountered a problem with getenv().\n";
-        return 0;
+        file_begin = getenv("HOME");
+        if (file_begin != NULL) {
+            strncpy(dirname, file_begin, PATH_MAX);
+            strncat(dirname, "/learncurve", PATH_MAX);
+            strncat(dirname, last_pos, PATH_MAX);
+        }
+        else {
+            cerr << "learnc_get_storage_path: Encountered a problem with getenv().\n";
+            return 0;
+        }
     }
-
-    strcpy(dirname, buf);
 
     return 1;
 }

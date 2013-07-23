@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include <webkit/webkit.h>
 #include "../../backend/types.h"
 
-#define LEARNC_GTK3_GLADE "gui/gtk3/main_gtk3.glade"
+#define LEARNC_GTK3_GLADE "/usr/local/share/learncurve/main_gtk3.glade"
 
 // gtk_instance is only for the GTK UI as it makes it the only
 // way to pass arguments through GTK applications at all.

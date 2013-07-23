@@ -87,8 +87,6 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
         strcat(path, "/boxcards");
         infile.open(path);
         if (!infile.fail()) {
-            cout << "learnc_gtk_open_cb: learnc_restore_boxes() in same block "
-                 << "of execution.\n";
             learnc_restore_boxes(gtk_data->data.boxes, infile, gtk_data->data.stack);
             infile.close();
         }
@@ -97,13 +95,10 @@ void learnc_gtk_open_cb(gtk_instance *gtk_data)
         cerr << "learnc_gtk_open_cb: Received failure on learnc_get_storage_path().\n";
     }
 
-
     if (learnc_get_storage_path(gtk_data->file_name, path) == 1) {
         strcat(path, "/knowncards");
         infile.open(path);
         if (!infile.fail()) {
-            cout << "learnc_gtk_open_cb: learnc_restore_known() in same block "
-                 << "of execution.\n";
             learnc_restore_known(gtk_data->data.known, infile, gtk_data->data.stack);
             infile.close();
         }
@@ -133,10 +128,6 @@ void learnc_gtk_save_cb(gtk_instance *gtk_data)
     else if (gtk_data->data.known == NULL) {
         cerr << "learnc_gtk_save_cb: Known is uninitialized.\n";
         return;
-    }
-    else {
-        cout << "learnc_gtk_save_cb: " << gtk_data->data.boxes
-                  << endl;
     }
 
     ofstream outfile;
@@ -350,10 +341,8 @@ void learnc_gtk_button_done_cb(GtkWidget *button, gtk_instance *gtk_data)
 extern "C"
 void learnc_gtk_review_cb(gtk_instance *gtk_data)
 {
-    cout << "learnc_gtk_review_cb: callback triggered\n";
     if (review_state == OUT_REVIEW) {
         learnc_review_control(gtk_data->data, input, review_state);
-	cout << "learnc_gtk_review_cb: Entered if statement.\n";
         webkit_web_view_reload(gtk_data->webview);
     }
 }

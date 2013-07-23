@@ -150,10 +150,38 @@ int learnc_init_linux_storage(void)
 {
     struct stat st = {0};
     char path[PATH_MAX];
-    char *home = getenv("HOME");
+    char *data_home = getenv("XDG_DATA_HOME");
+    char *config_home = getenv("XDG_CONFIG_HOME");
 
-    if (home != NULL)
-        snprintf(path, PATH_MAX, "%s/.config/learncurve", home);
+    if (data_home != NULL) {
+        snprintf(path, PATH_MAX, "%s/learncurve", data_home);
+    }
+    else {
+        data_home = getenv("HOME");
+        if (data_home != NULL) {
+            snprintf(path, PATH_MAX, "%s/.local/share/learncurve", data_home);
+        }
+        else {
+            return 0;
+        }
+    }
+
+    if (stat(path, &st) == -1) {
+        return !(mkdir(path, 0700));
+    }
+
+    if (config_home != NULL) {
+        snprintf(path, PATH_MAX, "%s/learncurve", config_home);
+    }
+    else {
+        config_home = getenv("HOME");
+        if (config_home != NULL) {
+            snprintf(path, PATH_MAX, "%s/.config/learncurve", config_home);
+        }
+        else {
+            return 0;
+        }
+    }
 
     if (stat(path, &st) == -1) {
         return !(mkdir(path, 0700));

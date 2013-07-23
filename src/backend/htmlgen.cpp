@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "types.h"
 
 #ifdef __linux__
-#define CSS_FILE "/.config/learncurve/program.css"
+#define CSS_FILE "/learncurve/program.css"
 #endif
 
 #define HTML_DOCTYPE "<!DOCTYPE html>"
@@ -229,9 +229,9 @@ int learnc_html_input_usage(const std::string usage)
 
 int learnc_html_gen_open(std::ofstream &page)
 {
-    char *homepath;
+    char *home_config_path;
 
-    homepath = getenv("HOME");
+    home_config_path = getenv("XDG_CONFIG_HOME");
 
     page.open(OUTPUT_PAGE);
 
@@ -240,7 +240,14 @@ int learnc_html_gen_open(std::ofstream &page)
     page << HEAD_OPEN;
     page << META_CHARSET;
     page << "<link rel=\"stylesheet\" type=\"text/css\" href=\"";
-    page << homepath;
+
+    if (home_config_path != NULL) {
+        page << home_config_path;
+    }
+    else {
+        home_config_path = getenv("HOME");
+        page << home_config_path << "/.config";
+    }
 
 #ifdef CSS_FILE
     page << CSS_FILE;
