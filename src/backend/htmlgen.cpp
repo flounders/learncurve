@@ -99,7 +99,7 @@ int learnc_html_card_front(voc_card card)
 // as there are no NULL pointers to check for. Takes
 // voc_card as argument for content to load on page.
 
-int learnc_html_card_back_and_front(voc_card card)
+int learnc_html_card_back_and_front(voc_card card, int answer)
 {
     int i;
     ofstream page;
@@ -125,6 +125,15 @@ int learnc_html_card_back_and_front(voc_card card)
         page << "</li>";
     }
 
+    page << "</div>";
+
+    page << "<div class=\"answer\">";
+    if (answer == 0) {
+        page << "Wrong answer!";
+    }
+    else if (answer == 1) {
+        page << "You got it right!";
+    }
     page << "</div>";
 
     learnc_html_gen_close(page);

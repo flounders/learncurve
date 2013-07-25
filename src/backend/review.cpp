@@ -86,10 +86,6 @@ int learnc_review_control(instance &data, std::vector<std::string> input, int &r
                 learnc_html_input_usage("Enter a single digit from 1-5.");
                 return 0;
             }
-            else {
-                std::cerr << "learnc_review_control: address = " << address
-                          << std::endl;
-            }
         }
 
         if (current_box == 0) {
@@ -116,8 +112,7 @@ int learnc_review_control(instance &data, std::vector<std::string> input, int &r
             }
             else if (check_state == 0) {
                 answer = learnc_review_check_answer(input, ((data.boxes)+current_box)->stack[0]->back);
-                std::cout << "Anwser was " << answer << std::endl;
-                learnc_html_card_back_and_front(*(((data.boxes)+current_box)->stack[0]));
+                learnc_html_card_back_and_front(*(((data.boxes)+current_box)->stack[0]), answer);
                 if (answer == 1) {
                     learnc_box_promote((data.boxes)+current_box, (data.boxes)+current_box+1, ((data.boxes)+current_box)->stack[0]);
                 }
@@ -140,7 +135,7 @@ int learnc_review_control(instance &data, std::vector<std::string> input, int &r
             }
             else if (check_state == 0) {
                 answer = learnc_review_check_answer(input, ((data.boxes)+current_box)->stack[0]->back);
-                learnc_html_card_back_and_front(*(((data.boxes)+current_box)->stack[0]));
+                learnc_html_card_back_and_front(*(((data.boxes)+current_box)->stack[0]), answer);
                 if (answer == 1) {
                     learnc_box_promote((data.boxes)+current_box, data.known, ((data.boxes)+current_box)->stack[0]);
                 }

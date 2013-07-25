@@ -259,7 +259,7 @@ void learnc_gtk_about_cb(gtk_instance *gtk_data)
 
     gtk_show_about_dialog(GTK_WINDOW(gtk_data->window),
                           "program-name", "Learncurve",
-                          "version", "0.1",
+                          "version", "0.2-rc",
                           "copyright", "Copyright 2013 Steven Williams",
                           "website", "http://learncurve.sourceforge.net",
                           "authors", auth,
