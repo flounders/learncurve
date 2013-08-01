@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT(learncurve, 0.2, [BUG-REPORT-ADDRESS])
+AC_INIT(learncurve, 0.2, http://github.com/flounders/learncurve)
 AC_CONFIG_SRCDIR([src/main.cpp])
 AM_INIT_AUTOMAKE
 AM_CONFIG_HEADER(config.h)
