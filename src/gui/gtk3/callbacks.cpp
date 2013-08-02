@@ -257,7 +257,7 @@ void learnc_gtk_about_cb(gtk_instance *gtk_data)
     gtk_dialog_run(GTK_DIALOG(dialog));
     gtk_widget_hide(dialog); */
 
-    gtk_show_about_dialog(GTK_WINDOW(gtk_data->window),
+    gtk_show_about_dialog(NULL,
                           "program-name", "Learncurve",
                           "version", "0.2",
                           "copyright", "Copyright 2013 Steven Williams",

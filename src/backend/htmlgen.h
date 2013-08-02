@@ -29,6 +29,7 @@ int learnc_html_card_front(voc_card card);
 int learnc_html_card_back_and_front(voc_card card, int answer);
 int learnc_html_welcome_page(void);
 int learnc_html_view_boxes(instance &current);
+void learnc_html_stack_finished(void);
 int learnc_html_review_menu(void);
 int learnc_html_input_usage(const std::string usage);
 int learnc_html_gen_open(std::ofstream &page);

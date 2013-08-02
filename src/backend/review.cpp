@@ -80,6 +80,11 @@ int learnc_review_control(instance &data, std::vector<std::string> input, int &r
                     break;
                 }
             }
+            if (current_box != address) {
+                learnc_html_stack_finished();
+                review_state = OUT_REVIEW;
+                return 1;
+            }
         }
 
         learnc_html_card_front(*(((data.boxes)+current_box)->stack[0]));

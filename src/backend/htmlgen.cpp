@@ -178,6 +178,20 @@ int learnc_html_view_boxes(instance &current)
     return 1;
 }
 
+// learnc_html_stack_finished generates html for when the whole
+// stack has been completed.
+//
+// Function is type void and takes no arguments.
+
+void learnc_html_stack_finished(void)
+{
+    ofstream page;
+
+    learnc_html_gen_open(page);
+    page << "<div>You have finished the stack. Congratulations.</div>";
+    learnc_html_gen_close(page);
+}
+
 // learnc_html_review_menu generates html for the review menu.
 // At this point (4-17-13) gives a simple message informing you
 // of your options for selection, but should be changed to show
