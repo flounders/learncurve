@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #define SUB 105
 #define ROOT 106
 
-int learnc_parse_file(xmlTextReaderPtr reader, std::vector<voc_card> &stack);
+int learnc_parse_file(const xmlTextReaderPtr reader, std::vector<voc_card> &stack);
 int test_parse_file(void);
 int learnc_element_check(xmlTextReaderPtr reader);
 void learnc_card_clear(voc_card &card);

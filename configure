@@ -589,23 +589,25 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
-GTK_LIBS
-GTK_CFLAGS
-GMODULE_LIBS
-GMODULE_CFLAGS
-WEBKITGTK_LIBS
-WEBKITGTK_CFLAGS
+LPACKAGE_LIBS
+LPACKAGE_CFLAGS
 XML_LIBS
 XML_CFLAGS
 PKG_CONFIG_LIBDIR
 PKG_CONFIG_PATH
 PKG_CONFIG
+X_EXTRA_LIBS
+X_LIBS
+X_PRE_LIBS
+X_CFLAGS
+CPP
 am__fastdepCC_FALSE
 am__fastdepCC_TRUE
 CCDEPMODE
 ac_ct_CC
 CFLAGS
 CC
+XMKMF
 am__fastdepCXX_FALSE
 am__fastdepCXX_TRUE
 CXXDEPMODE
@@ -693,7 +695,8 @@ ac_user_opts='
 enable_option_checking
 enable_silent_rules
 enable_dependency_tracking
-enable_gtktest
+with_qt_dir
+with_x
 '
       ac_precious_vars='build_alias
 host_alias
@@ -704,17 +707,17 @@ LDFLAGS
 LIBS
 CPPFLAGS
 CCC
+XMKMF
 CC
 CFLAGS
+CPP
 PKG_CONFIG
 PKG_CONFIG_PATH
 PKG_CONFIG_LIBDIR
 XML_CFLAGS
 XML_LIBS
-WEBKITGTK_CFLAGS
-WEBKITGTK_LIBS
-GMODULE_CFLAGS
-GMODULE_LIBS'
+LPACKAGE_CFLAGS
+LPACKAGE_LIBS'
 
 
 # Initialize some variables set by options.
@@ -1316,6 +1319,10 @@ Program names:
   --program-prefix=PREFIX            prepend PREFIX to installed program names
   --program-suffix=SUFFIX            append SUFFIX to installed program names
   --program-transform-name=PROGRAM   run sed PROGRAM on installed program names
+
+X features:
+  --x-includes=DIR    X include files are in DIR
+  --x-libraries=DIR   X library files are in DIR
 _ACEOF
 fi
 
@@ -1335,7 +1342,13 @@ Optional Features:
                           do not reject slow dependency extractors
   --disable-dependency-tracking
                           speeds up one-time build
-  --disable-gtktest       do not try to compile and run a test GTK+ program
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-qt-dir=/path/to/Qt-4.1.0
+                          to specify the path to the Qt-4.1.0 directory.
+  --with-x                use the X Window System
 
 Some influential environment variables:
   CXX         C++ compiler command
@@ -1345,8 +1358,10 @@ Some influential environment variables:
   LIBS        libraries to pass to the linker, e.g. -l<library>
   CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
               you have headers in a nonstandard directory <include dir>
+  XMKMF       Path to xmkmf, Makefile generator for X Window System
   CC          C compiler command
   CFLAGS      C compiler flags
+  CPP         C preprocessor
   PKG_CONFIG  path to pkg-config utility
   PKG_CONFIG_PATH
               directories to add to pkg-config's search path
@@ -1354,14 +1369,10 @@ Some influential environment variables:
               path overriding pkg-config's built-in search path
   XML_CFLAGS  C compiler flags for XML, overriding pkg-config
   XML_LIBS    linker flags for XML, overriding pkg-config
-  WEBKITGTK_CFLAGS
-              C compiler flags for WEBKITGTK, overriding pkg-config
-  WEBKITGTK_LIBS
-              linker flags for WEBKITGTK, overriding pkg-config
-  GMODULE_CFLAGS
-              C compiler flags for GMODULE, overriding pkg-config
-  GMODULE_LIBS
-              linker flags for GMODULE, overriding pkg-config
+  LPACKAGE_CFLAGS
+              C compiler flags for LPACKAGE, overriding pkg-config
+  LPACKAGE_LIBS
+              linker flags for LPACKAGE, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -1519,47 +1530,42 @@ fi
 
 } # ac_fn_c_try_compile
 
-# ac_fn_c_try_run LINENO
+# ac_fn_c_try_cpp LINENO
 # ----------------------
-# Try to link conftest.$ac_ext, and return whether this succeeded. Assumes
-# that executables *can* be run.
-ac_fn_c_try_run ()
+# Try to preprocess conftest.$ac_ext, and return whether this succeeded.
+ac_fn_c_try_cpp ()
 {
   as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
-  if { { ac_try="$ac_link"
+  if { { ac_try="$ac_cpp conftest.$ac_ext"
 case "(($ac_try" in
   *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
   *) ac_try_echo=$ac_try;;
 esac
 eval ac_try_echo="\"\$as_me:${as_lineno-$LINENO}: $ac_try_echo\""
 $as_echo "$ac_try_echo"; } >&5
-  (eval "$ac_link") 2>&5
+  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.err
   ac_status=$?
+  if test -s conftest.err; then
+    grep -v '^ *+' conftest.err >conftest.er1
+    cat conftest.er1 >&5
+    mv -f conftest.er1 conftest.err
+  fi
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; } && { ac_try='./conftest$ac_exeext'
-  { { case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:${as_lineno-$LINENO}: $ac_try_echo\""
-$as_echo "$ac_try_echo"; } >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; }; then :
+  test $ac_status = 0; } > conftest.i && {
+	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       }; then :
   ac_retval=0
 else
-  $as_echo "$as_me: program exited with status $ac_status" >&5
-       $as_echo "$as_me: failed program was:" >&5
+  $as_echo "$as_me: failed program was:" >&5
 sed 's/^/| /' conftest.$ac_ext >&5
 
-       ac_retval=$ac_status
+    ac_retval=1
 fi
-  rm -rf conftest.dSYM conftest_ipa8_conftest.oo
   eval $as_lineno_stack; ${as_lineno_stack:+:} unset as_lineno
   as_fn_set_status $ac_retval
 
-} # ac_fn_c_try_run
+} # ac_fn_c_try_cpp
 
 # ac_fn_c_try_link LINENO
 # -----------------------
@@ -2023,6 +2029,7 @@ ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
 
 
 
@@ -3295,6 +3302,33 @@ else
 fi
 
 
+
+# Qt checks
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking QT4.1 directory" >&5
+$as_echo_n "checking QT4.1 directory... " >&6; }
+QTDIR=xxx
+
+# Check whether --with-qt-dir was given.
+if test "${with_qt_dir+set}" = set; then :
+  withval=$with_qt_dir; QTPATHS="$withval"
+else
+  QTPATHS="/usr/local/Trolltech/Qt-4.1.0 /c/qt/4.1.0 /usr"
+fi
+
+
+for x in $QTPATHS; do
+	if test -d $x ; then
+		QTDIR="$x"
+	fi
+done
+
+if test $QTDIR = xxx ; then
+	as_fn_error $? "Could not locate QT 4.1" "$LINENO" 5
+fi
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $QTDIR" >&5
+$as_echo "$QTDIR" >&6; }
+
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
@@ -3962,19 +3996,366 @@ else
 fi
 
 
-if test "x$CC" != xcc; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $CC and cc understand -c and -o together" >&5
-$as_echo_n "checking whether $CC and cc understand -c and -o together... " >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether cc understands -c and -o together" >&5
-$as_echo_n "checking whether cc understands -c and -o together... " >&6; }
+
+ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking how to run the C preprocessor" >&5
+$as_echo_n "checking how to run the C preprocessor... " >&6; }
+# On Suns, sometimes $CPP names a directory.
+if test -n "$CPP" && test -d "$CPP"; then
+  CPP=
 fi
-set dummy $CC; ac_cc=`$as_echo "$2" |
-		      sed 's/[^a-zA-Z0-9_]/_/g;s/^[0-9]/_/'`
-if eval \${ac_cv_prog_cc_${ac_cc}_c_o+:} false; then :
+if test -z "$CPP"; then
+  if ${ac_cv_prog_CPP+:} false; then :
   $as_echo_n "(cached) " >&6
 else
+      # Double quotes because CPP needs to be expanded
+    for CPP in "$CC -E" "$CC -E -traditional-cpp" "/lib/cpp"
+    do
+      ac_preproc_ok=false
+for ac_c_preproc_warn_flag in '' yes
+do
+  # Use a header file that comes with gcc, so configuring glibc
+  # with a fresh cross-compiler works.
+  # Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+  # <limits.h> exists even on freestanding compilers.
+  # On the NeXT, cc -E runs the code through the compiler's parser,
+  # not just through cpp. "Syntax error" is here to catch this case.
   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#ifdef __STDC__
+# include <limits.h>
+#else
+# include <assert.h>
+#endif
+		     Syntax error
+_ACEOF
+if ac_fn_c_try_cpp "$LINENO"; then :
+
+else
+  # Broken: fails on valid input.
+continue
+fi
+rm -f conftest.err conftest.i conftest.$ac_ext
+
+  # OK, works on sane cases.  Now check whether nonexistent headers
+  # can be detected and how.
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <ac_nonexistent.h>
+_ACEOF
+if ac_fn_c_try_cpp "$LINENO"; then :
+  # Broken: success on invalid input.
+continue
+else
+  # Passes both tests.
+ac_preproc_ok=:
+break
+fi
+rm -f conftest.err conftest.i conftest.$ac_ext
+
+done
+# Because of `break', _AC_PREPROC_IFELSE's cleaning code was skipped.
+rm -f conftest.i conftest.err conftest.$ac_ext
+if $ac_preproc_ok; then :
+  break
+fi
+
+    done
+    ac_cv_prog_CPP=$CPP
+
+fi
+  CPP=$ac_cv_prog_CPP
+else
+  ac_cv_prog_CPP=$CPP
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $CPP" >&5
+$as_echo "$CPP" >&6; }
+ac_preproc_ok=false
+for ac_c_preproc_warn_flag in '' yes
+do
+  # Use a header file that comes with gcc, so configuring glibc
+  # with a fresh cross-compiler works.
+  # Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+  # <limits.h> exists even on freestanding compilers.
+  # On the NeXT, cc -E runs the code through the compiler's parser,
+  # not just through cpp. "Syntax error" is here to catch this case.
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#ifdef __STDC__
+# include <limits.h>
+#else
+# include <assert.h>
+#endif
+		     Syntax error
+_ACEOF
+if ac_fn_c_try_cpp "$LINENO"; then :
+
+else
+  # Broken: fails on valid input.
+continue
+fi
+rm -f conftest.err conftest.i conftest.$ac_ext
+
+  # OK, works on sane cases.  Now check whether nonexistent headers
+  # can be detected and how.
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <ac_nonexistent.h>
+_ACEOF
+if ac_fn_c_try_cpp "$LINENO"; then :
+  # Broken: success on invalid input.
+continue
+else
+  # Passes both tests.
+ac_preproc_ok=:
+break
+fi
+rm -f conftest.err conftest.i conftest.$ac_ext
+
+done
+# Because of `break', _AC_PREPROC_IFELSE's cleaning code was skipped.
+rm -f conftest.i conftest.err conftest.$ac_ext
+if $ac_preproc_ok; then :
+
+else
+  { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "C preprocessor \"$CPP\" fails sanity check
+See \`config.log' for more details" "$LINENO" 5; }
+fi
+
+ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for X" >&5
+$as_echo_n "checking for X... " >&6; }
+
+
+# Check whether --with-x was given.
+if test "${with_x+set}" = set; then :
+  withval=$with_x;
+fi
+
+# $have_x is `yes', `no', `disabled', or empty when we do not yet know.
+if test "x$with_x" = xno; then
+  # The user explicitly disabled X.
+  have_x=disabled
+else
+  case $x_includes,$x_libraries in #(
+    *\'*) as_fn_error $? "cannot use X directory names containing '" "$LINENO" 5;; #(
+    *,NONE | NONE,*) if ${ac_cv_have_x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  # One or both of the vars are not set, and there is no cached value.
+ac_x_includes=no ac_x_libraries=no
+rm -f -r conftest.dir
+if mkdir conftest.dir; then
+  cd conftest.dir
+  cat >Imakefile <<'_ACEOF'
+incroot:
+	@echo incroot='${INCROOT}'
+usrlibdir:
+	@echo usrlibdir='${USRLIBDIR}'
+libdir:
+	@echo libdir='${LIBDIR}'
+_ACEOF
+  if (export CC; ${XMKMF-xmkmf}) >/dev/null 2>/dev/null && test -f Makefile; then
+    # GNU make sometimes prints "make[1]: Entering ...", which would confuse us.
+    for ac_var in incroot usrlibdir libdir; do
+      eval "ac_im_$ac_var=\`\${MAKE-make} $ac_var 2>/dev/null | sed -n 's/^$ac_var=//p'\`"
+    done
+    # Open Windows xmkmf reportedly sets LIBDIR instead of USRLIBDIR.
+    for ac_extension in a so sl dylib la dll; do
+      if test ! -f "$ac_im_usrlibdir/libX11.$ac_extension" &&
+	 test -f "$ac_im_libdir/libX11.$ac_extension"; then
+	ac_im_usrlibdir=$ac_im_libdir; break
+      fi
+    done
+    # Screen out bogus values from the imake configuration.  They are
+    # bogus both because they are the default anyway, and because
+    # using them would break gcc on systems where it needs fixed includes.
+    case $ac_im_incroot in
+	/usr/include) ac_x_includes= ;;
+	*) test -f "$ac_im_incroot/X11/Xos.h" && ac_x_includes=$ac_im_incroot;;
+    esac
+    case $ac_im_usrlibdir in
+	/usr/lib | /usr/lib64 | /lib | /lib64) ;;
+	*) test -d "$ac_im_usrlibdir" && ac_x_libraries=$ac_im_usrlibdir ;;
+    esac
+  fi
+  cd ..
+  rm -f -r conftest.dir
+fi
+
+# Standard set of common directories for X headers.
+# Check X11 before X11Rn because it is often a symlink to the current release.
+ac_x_header_dirs='
+/usr/X11/include
+/usr/X11R7/include
+/usr/X11R6/include
+/usr/X11R5/include
+/usr/X11R4/include
+
+/usr/include/X11
+/usr/include/X11R7
+/usr/include/X11R6
+/usr/include/X11R5
+/usr/include/X11R4
+
+/usr/local/X11/include
+/usr/local/X11R7/include
+/usr/local/X11R6/include
+/usr/local/X11R5/include
+/usr/local/X11R4/include
+
+/usr/local/include/X11
+/usr/local/include/X11R7
+/usr/local/include/X11R6
+/usr/local/include/X11R5
+/usr/local/include/X11R4
+
+/usr/X386/include
+/usr/x386/include
+/usr/XFree86/include/X11
+
+/usr/include
+/usr/local/include
+/usr/unsupported/include
+/usr/athena/include
+/usr/local/x11r5/include
+/usr/lpp/Xamples/include
+
+/usr/openwin/include
+/usr/openwin/share/include'
+
+if test "$ac_x_includes" = no; then
+  # Guess where to find include files, by looking for Xlib.h.
+  # First, try using that file with no special directory specified.
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <X11/Xlib.h>
+_ACEOF
+if ac_fn_c_try_cpp "$LINENO"; then :
+  # We can compile using X headers with no special include directory.
+ac_x_includes=
+else
+  for ac_dir in $ac_x_header_dirs; do
+  if test -r "$ac_dir/X11/Xlib.h"; then
+    ac_x_includes=$ac_dir
+    break
+  fi
+done
+fi
+rm -f conftest.err conftest.i conftest.$ac_ext
+fi # $ac_x_includes = no
+
+if test "$ac_x_libraries" = no; then
+  # Check for the libraries.
+  # See if we find them without any special options.
+  # Don't add to $LIBS permanently.
+  ac_save_LIBS=$LIBS
+  LIBS="-lX11 $LIBS"
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <X11/Xlib.h>
+int
+main ()
+{
+XrmInitialize ()
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  LIBS=$ac_save_LIBS
+# We can link X programs with no special library path.
+ac_x_libraries=
+else
+  LIBS=$ac_save_LIBS
+for ac_dir in `$as_echo "$ac_x_includes $ac_x_header_dirs" | sed s/include/lib/g`
+do
+  # Don't even attempt the hair of trying to link an X program!
+  for ac_extension in a so sl dylib la dll; do
+    if test -r "$ac_dir/libX11.$ac_extension"; then
+      ac_x_libraries=$ac_dir
+      break 2
+    fi
+  done
+done
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+fi # $ac_x_libraries = no
+
+case $ac_x_includes,$ac_x_libraries in #(
+  no,* | *,no | *\'*)
+    # Didn't find X, or a directory has "'" in its name.
+    ac_cv_have_x="have_x=no";; #(
+  *)
+    # Record where we found X for the cache.
+    ac_cv_have_x="have_x=yes\
+	ac_x_includes='$ac_x_includes'\
+	ac_x_libraries='$ac_x_libraries'"
+esac
+fi
+;; #(
+    *) have_x=yes;;
+  esac
+  eval "$ac_cv_have_x"
+fi # $with_x != no
+
+if test "$have_x" != yes; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $have_x" >&5
+$as_echo "$have_x" >&6; }
+  no_x=yes
+else
+  # If each of the values was on the command line, it overrides each guess.
+  test "x$x_includes" = xNONE && x_includes=$ac_x_includes
+  test "x$x_libraries" = xNONE && x_libraries=$ac_x_libraries
+  # Update the cache value to reflect the command line values.
+  ac_cv_have_x="have_x=yes\
+	ac_x_includes='$x_includes'\
+	ac_x_libraries='$x_libraries'"
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: libraries $x_libraries, headers $x_includes" >&5
+$as_echo "libraries $x_libraries, headers $x_includes" >&6; }
+fi
+
+
+host=`uname -a`
+case $host in
+	Linux*)
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: Linux detected" >&5
+$as_echo "$as_me: Linux detected" >&6;}
+		if test "$no_x" = yes; then
+  # Not all programs may use this symbol, but it does not hurt to define it.
+
+$as_echo "#define X_DISPLAY_MISSING 1" >>confdefs.h
+
+  X_CFLAGS= X_PRE_LIBS= X_LIBS= X_EXTRA_LIBS=
+else
+  if test -n "$x_includes"; then
+    X_CFLAGS="$X_CFLAGS -I$x_includes"
+  fi
+
+  # It would also be nice to do this for all -L options, not just this one.
+  if test -n "$x_libraries"; then
+    X_LIBS="$X_LIBS -L$x_libraries"
+    # For Solaris; some versions of Sun CC require a space after -R and
+    # others require no space.  Words are not sufficient . . . .
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether -R must be followed by a space" >&5
+$as_echo_n "checking whether -R must be followed by a space... " >&6; }
+    ac_xsave_LIBS=$LIBS; LIBS="$LIBS -R$x_libraries"
+    ac_xsave_c_werror_flag=$ac_c_werror_flag
+    ac_c_werror_flag=yes
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
 int
@@ -3985,110 +4366,575 @@ main ()
   return 0;
 }
 _ACEOF
-# Make sure it works both with $CC and with simple cc.
-# We do the test twice because some compilers refuse to overwrite an
-# existing .o file with -o, though they will create one.
-ac_try='$CC -c conftest.$ac_ext -o conftest2.$ac_objext >&5'
-rm -f conftest2.*
-if { { case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:${as_lineno-$LINENO}: $ac_try_echo\""
-$as_echo "$ac_try_echo"; } >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; } &&
-   test -f conftest2.$ac_objext && { { case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:${as_lineno-$LINENO}: $ac_try_echo\""
-$as_echo "$ac_try_echo"; } >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; };
-then
-  eval ac_cv_prog_cc_${ac_cc}_c_o=yes
-  if test "x$CC" != xcc; then
-    # Test first that cc exists at all.
-    if { ac_try='cc -c conftest.$ac_ext >&5'
-  { { case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:${as_lineno-$LINENO}: $ac_try_echo\""
-$as_echo "$ac_try_echo"; } >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; }; then
-      ac_try='cc -c conftest.$ac_ext -o conftest2.$ac_objext >&5'
-      rm -f conftest2.*
-      if { { case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:${as_lineno-$LINENO}: $ac_try_echo\""
-$as_echo "$ac_try_echo"; } >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; } &&
-	 test -f conftest2.$ac_objext && { { case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:${as_lineno-$LINENO}: $ac_try_echo\""
-$as_echo "$ac_try_echo"; } >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; };
-      then
-	# cc works too.
-	:
-      else
-	# cc exists but doesn't like -o.
-	eval ac_cv_prog_cc_${ac_cc}_c_o=no
-      fi
-    fi
-  fi
-else
-  eval ac_cv_prog_cc_${ac_cc}_c_o=no
-fi
-rm -f core conftest*
-
-fi
-if eval test \$ac_cv_prog_cc_${ac_cc}_c_o = yes; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-else
+if ac_fn_c_try_link "$LINENO"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
+       X_LIBS="$X_LIBS -R$x_libraries"
+else
+  LIBS="$ac_xsave_LIBS -R $x_libraries"
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-$as_echo "#define NO_MINUS_C_MINUS_O 1" >>confdefs.h
+int
+main ()
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	  X_LIBS="$X_LIBS -R $x_libraries"
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: neither works" >&5
+$as_echo "neither works" >&6; }
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+    ac_c_werror_flag=$ac_xsave_c_werror_flag
+    LIBS=$ac_xsave_LIBS
+  fi
+
+  # Check for system-dependent libraries X programs must link with.
+  # Do this before checking for the system-independent R6 libraries
+  # (-lICE), since we may need -lsocket or whatever for X linking.
+
+  if test "$ISC" = yes; then
+    X_EXTRA_LIBS="$X_EXTRA_LIBS -lnsl_s -linet"
+  else
+    # Martyn Johnson says this is needed for Ultrix, if the X
+    # libraries were built with DECnet support.  And Karl Berry says
+    # the Alpha needs dnet_stub (dnet does not exist).
+    ac_xsave_LIBS="$LIBS"; LIBS="$LIBS $X_LIBS -lX11"
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char XOpenDisplay ();
+int
+main ()
+{
+return XOpenDisplay ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for dnet_ntoa in -ldnet" >&5
+$as_echo_n "checking for dnet_ntoa in -ldnet... " >&6; }
+if ${ac_cv_lib_dnet_dnet_ntoa+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-ldnet  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char dnet_ntoa ();
+int
+main ()
+{
+return dnet_ntoa ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_dnet_dnet_ntoa=yes
+else
+  ac_cv_lib_dnet_dnet_ntoa=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_dnet_dnet_ntoa" >&5
+$as_echo "$ac_cv_lib_dnet_dnet_ntoa" >&6; }
+if test "x$ac_cv_lib_dnet_dnet_ntoa" = xyes; then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -ldnet"
+fi
+
+    if test $ac_cv_lib_dnet_dnet_ntoa = no; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: checking for dnet_ntoa in -ldnet_stub" >&5
+$as_echo_n "checking for dnet_ntoa in -ldnet_stub... " >&6; }
+if ${ac_cv_lib_dnet_stub_dnet_ntoa+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-ldnet_stub  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char dnet_ntoa ();
+int
+main ()
+{
+return dnet_ntoa ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_dnet_stub_dnet_ntoa=yes
+else
+  ac_cv_lib_dnet_stub_dnet_ntoa=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_dnet_stub_dnet_ntoa" >&5
+$as_echo "$ac_cv_lib_dnet_stub_dnet_ntoa" >&6; }
+if test "x$ac_cv_lib_dnet_stub_dnet_ntoa" = xyes; then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -ldnet_stub"
+fi
+
+    fi
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+    LIBS="$ac_xsave_LIBS"
+
+    # msh@cis.ufl.edu says -lnsl (and -lsocket) are needed for his 386/AT,
+    # to get the SysV transport functions.
+    # Chad R. Larson says the Pyramis MIS-ES running DC/OSx (SVR4)
+    # needs -lnsl.
+    # The nsl library prevents programs from opening the X display
+    # on Irix 5.2, according to T.E. Dickey.
+    # The functions gethostbyname, getservbyname, and inet_addr are
+    # in -lbsd on LynxOS 3.0.1/i386, according to Lars Hecking.
+    ac_fn_c_check_func "$LINENO" "gethostbyname" "ac_cv_func_gethostbyname"
+if test "x$ac_cv_func_gethostbyname" = xyes; then :
 
 fi
 
-# FIXME: we rely on the cache variable name because
-# there is no other way.
-set dummy $CC
-am_cc=`echo $2 | sed 's/[^a-zA-Z0-9_]/_/g;s/^[0-9]/_/'`
-eval am_t=\$ac_cv_prog_cc_${am_cc}_c_o
-if test "$am_t" != yes; then
-   # Losing compiler, so override with the script.
-   # FIXME: It is wrong to rewrite CC.
-   # But if we don't then we get into trouble of one sort or another.
-   # A longer-term fix would be to have automake use am__CC in this case,
-   # and then we could set am__CC="\$(top_srcdir)/compile \$(CC)"
-   CC="$am_aux_dir/compile $CC"
+    if test $ac_cv_func_gethostbyname = no; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: checking for gethostbyname in -lnsl" >&5
+$as_echo_n "checking for gethostbyname in -lnsl... " >&6; }
+if ${ac_cv_lib_nsl_gethostbyname+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lnsl  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char gethostbyname ();
+int
+main ()
+{
+return gethostbyname ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_nsl_gethostbyname=yes
+else
+  ac_cv_lib_nsl_gethostbyname=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_nsl_gethostbyname" >&5
+$as_echo "$ac_cv_lib_nsl_gethostbyname" >&6; }
+if test "x$ac_cv_lib_nsl_gethostbyname" = xyes; then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -lnsl"
 fi
 
+      if test $ac_cv_lib_nsl_gethostbyname = no; then
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for gethostbyname in -lbsd" >&5
+$as_echo_n "checking for gethostbyname in -lbsd... " >&6; }
+if ${ac_cv_lib_bsd_gethostbyname+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lbsd  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-#AM_PROG_CXX_O
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char gethostbyname ();
+int
+main ()
+{
+return gethostbyname ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_bsd_gethostbyname=yes
+else
+  ac_cv_lib_bsd_gethostbyname=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_bsd_gethostbyname" >&5
+$as_echo "$ac_cv_lib_bsd_gethostbyname" >&6; }
+if test "x$ac_cv_lib_bsd_gethostbyname" = xyes; then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -lbsd"
+fi
+
+      fi
+    fi
+
+    # lieder@skyler.mavd.honeywell.com says without -lsocket,
+    # socket/setsockopt and other routines are undefined under SCO ODT
+    # 2.0.  But -lsocket is broken on IRIX 5.2 (and is not necessary
+    # on later versions), says Simon Leinen: it contains gethostby*
+    # variants that don't use the name server (or something).  -lsocket
+    # must be given before -lnsl if both are needed.  We assume that
+    # if connect needs -lnsl, so does gethostbyname.
+    ac_fn_c_check_func "$LINENO" "connect" "ac_cv_func_connect"
+if test "x$ac_cv_func_connect" = xyes; then :
+
+fi
+
+    if test $ac_cv_func_connect = no; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: checking for connect in -lsocket" >&5
+$as_echo_n "checking for connect in -lsocket... " >&6; }
+if ${ac_cv_lib_socket_connect+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lsocket $X_EXTRA_LIBS $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char connect ();
+int
+main ()
+{
+return connect ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_socket_connect=yes
+else
+  ac_cv_lib_socket_connect=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_socket_connect" >&5
+$as_echo "$ac_cv_lib_socket_connect" >&6; }
+if test "x$ac_cv_lib_socket_connect" = xyes; then :
+  X_EXTRA_LIBS="-lsocket $X_EXTRA_LIBS"
+fi
+
+    fi
+
+    # Guillermo Gomez says -lposix is necessary on A/UX.
+    ac_fn_c_check_func "$LINENO" "remove" "ac_cv_func_remove"
+if test "x$ac_cv_func_remove" = xyes; then :
+
+fi
+
+    if test $ac_cv_func_remove = no; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: checking for remove in -lposix" >&5
+$as_echo_n "checking for remove in -lposix... " >&6; }
+if ${ac_cv_lib_posix_remove+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lposix  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char remove ();
+int
+main ()
+{
+return remove ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_posix_remove=yes
+else
+  ac_cv_lib_posix_remove=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_posix_remove" >&5
+$as_echo "$ac_cv_lib_posix_remove" >&6; }
+if test "x$ac_cv_lib_posix_remove" = xyes; then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -lposix"
+fi
+
+    fi
+
+    # BSDI BSD/OS 2.1 needs -lipc for XOpenDisplay.
+    ac_fn_c_check_func "$LINENO" "shmat" "ac_cv_func_shmat"
+if test "x$ac_cv_func_shmat" = xyes; then :
+
+fi
+
+    if test $ac_cv_func_shmat = no; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: checking for shmat in -lipc" >&5
+$as_echo_n "checking for shmat in -lipc... " >&6; }
+if ${ac_cv_lib_ipc_shmat+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lipc  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char shmat ();
+int
+main ()
+{
+return shmat ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_ipc_shmat=yes
+else
+  ac_cv_lib_ipc_shmat=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_ipc_shmat" >&5
+$as_echo "$ac_cv_lib_ipc_shmat" >&6; }
+if test "x$ac_cv_lib_ipc_shmat" = xyes; then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -lipc"
+fi
+
+    fi
+  fi
+
+  # Check for libraries that X11R6 Xt/Xaw programs need.
+  ac_save_LDFLAGS=$LDFLAGS
+  test -n "$x_libraries" && LDFLAGS="$LDFLAGS -L$x_libraries"
+  # SM needs ICE to (dynamically) link under SunOS 4.x (so we have to
+  # check for ICE first), but we must link in the order -lSM -lICE or
+  # we get undefined symbols.  So assume we have SM if we have ICE.
+  # These have to be linked with before -lX11, unlike the other
+  # libraries we check for below, so use a different variable.
+  # John Interrante, Karl Berry
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for IceConnectionNumber in -lICE" >&5
+$as_echo_n "checking for IceConnectionNumber in -lICE... " >&6; }
+if ${ac_cv_lib_ICE_IceConnectionNumber+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lICE $X_EXTRA_LIBS $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char IceConnectionNumber ();
+int
+main ()
+{
+return IceConnectionNumber ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_ICE_IceConnectionNumber=yes
+else
+  ac_cv_lib_ICE_IceConnectionNumber=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_ICE_IceConnectionNumber" >&5
+$as_echo "$ac_cv_lib_ICE_IceConnectionNumber" >&6; }
+if test "x$ac_cv_lib_ICE_IceConnectionNumber" = xyes; then :
+  X_PRE_LIBS="$X_PRE_LIBS -lSM -lICE"
+fi
+
+  LDFLAGS=$ac_save_LDFLAGS
+
+fi
+
+		QTLIBS="-Wl,-rpath,$QTDIR/lib -L$QTDIR/lib -lQtGui -lQtOpenGL -lQtCore -lQtWebKit"
+		QTLIBS="$QTLIBS $X_LIBS -lX11 -lXext -lXmu -lXt -lXi $X_EXTRA_LIBS -lGLU -lGL -lpthread"
+		QTINC="-I$QTDIR/include -I$QTDIR/include/QtGui -I$QTDIR/include/QtCore -I$QTDIR/include/QtOpenGL -I$QTDIR/include/QtWebKit"
+		QTINC="$QTINC $X_CFLAGS -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB"
+		QTBIN="$QTDIR/bin"
+		;;
+esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: $QTLIBS" >&5
+$as_echo "$as_me: $QTLIBS" >&6;}
+{ $as_echo "$as_me:${as_lineno-$LINENO}: $QTINC" >&5
+$as_echo "$as_me: $QTINC" >&6;}
+LIBS="$LIBS $QTLIBS"
+INCLUDES="$INCLUDES $QTINC"
+PATH="$PATH:$QTBIN"
+CXXFLAGS="$CXXFLAGS $QTINC"
+
+
+cat > myqt.h << EOF
+#include <QObject>
+class Test : public QObject
+{
+Q_OBJECT
+public:
+  Test() {}
+  ~Test() {}
+public slots:
+  void receive() {}
+signals:
+  void send();
+};
+EOF
+
+cat > myqt.cpp << EOF
+#include "myqt.h"
+#include <QApplication>
+int main( int argc, char **argv )
+{
+  QApplication app( argc, argv );
+  Test t;
+  QObject::connect( &t, SIGNAL(send()), &t, SLOT(receive()) );
+}
+EOF
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking does moc work?" >&5
+$as_echo_n "checking does moc work?... " >&6; }
+bnv_try_1="moc-qt4 myqt.h -o moc_myqt.cpp"
+{ { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$bnv_try_1\""; } >&5
+  (eval $bnv_try_1) 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }
+if test x"$ac_status" != x0; then
+   as_fn_error $? "moc doesn't work" "$LINENO" 5
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking can I compile moc_myqt.cpp?" >&5
+$as_echo_n "checking can I compile moc_myqt.cpp?... " >&6; }
+bnv_try_2="$CXX -c $CXXFLAGS -o moc_myqt.o moc_myqt.cpp"
+{ { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$bnv_try_2\""; } >&5
+  (eval $bnv_try_2) 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }
+if test x"$ac_status" != x0; then
+   as_fn_error $? "couldn't compile moc_myqt.cpp" "$LINENO" 5
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking can I compile myqt.cpp?" >&5
+$as_echo_n "checking can I compile myqt.cpp?... " >&6; }
+bnv_try_3="$CXX $QTINC -c $CXXFLAGS -o myqt.o myqt.cpp"
+{ { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$bnv_try_3\""; } >&5
+  (eval $bnv_try_3) 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }
+if test x"$ac_status" != x0; then
+   as_fn_error $? "couldn't compile myqt.cpp" "$LINENO" 5
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking can I link against QT?" >&5
+$as_echo_n "checking can I link against QT?... " >&6; }
+nv_try_4="$CXX $LIBS -o myqt myqt.o moc_myqt.o"
+{ { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$bnv_try_4\""; } >&5
+  (eval $bnv_try_4) 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }
+if test x"$ac_status" != x0; then
+   as_fn_error $? "couldn't link" "$LINENO" 5
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for mkoctfile" >&5
+$as_echo_n "checking for mkoctfile... " >&6; }
+{ { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$mkoctfile\""; } >&5
+  (eval $mkoctfile) 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }
+if test x"$ac_status" != x0; then
+   as_fn_error $? "mkoctfile is not in the path" "$LINENO" 5
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+rm -f moc_myqt.cpp myqt.h myqt.cpp myqt.o myqt moc_myqt.o
+
+
 
 # Checks for libraries.
 
@@ -4304,19 +5150,19 @@ $as_echo "yes" >&6; }
 fi
 
 pkg_failed=no
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for WEBKITGTK" >&5
-$as_echo_n "checking for WEBKITGTK... " >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LPACKAGE" >&5
+$as_echo_n "checking for LPACKAGE... " >&6; }
 
-if test -n "$WEBKITGTK_CFLAGS"; then
-    pkg_cv_WEBKITGTK_CFLAGS="$WEBKITGTK_CFLAGS"
+if test -n "$LPACKAGE_CFLAGS"; then
+    pkg_cv_LPACKAGE_CFLAGS="$LPACKAGE_CFLAGS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"webkitgtk-3.0 >= 1.6\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "webkitgtk-3.0 >= 1.6") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QtGui\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "QtGui") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_WEBKITGTK_CFLAGS=`$PKG_CONFIG --cflags "webkitgtk-3.0 >= 1.6" 2>/dev/null`
+  pkg_cv_LPACKAGE_CFLAGS=`$PKG_CONFIG --cflags "QtGui" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -4324,16 +5170,16 @@ fi
  else
     pkg_failed=untried
 fi
-if test -n "$WEBKITGTK_LIBS"; then
-    pkg_cv_WEBKITGTK_LIBS="$WEBKITGTK_LIBS"
+if test -n "$LPACKAGE_LIBS"; then
+    pkg_cv_LPACKAGE_LIBS="$LPACKAGE_LIBS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"webkitgtk-3.0 >= 1.6\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "webkitgtk-3.0 >= 1.6") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QtGui\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "QtGui") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_WEBKITGTK_LIBS=`$PKG_CONFIG --libs "webkitgtk-3.0 >= 1.6" 2>/dev/null`
+  pkg_cv_LPACKAGE_LIBS=`$PKG_CONFIG --libs "QtGui" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -4354,22 +5200,22 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        WEBKITGTK_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "webkitgtk-3.0 >= 1.6" 2>&1`
+	        LPACKAGE_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "QtGui" 2>&1`
         else
-	        WEBKITGTK_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "webkitgtk-3.0 >= 1.6" 2>&1`
+	        LPACKAGE_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "QtGui" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
-	echo "$WEBKITGTK_PKG_ERRORS" >&5
+	echo "$LPACKAGE_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (webkitgtk-3.0 >= 1.6) were not met:
+	as_fn_error $? "Package requirements (QtGui) were not met:
 
-$WEBKITGTK_PKG_ERRORS
+$LPACKAGE_PKG_ERRORS
 
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively, you may set the environment variables WEBKITGTK_CFLAGS
-and WEBKITGTK_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables LPACKAGE_CFLAGS
+and LPACKAGE_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details." "$LINENO" 5
 elif test $pkg_failed = untried; then
      	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -4380,34 +5226,34 @@ as_fn_error $? "The pkg-config script could not be found or is too old.  Make su
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively, you may set the environment variables WEBKITGTK_CFLAGS
-and WEBKITGTK_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables LPACKAGE_CFLAGS
+and LPACKAGE_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
 To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
-	WEBKITGTK_CFLAGS=$pkg_cv_WEBKITGTK_CFLAGS
-	WEBKITGTK_LIBS=$pkg_cv_WEBKITGTK_LIBS
+	LPACKAGE_CFLAGS=$pkg_cv_LPACKAGE_CFLAGS
+	LPACKAGE_LIBS=$pkg_cv_LPACKAGE_LIBS
         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 
 fi
 
 pkg_failed=no
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for GMODULE" >&5
-$as_echo_n "checking for GMODULE... " >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LPACKAGE" >&5
+$as_echo_n "checking for LPACKAGE... " >&6; }
 
-if test -n "$GMODULE_CFLAGS"; then
-    pkg_cv_GMODULE_CFLAGS="$GMODULE_CFLAGS"
+if test -n "$LPACKAGE_CFLAGS"; then
+    pkg_cv_LPACKAGE_CFLAGS="$LPACKAGE_CFLAGS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"gmodule-2.0 >= 2.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "gmodule-2.0 >= 2.0") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QtWebKit\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "QtWebKit") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_GMODULE_CFLAGS=`$PKG_CONFIG --cflags "gmodule-2.0 >= 2.0" 2>/dev/null`
+  pkg_cv_LPACKAGE_CFLAGS=`$PKG_CONFIG --cflags "QtWebKit" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -4415,16 +5261,16 @@ fi
  else
     pkg_failed=untried
 fi
-if test -n "$GMODULE_LIBS"; then
-    pkg_cv_GMODULE_LIBS="$GMODULE_LIBS"
+if test -n "$LPACKAGE_LIBS"; then
+    pkg_cv_LPACKAGE_LIBS="$LPACKAGE_LIBS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"gmodule-2.0 >= 2.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "gmodule-2.0 >= 2.0") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"QtWebKit\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "QtWebKit") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_GMODULE_LIBS=`$PKG_CONFIG --libs "gmodule-2.0 >= 2.0" 2>/dev/null`
+  pkg_cv_LPACKAGE_LIBS=`$PKG_CONFIG --libs "QtWebKit" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -4445,22 +5291,22 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        GMODULE_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "gmodule-2.0 >= 2.0" 2>&1`
+	        LPACKAGE_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "QtWebKit" 2>&1`
         else
-	        GMODULE_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "gmodule-2.0 >= 2.0" 2>&1`
+	        LPACKAGE_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "QtWebKit" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
-	echo "$GMODULE_PKG_ERRORS" >&5
+	echo "$LPACKAGE_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (gmodule-2.0 >= 2.0) were not met:
+	as_fn_error $? "Package requirements (QtWebKit) were not met:
 
-$GMODULE_PKG_ERRORS
+$LPACKAGE_PKG_ERRORS
 
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively, you may set the environment variables GMODULE_CFLAGS
-and GMODULE_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables LPACKAGE_CFLAGS
+and LPACKAGE_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details." "$LINENO" 5
 elif test $pkg_failed = untried; then
      	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -4471,283 +5317,21 @@ as_fn_error $? "The pkg-config script could not be found or is too old.  Make su
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively, you may set the environment variables GMODULE_CFLAGS
-and GMODULE_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables LPACKAGE_CFLAGS
+and LPACKAGE_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
 To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
-	GMODULE_CFLAGS=$pkg_cv_GMODULE_CFLAGS
-	GMODULE_LIBS=$pkg_cv_GMODULE_LIBS
+	LPACKAGE_CFLAGS=$pkg_cv_LPACKAGE_CFLAGS
+	LPACKAGE_LIBS=$pkg_cv_LPACKAGE_LIBS
         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 
 fi
 
-# Checks for header files.
 
-# Check whether --enable-gtktest was given.
-if test "${enable_gtktest+set}" = set; then :
-  enableval=$enable_gtktest;
-else
-  enable_gtktest=yes
-fi
-
-
-  pkg_config_args=gtk+-3.0
-  for module in .
-  do
-      case "$module" in
-         gthread)
-             pkg_config_args="$pkg_config_args gthread-2.0"
-         ;;
-      esac
-  done
-
-  no_gtk=""
-
-  # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if ${ac_cv_path_PKG_CONFIG+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  case $PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
-  ;;
-esac
-fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
-if test -n "$PKG_CONFIG"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
-$as_echo "$PKG_CONFIG" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-
-  if test x$PKG_CONFIG != xno ; then
-    if $PKG_CONFIG --atleast-pkgconfig-version 0.7 ; then
-      :
-    else
-      echo "*** pkg-config too old; version 0.7 or better required."
-      no_gtk=yes
-      PKG_CONFIG=no
-    fi
-  else
-    no_gtk=yes
-  fi
-
-  min_gtk_version=3.0.0
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for GTK+ - version >= $min_gtk_version" >&5
-$as_echo_n "checking for GTK+ - version >= $min_gtk_version... " >&6; }
-
-  if test x$PKG_CONFIG != xno ; then
-    ## don't try to run the test against uninstalled libtool libs
-    if $PKG_CONFIG --uninstalled $pkg_config_args; then
-	  echo "Will use uninstalled version of GTK+ found in PKG_CONFIG_PATH"
-	  enable_gtktest=no
-    fi
-
-    if $PKG_CONFIG --atleast-version $min_gtk_version $pkg_config_args; then
-	  :
-    else
-	  no_gtk=yes
-    fi
-  fi
-
-  if test x"$no_gtk" = x ; then
-    GTK_CFLAGS=`$PKG_CONFIG $pkg_config_args --cflags`
-    GTK_LIBS=`$PKG_CONFIG $pkg_config_args --libs`
-    gtk_config_major_version=`$PKG_CONFIG --modversion gtk+-3.0 | \
-           sed 's/\([0-9]*\).\([0-9]*\).\([0-9]*\)/\1/'`
-    gtk_config_minor_version=`$PKG_CONFIG --modversion gtk+-3.0 | \
-           sed 's/\([0-9]*\).\([0-9]*\).\([0-9]*\)/\2/'`
-    gtk_config_micro_version=`$PKG_CONFIG --modversion gtk+-3.0 | \
-           sed 's/\([0-9]*\).\([0-9]*\).\([0-9]*\)/\3/'`
-    if test "x$enable_gtktest" = "xyes" ; then
-      ac_save_CFLAGS="$CFLAGS"
-      ac_save_LIBS="$LIBS"
-      CFLAGS="$CFLAGS $GTK_CFLAGS"
-      LIBS="$GTK_LIBS $LIBS"
-      rm -f conf.gtktest
-      if test "$cross_compiling" = yes; then :
-  echo $ac_n "cross compiling; assumed OK... $ac_c"
-else
-  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-#include <gtk/gtk.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int
-main ()
-{
-  int major, minor, micro;
-  char *tmp_version;
-
-  fclose (fopen ("conf.gtktest", "w"));
-
-  /* HP/UX 9 (%@#!) writes to sscanf strings */
-  tmp_version = g_strdup("$min_gtk_version");
-  if (sscanf(tmp_version, "%d.%d.%d", &major, &minor, &micro) != 3) {
-     printf("%s, bad version string\n", "$min_gtk_version");
-     exit(1);
-   }
-
-  if ((gtk_major_version != $gtk_config_major_version) ||
-      (gtk_minor_version != $gtk_config_minor_version) ||
-      (gtk_micro_version != $gtk_config_micro_version))
-    {
-      printf("\n*** 'pkg-config --modversion gtk+-3.0' returned %d.%d.%d, but GTK+ (%d.%d.%d)\n",
-             $gtk_config_major_version, $gtk_config_minor_version, $gtk_config_micro_version,
-             gtk_major_version, gtk_minor_version, gtk_micro_version);
-      printf ("*** was found! If pkg-config was correct, then it is best\n");
-      printf ("*** to remove the old version of GTK+. You may also be able to fix the error\n");
-      printf("*** by modifying your LD_LIBRARY_PATH enviroment variable, or by editing\n");
-      printf("*** /etc/ld.so.conf. Make sure you have run ldconfig if that is\n");
-      printf("*** required on your system.\n");
-      printf("*** If pkg-config was wrong, set the environment variable PKG_CONFIG_PATH\n");
-      printf("*** to point to the correct configuration files\n");
-    }
-  else if ((gtk_major_version != GTK_MAJOR_VERSION) ||
-	   (gtk_minor_version != GTK_MINOR_VERSION) ||
-           (gtk_micro_version != GTK_MICRO_VERSION))
-    {
-      printf("*** GTK+ header files (version %d.%d.%d) do not match\n",
-	     GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
-      printf("*** library (version %d.%d.%d)\n",
-	     gtk_major_version, gtk_minor_version, gtk_micro_version);
-    }
-  else
-    {
-      if ((gtk_major_version > major) ||
-        ((gtk_major_version == major) && (gtk_minor_version > minor)) ||
-        ((gtk_major_version == major) && (gtk_minor_version == minor) && (gtk_micro_version >= micro)))
-      {
-        return 0;
-       }
-     else
-      {
-        printf("\n*** An old version of GTK+ (%d.%d.%d) was found.\n",
-               gtk_major_version, gtk_minor_version, gtk_micro_version);
-        printf("*** You need a version of GTK+ newer than %d.%d.%d. The latest version of\n",
-	       major, minor, micro);
-        printf("*** GTK+ is always available from ftp://ftp.gtk.org.\n");
-        printf("***\n");
-        printf("*** If you have already installed a sufficiently new version, this error\n");
-        printf("*** probably means that the wrong copy of the pkg-config shell script is\n");
-        printf("*** being found. The easiest way to fix this is to remove the old version\n");
-        printf("*** of GTK+, but you can also set the PKG_CONFIG environment to point to the\n");
-        printf("*** correct copy of pkg-config. (In this case, you will have to\n");
-        printf("*** modify your LD_LIBRARY_PATH enviroment variable, or edit /etc/ld.so.conf\n");
-        printf("*** so that the correct libraries are found at run-time))\n");
-      }
-    }
-  return 1;
-}
-
-_ACEOF
-if ac_fn_c_try_run "$LINENO"; then :
-
-else
-  no_gtk=yes
-fi
-rm -f core *.core core.conftest.* gmon.out bb.out conftest$ac_exeext \
-  conftest.$ac_objext conftest.beam conftest.$ac_ext
-fi
-
-       CFLAGS="$ac_save_CFLAGS"
-       LIBS="$ac_save_LIBS"
-     fi
-  fi
-  if test "x$no_gtk" = x ; then
-     { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes (version $gtk_config_major_version.$gtk_config_minor_version.$gtk_config_micro_version)" >&5
-$as_echo "yes (version $gtk_config_major_version.$gtk_config_minor_version.$gtk_config_micro_version)" >&6; }
-     :
-  else
-     { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-     if test "$PKG_CONFIG" = "no" ; then
-       echo "*** A new enough version of pkg-config was not found."
-       echo "*** See http://pkgconfig.sourceforge.net"
-     else
-       if test -f conf.gtktest ; then
-        :
-       else
-          echo "*** Could not run GTK+ test program, checking why..."
-	  ac_save_CFLAGS="$CFLAGS"
-	  ac_save_LIBS="$LIBS"
-          CFLAGS="$CFLAGS $GTK_CFLAGS"
-          LIBS="$LIBS $GTK_LIBS"
-          cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-#include <gtk/gtk.h>
-#include <stdio.h>
-
-int
-main ()
-{
- return ((gtk_major_version) || (gtk_minor_version) || (gtk_micro_version));
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-   echo "*** The test program compiled, but did not run. This usually means"
-          echo "*** that the run-time linker is not finding GTK+ or finding the wrong"
-          echo "*** version of GTK+. If it is not finding GTK+, you'll need to set your"
-          echo "*** LD_LIBRARY_PATH environment variable, or edit /etc/ld.so.conf to point"
-          echo "*** to the installed location  Also, make sure you have run ldconfig if that"
-          echo "*** is required on your system"
-	  echo "***"
-          echo "*** If you have an old version installed, it is best to remove it, although"
-          echo "*** you may also be able to get things to work by modifying LD_LIBRARY_PATH"
-else
-   echo "*** The test program failed to compile or link. See the file config.log for the"
-          echo "*** exact error that occured. This usually means GTK+ is incorrectly installed."
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-          CFLAGS="$ac_save_CFLAGS"
-          LIBS="$ac_save_LIBS"
-       fi
-     fi
-     GTK_CFLAGS=""
-     GTK_LIBS=""
-     as_fn_error $? "Gtk+ 3.0 or higher required." "$LINENO" 5
-  fi
-
-
-  rm -f conf.gtktest
-
-
-# Checks for typedefs, structures, and compiler characteristics.
 
 # Checks for library functions.
 for ac_func in mkdir setlocale strstr

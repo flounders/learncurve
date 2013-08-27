@@ -14,7 +14,6 @@
 
 @SET_MAKE@
 
-
 VPATH = @srcdir@
 am__is_gnu_make = test -n '$(MAKEFILE_LIST)' && test -n '$(MAKELEVEL)'
 am__make_running_with_option = \
@@ -85,7 +84,8 @@ DIST_COMMON = INSTALL NEWS README AUTHORS ChangeLog \
 	$(srcdir)/config.h.in depcomp COPYING compile install-sh \
 	missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/m4/qt.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
@@ -94,18 +94,20 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(learncurvedir)"
+am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_learncurve_OBJECTS = learncurve-main.$(OBJEXT) \
 	learncurve-boxes.$(OBJEXT) learncurve-htmlgen.$(OBJEXT) \
 	learncurve-initialize.$(OBJEXT) \
 	learncurve-read_vocab_file.$(OBJEXT) \
 	learncurve-review.$(OBJEXT) learncurve-save_restore.$(OBJEXT) \
-	learncurve-callbacks.$(OBJEXT) learncurve-control.$(OBJEXT)
-learncurve_OBJECTS = $(am_learncurve_OBJECTS)
-am__DEPENDENCIES_1 =
-learncurve_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
+	learncurve-mainwindow.$(OBJEXT) \
+	learncurve-learncurveqt.$(OBJEXT)
+nodist_learncurve_OBJECTS = learncurve-moc_mainwindow.$(OBJEXT) \
+	learncurve-moc_learncurveqt.$(OBJEXT)
+learncurve_OBJECTS = $(am_learncurve_OBJECTS) \
+	$(nodist_learncurve_OBJECTS)
+learncurve_DEPENDENCIES =
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -139,41 +141,13 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(learncurve_SOURCES)
+SOURCES = $(learncurve_SOURCES) $(nodist_learncurve_SOURCES)
 DIST_SOURCES = $(learncurve_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
-am__vpath_adj = case $$p in \
-    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
-    *) f=$$p;; \
-  esac;
-am__strip_dir = f=`echo $$p | sed -e 's|^.*/||'`;
-am__install_max = 40
-am__nobase_strip_setup = \
-  srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*|]/\\\\&/g'`
-am__nobase_strip = \
-  for p in $$list; do echo "$$p"; done | sed -e "s|$$srcdirstrip/||"
-am__nobase_list = $(am__nobase_strip_setup); \
-  for p in $$list; do echo "$$p $$p"; done | \
-  sed "s| $$srcdirstrip/| |;"' / .*\//!s/ .*/ ./; s,\( .*\)/[^/]*$$,\1,' | \
-  $(AWK) 'BEGIN { files["."] = "" } { files[$$2] = files[$$2] " " $$1; \
-    if (++n[$$2] == $(am__install_max)) \
-      { print $$2, files[$$2]; n[$$2] = 0; files[$$2] = "" } } \
-    END { for (dir in files) print dir, files[dir] }'
-am__base_list = \
-  sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
-  sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
-am__uninstall_files_from_dir = { \
-  test -z "$$files" \
-    || { test ! -d "$$dir" && test ! -f "$$dir" && test ! -r "$$dir"; } \
-    || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
-         $(am__cd) "$$dir" && rm -f $$files; }; \
-  }
-DATA = $(learncurve_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) \
 	$(LISP)config.h.in
 # Read a list of newline-separated strings from the standard input,
@@ -223,6 +197,7 @@ AWK = @AWK@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
 CXXDEPMODE = @CXXDEPMODE@
@@ -234,10 +209,6 @@ ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EXEEXT = @EXEEXT@
-GMODULE_CFLAGS = @GMODULE_CFLAGS@
-GMODULE_LIBS = @GMODULE_LIBS@
-GTK_CFLAGS = @GTK_CFLAGS@
-GTK_LIBS = @GTK_LIBS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -246,6 +217,8 @@ INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
+LPACKAGE_CFLAGS = @LPACKAGE_CFLAGS@
+LPACKAGE_LIBS = @LPACKAGE_LIBS@
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
@@ -265,10 +238,13 @@ SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
 VERSION = @VERSION@
-WEBKITGTK_CFLAGS = @WEBKITGTK_CFLAGS@
-WEBKITGTK_LIBS = @WEBKITGTK_LIBS@
+XMKMF = @XMKMF@
 XML_CFLAGS = @XML_CFLAGS@
 XML_LIBS = @XML_LIBS@
+X_CFLAGS = @X_CFLAGS@
+X_EXTRA_LIBS = @X_EXTRA_LIBS@
+X_LIBS = @X_LIBS@
+X_PRE_LIBS = @X_PRE_LIBS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -316,12 +292,13 @@ CLEANFILES = *~
 learncurve_SOURCES = src/main.cpp src/backend/boxes.cpp src/backend/htmlgen.cpp\
                      src/backend/initialize.cpp src/backend/read_vocab_file.cpp\
                      src/backend/review.cpp src/backend/save_restore.cpp\
-                     src/gui/gtk3/callbacks.cpp src/gui/gtk3/control.cpp
+                     src/gui/qt/mainwindow.cpp src/gui/qt/learncurveqt.cpp
 
-learncurve_CPPFLAGS = @GTK_CFLAGS@ $(XML_CFLAGS) $(WEBKITGTK_CFLAGS) $(GMODULE_CFLAGS)
-learncurve_LDADD = @GTK_LIBS@ $(XML_LIBS) $(WEBKITGTK_LIBS) $(GMODULE_LIBS)
+nodist_learncurve_SOURCES = src/gui/qt/moc_mainwindow.cpp src/gui/qt/moc_learncurveqt.cpp
+AM_CXXFLAGS = -Wall @LPACKAGE_CFLAGS@ -DDATADIR=\"$(datadir)/@PACKAGE@\"
+learncurve_CPPFLAGS = -I. -fpic -fstack-protector-all @XML_CFLAGS@
+learncurve_LDADD = -lpthread @LPACKAGE_LIBS@ @XML_LIBS@
 learncurvedir = $(datadir)/$(PACKAGE)
-learncurve_DATA = src/gui/gtk3/main_gtk3.glade
 EXTRA_DIST = $(learncurve_DATA)
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -431,11 +408,13 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-boxes.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-callbacks.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-control.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-htmlgen.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-initialize.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-learncurveqt.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-mainwindow.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-moc_learncurveqt.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-moc_mainwindow.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-read_vocab_file.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-review.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/learncurve-save_restore.Po@am__quote@
@@ -552,54 +531,61 @@ learncurve-save_restore.obj: src/backend/save_restore.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-save_restore.obj `if test -f 'src/backend/save_restore.cpp'; then $(CYGPATH_W) 'src/backend/save_restore.cpp'; else $(CYGPATH_W) '$(srcdir)/src/backend/save_restore.cpp'; fi`
 
-learncurve-callbacks.o: src/gui/gtk3/callbacks.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-callbacks.o -MD -MP -MF $(DEPDIR)/learncurve-callbacks.Tpo -c -o learncurve-callbacks.o `test -f 'src/gui/gtk3/callbacks.cpp' || echo '$(srcdir)/'`src/gui/gtk3/callbacks.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-callbacks.Tpo $(DEPDIR)/learncurve-callbacks.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/gtk3/callbacks.cpp' object='learncurve-callbacks.o' libtool=no @AMDEPBACKSLASH@
+learncurve-mainwindow.o: src/gui/qt/mainwindow.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-mainwindow.o -MD -MP -MF $(DEPDIR)/learncurve-mainwindow.Tpo -c -o learncurve-mainwindow.o `test -f 'src/gui/qt/mainwindow.cpp' || echo '$(srcdir)/'`src/gui/qt/mainwindow.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-mainwindow.Tpo $(DEPDIR)/learncurve-mainwindow.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/qt/mainwindow.cpp' object='learncurve-mainwindow.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-callbacks.o `test -f 'src/gui/gtk3/callbacks.cpp' || echo '$(srcdir)/'`src/gui/gtk3/callbacks.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-mainwindow.o `test -f 'src/gui/qt/mainwindow.cpp' || echo '$(srcdir)/'`src/gui/qt/mainwindow.cpp
 
-learncurve-callbacks.obj: src/gui/gtk3/callbacks.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-callbacks.obj -MD -MP -MF $(DEPDIR)/learncurve-callbacks.Tpo -c -o learncurve-callbacks.obj `if test -f 'src/gui/gtk3/callbacks.cpp'; then $(CYGPATH_W) 'src/gui/gtk3/callbacks.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/gtk3/callbacks.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-callbacks.Tpo $(DEPDIR)/learncurve-callbacks.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/gtk3/callbacks.cpp' object='learncurve-callbacks.obj' libtool=no @AMDEPBACKSLASH@
+learncurve-mainwindow.obj: src/gui/qt/mainwindow.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-mainwindow.obj -MD -MP -MF $(DEPDIR)/learncurve-mainwindow.Tpo -c -o learncurve-mainwindow.obj `if test -f 'src/gui/qt/mainwindow.cpp'; then $(CYGPATH_W) 'src/gui/qt/mainwindow.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/qt/mainwindow.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-mainwindow.Tpo $(DEPDIR)/learncurve-mainwindow.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/qt/mainwindow.cpp' object='learncurve-mainwindow.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-callbacks.obj `if test -f 'src/gui/gtk3/callbacks.cpp'; then $(CYGPATH_W) 'src/gui/gtk3/callbacks.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/gtk3/callbacks.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-mainwindow.obj `if test -f 'src/gui/qt/mainwindow.cpp'; then $(CYGPATH_W) 'src/gui/qt/mainwindow.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/qt/mainwindow.cpp'; fi`
 
-learncurve-control.o: src/gui/gtk3/control.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-control.o -MD -MP -MF $(DEPDIR)/learncurve-control.Tpo -c -o learncurve-control.o `test -f 'src/gui/gtk3/control.cpp' || echo '$(srcdir)/'`src/gui/gtk3/control.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-control.Tpo $(DEPDIR)/learncurve-control.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/gtk3/control.cpp' object='learncurve-control.o' libtool=no @AMDEPBACKSLASH@
+learncurve-learncurveqt.o: src/gui/qt/learncurveqt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-learncurveqt.o -MD -MP -MF $(DEPDIR)/learncurve-learncurveqt.Tpo -c -o learncurve-learncurveqt.o `test -f 'src/gui/qt/learncurveqt.cpp' || echo '$(srcdir)/'`src/gui/qt/learncurveqt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-learncurveqt.Tpo $(DEPDIR)/learncurve-learncurveqt.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/qt/learncurveqt.cpp' object='learncurve-learncurveqt.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-control.o `test -f 'src/gui/gtk3/control.cpp' || echo '$(srcdir)/'`src/gui/gtk3/control.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-learncurveqt.o `test -f 'src/gui/qt/learncurveqt.cpp' || echo '$(srcdir)/'`src/gui/qt/learncurveqt.cpp
 
-learncurve-control.obj: src/gui/gtk3/control.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-control.obj -MD -MP -MF $(DEPDIR)/learncurve-control.Tpo -c -o learncurve-control.obj `if test -f 'src/gui/gtk3/control.cpp'; then $(CYGPATH_W) 'src/gui/gtk3/control.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/gtk3/control.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-control.Tpo $(DEPDIR)/learncurve-control.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/gtk3/control.cpp' object='learncurve-control.obj' libtool=no @AMDEPBACKSLASH@
+learncurve-learncurveqt.obj: src/gui/qt/learncurveqt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-learncurveqt.obj -MD -MP -MF $(DEPDIR)/learncurve-learncurveqt.Tpo -c -o learncurve-learncurveqt.obj `if test -f 'src/gui/qt/learncurveqt.cpp'; then $(CYGPATH_W) 'src/gui/qt/learncurveqt.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/qt/learncurveqt.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-learncurveqt.Tpo $(DEPDIR)/learncurve-learncurveqt.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/qt/learncurveqt.cpp' object='learncurve-learncurveqt.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-control.obj `if test -f 'src/gui/gtk3/control.cpp'; then $(CYGPATH_W) 'src/gui/gtk3/control.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/gtk3/control.cpp'; fi`
-install-learncurveDATA: $(learncurve_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(learncurve_DATA)'; test -n "$(learncurvedir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(learncurvedir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(learncurvedir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(learncurvedir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(learncurvedir)" || exit $$?; \
-	done
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-learncurveqt.obj `if test -f 'src/gui/qt/learncurveqt.cpp'; then $(CYGPATH_W) 'src/gui/qt/learncurveqt.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/qt/learncurveqt.cpp'; fi`
 
-uninstall-learncurveDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(learncurve_DATA)'; test -n "$(learncurvedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(learncurvedir)'; $(am__uninstall_files_from_dir)
+learncurve-moc_mainwindow.o: src/gui/qt/moc_mainwindow.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-moc_mainwindow.o -MD -MP -MF $(DEPDIR)/learncurve-moc_mainwindow.Tpo -c -o learncurve-moc_mainwindow.o `test -f 'src/gui/qt/moc_mainwindow.cpp' || echo '$(srcdir)/'`src/gui/qt/moc_mainwindow.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-moc_mainwindow.Tpo $(DEPDIR)/learncurve-moc_mainwindow.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/qt/moc_mainwindow.cpp' object='learncurve-moc_mainwindow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-moc_mainwindow.o `test -f 'src/gui/qt/moc_mainwindow.cpp' || echo '$(srcdir)/'`src/gui/qt/moc_mainwindow.cpp
+
+learncurve-moc_mainwindow.obj: src/gui/qt/moc_mainwindow.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-moc_mainwindow.obj -MD -MP -MF $(DEPDIR)/learncurve-moc_mainwindow.Tpo -c -o learncurve-moc_mainwindow.obj `if test -f 'src/gui/qt/moc_mainwindow.cpp'; then $(CYGPATH_W) 'src/gui/qt/moc_mainwindow.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/qt/moc_mainwindow.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-moc_mainwindow.Tpo $(DEPDIR)/learncurve-moc_mainwindow.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/qt/moc_mainwindow.cpp' object='learncurve-moc_mainwindow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-moc_mainwindow.obj `if test -f 'src/gui/qt/moc_mainwindow.cpp'; then $(CYGPATH_W) 'src/gui/qt/moc_mainwindow.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/qt/moc_mainwindow.cpp'; fi`
+
+learncurve-moc_learncurveqt.o: src/gui/qt/moc_learncurveqt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-moc_learncurveqt.o -MD -MP -MF $(DEPDIR)/learncurve-moc_learncurveqt.Tpo -c -o learncurve-moc_learncurveqt.o `test -f 'src/gui/qt/moc_learncurveqt.cpp' || echo '$(srcdir)/'`src/gui/qt/moc_learncurveqt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-moc_learncurveqt.Tpo $(DEPDIR)/learncurve-moc_learncurveqt.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/qt/moc_learncurveqt.cpp' object='learncurve-moc_learncurveqt.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-moc_learncurveqt.o `test -f 'src/gui/qt/moc_learncurveqt.cpp' || echo '$(srcdir)/'`src/gui/qt/moc_learncurveqt.cpp
+
+learncurve-moc_learncurveqt.obj: src/gui/qt/moc_learncurveqt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT learncurve-moc_learncurveqt.obj -MD -MP -MF $(DEPDIR)/learncurve-moc_learncurveqt.Tpo -c -o learncurve-moc_learncurveqt.obj `if test -f 'src/gui/qt/moc_learncurveqt.cpp'; then $(CYGPATH_W) 'src/gui/qt/moc_learncurveqt.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/qt/moc_learncurveqt.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/learncurve-moc_learncurveqt.Tpo $(DEPDIR)/learncurve-moc_learncurveqt.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/gui/qt/moc_learncurveqt.cpp' object='learncurve-moc_learncurveqt.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(learncurve_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o learncurve-moc_learncurveqt.obj `if test -f 'src/gui/qt/moc_learncurveqt.cpp'; then $(CYGPATH_W) 'src/gui/qt/moc_learncurveqt.cpp'; else $(CYGPATH_W) '$(srcdir)/src/gui/qt/moc_learncurveqt.cpp'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -818,9 +804,9 @@ distcleancheck: distclean
 	       exit 1; } >&2
 check-am: all-am
 check: check-am
-all-am: Makefile $(PROGRAMS) $(DATA) config.h
+all-am: Makefile $(PROGRAMS) config.h
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(learncurvedir)"; do \
+	for dir in "$(DESTDIR)$(bindir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -877,7 +863,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-learncurveDATA
+install-data-am:
 
 install-dvi: install-dvi-am
 
@@ -924,7 +910,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS uninstall-learncurveDATA
+uninstall-am: uninstall-binPROGRAMS
 
 .MAKE: all install-am install-strip
 
@@ -938,13 +924,16 @@ uninstall-am: uninstall-binPROGRAMS uninstall-learncurveDATA
 	install install-am install-binPROGRAMS install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
-	install-info-am install-learncurveDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
+	install-info-am install-man install-pdf install-pdf-am \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-binPROGRAMS uninstall-learncurveDATA
+	uninstall-am uninstall-binPROGRAMS
 
+
+moc_%.cpp: %.h
+	moc-qt4 $< -o $@
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

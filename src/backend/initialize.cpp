@@ -190,6 +190,11 @@ int learnc_init_linux_storage(void)
     return 1;
 }
 
+int learnc_init_macosx_storage(void)
+{
+
+}
+
 // learnc_init_instance initializes an instance to
 // help with error checking and making sure seg faults
 // and other memory related issues don't happen

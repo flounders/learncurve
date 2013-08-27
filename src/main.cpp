@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include "backend/read_vocab_file.h"
 #include "backend/review.h"
 #include "backend/types.h"
-#include "gui/gtk3/control.h"
+#include "gui/qt/mainwindow.h"
 
 // main is where everything starts and ends
 // TODO add processing for command-line arguments and freeing all allocated memory
@@ -32,9 +32,15 @@ int main(int argc, char *argv[])
 {
 
     learnc_init_charset((char *) "en_US.UTF-8");
+
+#ifdef __linux__
     learnc_init_linux_storage();
+#endif
 
-    learnc_gtk3_gui_init(argc, &argv);
+    QApplication app(argc, argv);
+    MainWindow window;
 
-    return 0;
+    window.show();
+
+    return app.exec();
 }

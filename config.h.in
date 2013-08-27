@@ -9,9 +9,6 @@
 /* Define to 1 if you have the `strstr' function. */
 #undef HAVE_STRSTR
 
-/* Define to 1 if your C compiler doesn't accept -c and -o together. */
-#undef NO_MINUS_C_MINUS_O
-
 /* Name of package */
 #undef PACKAGE
 
@@ -35,3 +32,6 @@
 
 /* Version number of package */
 #undef VERSION
+
+/* Define to 1 if the X Window System is missing or not being used. */
+#undef X_DISPLAY_MISSING

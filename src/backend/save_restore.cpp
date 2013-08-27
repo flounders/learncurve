@@ -214,7 +214,7 @@ int learnc_find_in_stack(int number, std::vector<voc_card *> &stack)
 // XML file, and the second for the directory name it will be giving
 // back.
 
-int learnc_get_storage_path(char *filename, char *dirname)
+int learnc_get_storage_path(const char *filename, char *dirname)
 {
     char buf[PATH_MAX];
     char *file_begin;
@@ -226,11 +226,12 @@ int learnc_get_storage_path(char *filename, char *dirname)
     strncpy(buf, filename, strlen(filename));
     buf[strlen(filename)] = '\0';
     file_begin = strstr(buf, ".xml");
+
     while (file_begin != NULL) {
         last_pos = file_begin;
         file_begin = strstr(file_begin+1, ".xml");
     }
-    
+
     while (*last_pos != '\0') {
         *last_pos = '\0';
         last_pos++;
@@ -271,10 +272,10 @@ int learnc_get_storage_path(char *filename, char *dirname)
 // takes a pointer to char that is meant to contain the filename of the XML file
 // we read our cards from.
 
-int learnc_make_storage_directory(char *filename)
+int learnc_make_storage_directory(const char *filename)
 {
     if (filename == NULL) {
-        cerr << "learnc_make_storace_directory:"
+        cerr << "learnc_make_storage_directory:"
                   << " received NULL pointer for filename.\n";
         return 0;
     }
@@ -283,7 +284,7 @@ int learnc_make_storage_directory(char *filename)
     struct stat st = {0};
 
     learnc_get_storage_path(filename, buf);
-
+#ifdef __linux__
     if (stat(buf, &st) == -1) {
         mkdir(buf, 0700);
     }

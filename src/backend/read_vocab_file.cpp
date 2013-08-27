@@ -36,7 +36,7 @@ using namespace std;
 // takes an xmlTextReaderPtr for walking through our XML file and
 // a vector holding voc_cards passed by reference for the stack
 
-int learnc_parse_file(xmlTextReaderPtr reader, std::vector<voc_card> &stack)
+int learnc_parse_file(const xmlTextReaderPtr reader, std::vector<voc_card> &stack)
 {
     if (reader == NULL)
         return 0;
