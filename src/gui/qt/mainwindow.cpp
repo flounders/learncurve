@@ -149,10 +149,7 @@ void MainWindow::save()
     ofstream outFile;
     char path[PATH_MAX];
 
-    cout << "No segfault before code block 1.\n";
-
     fileName = (char *) getSafeSpot();
-    cout << "fileName is: " << fileName << endl;
 
     if (learnc_get_storage_path(fileName, path) == 1) {
         strcat(path, "/boxcards");
@@ -163,15 +160,11 @@ void MainWindow::save()
         return;
     }
 
-    cout << "No segfault before code block 2.\n";
-
     if (learnc_save_boxes(controls->data.boxes, outFile) == 0) {
         cerr << "MainWindow::save(): Encountered problem with boxes pointer in "
              << "learnc_save_boxes().\n";
     }
     outFile.close();
-
-    cout << "No segfault before code block 3.\n";
 
     if (learnc_get_storage_path(fileName, path) == 1) {
         strcat(path, "/knowncards");
@@ -181,8 +174,6 @@ void MainWindow::save()
         cerr << "MainWindow::save(): Received failure on learnc_get_storage_path().\n";
         return;
     }
-
-    cout << "No segfault before code block 4.\n";
 
     if (learnc_save_box(controls->data.known, outFile) == 0) {
         cerr << "MainWindow::save(): Encountered problem with boxes pointer in "

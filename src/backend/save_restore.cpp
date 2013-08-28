@@ -284,7 +284,6 @@ int learnc_make_storage_directory(const char *filename)
     struct stat st = {0};
 
     learnc_get_storage_path(filename, buf);
-#ifdef __linux__
     if (stat(buf, &st) == -1) {
         mkdir(buf, 0700);
     }
