@@ -10,10 +10,6 @@
 class LearncurveQt : public QWidget
 {
     Q_OBJECT
-  public:
-    LearncurveQt();
-    instance data;
-    int reviewState;
   private:
     QWebView *webView;
     QPushButton *reviewButton;
@@ -26,6 +22,16 @@ class LearncurveQt : public QWidget
     QLineEdit *textEntry;
 
     std::vector<std::string> input;
+
+  public:
+    LearncurveQt();
+    bool copySelection();
+    bool cutSelection();
+    bool pasteSelection();
+    bool deleteSelection();
+
+    instance data;
+    int reviewState;
   private slots:
     void reviewButtonClicked();
     void viewBoxesButtonClicked();

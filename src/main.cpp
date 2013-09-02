@@ -33,9 +33,7 @@ int main(int argc, char *argv[])
 
     learnc_init_charset((char *) "en_US.UTF-8");
 
-#ifdef __linux__
-    learnc_init_linux_storage();
-#endif
+    learnc_init_storage();
 
     QApplication app(argc, argv);
     MainWindow window;

@@ -115,3 +115,59 @@ void LearncurveQt::textEntryReturnPressed()
 
     textEntry->setText("");
 }
+
+bool LearncurveQt::copySelection()
+{
+    QString buffer;
+    QClipboard *clipBoard = QApplication::clipboard();
+
+    if (textEntry->hasSelectedText()) {
+        textEntry->copy();
+        return true;
+    }
+    if (webView->hasSelection()) {
+        buffer = webView->selectedText();
+        clipBoard->setText(buffer, QClipboard::Clipboard);
+        return true;
+    }
+
+    return false;
+}
+
+bool LearncurveQt::cutSelection()
+{
+    QString buffer;
+    QClipboard *clipBoard = QApplication::clipboard();
+
+    if (textEntry->hasSelectedText()) {
+        textEntry->cut();
+        return true;
+    }
+    if (webView->hasSelection()) {
+        buffer = webView->selectedText();
+        clipBoard->setText(buffer, QClipboard::Clipboard);
+        return true;
+    }
+
+    return false;
+}
+
+bool LearncurveQt::pasteSelection()
+{
+    if (textEntry->hasFocus()) {
+        textEntry->paste();
+        return true;
+    }
+
+    return false;
+}
+
+bool LearncurveQt::deleteSelection()
+{
+    if (textEntry->hasSelectedText()) {
+        textEntry->del();
+        return true;
+    }
+
+    return false;
+}

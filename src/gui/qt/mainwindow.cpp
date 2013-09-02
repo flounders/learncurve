@@ -185,18 +185,22 @@ void MainWindow::save()
 
 void MainWindow::cut()
 {
+    controls->cutSelection();
 }
 
 void MainWindow::copy()
 {
+    controls->copySelection();
 }
 
 void MainWindow::paste()
 {
+    controls->pasteSelection();
 }
 
 void MainWindow::deleteText()
 {
+    controls->deleteSelection();
 }
 
 void MainWindow::about()

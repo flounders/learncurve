@@ -24,7 +24,7 @@ int learnc_init_charset(char *charset);
 int learnc_init_chset_setloc(int property, char *charset);
 int learnc_init_box(box *boxvar, int number);
 int learnc_init_boxes(box **boxes);
-int learnc_init_linux_storage(void);
+int learnc_init_storage(void);
 int learnc_init_macosx_storage(void);
 void learnc_init_instance(instance &data);
 

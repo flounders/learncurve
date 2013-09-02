@@ -146,7 +146,7 @@ int learnc_init_boxes(box **boxes)
 // returns 0 for failure and 1 for success 
 // takes no arguments
 
-int learnc_init_linux_storage(void)
+int learnc_init_storage(void)
 {
     struct stat st = {0};
     char path[PATH_MAX];
