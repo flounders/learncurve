@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include <cstdlib>
 #include <iostream>
 #include <string>
-#include <sys/stat.h>
 #include "types.h"
 #include "initialize.h"
 
@@ -35,7 +34,7 @@ using namespace std;
 
 int learnc_init_charset(char *charset)
 {
-    int properties[5] = {LC_ALL, LC_CTYPE, LC_MESSAGES,
+    int properties[5] = {LC_ALL, LC_CTYPE,
                          LC_COLLATE, LC_NUMERIC};
     int i = 0;
     int errorcode;
@@ -148,6 +147,51 @@ int learnc_init_boxes(box **boxes)
 
 int learnc_init_storage(void)
 {
+#ifdef __APPLE__
+    return learnc_init_macosx_storage();
+#elif _WIN32
+    return learnc_init_win32_storage();
+#elif _WIN64
+#else
+    return learnc_init_linux_storage();
+#endif
+}
+
+int learnc_init_win32_storage(void)
+{
+    char path[PATH_MAX];
+
+#ifdef _WIN32
+    struct _stat buf;
+
+    if (_stat(path, &buf) != 0) {
+        _mkdir(path);
+    }
+#else
+    return 0;
+#endif
+    return 1;
+}
+
+int learnc_init_win64_storage(void)
+{
+    char path[PATH_MAX];
+
+#ifdef _WIN64
+    struct _stat buf;
+
+    if (_stat(path, &buf) != 0) {
+        _mkdir(path);
+    }
+#else
+    return 0;
+#endif
+    return 1;
+}
+
+int learnc_init_linux_storage(void)
+{
+#ifdef __linux__
     struct stat st = {0};
     char path[PATH_MAX];
     char *data_home = getenv("XDG_DATA_HOME");
@@ -188,11 +232,29 @@ int learnc_init_storage(void)
     }
 
     return 1;
+#else
+    return 0;
+#endif
 }
 
 int learnc_init_macosx_storage(void)
 {
+#ifdef __APPLE__
+    struct stat st = {0};
+    char *data_home = getenv("HOME");
+    char path[PATH_MAX];
 
+    if (data_home != NULL) {
+        snprintf(path, PATH_MAX, "%s/Library/Application\ Support/learncurve", data_home);
+    }
+    else {
+        return 0;
+    }
+
+    return 1;
+#else
+    return 0;
+#endif
 }
 
 // learnc_init_instance initializes an instance to

@@ -18,6 +18,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #ifndef INITIALIZE_H_
 #define INITIALIZE_H_
 
+#ifdef _WIN32 || _WIN64
+#include <direct.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#else
+#include <sys/stat.h>
+#endif
+
 #include "types.h"
 
 int learnc_init_charset(char *charset);
@@ -25,6 +33,9 @@ int learnc_init_chset_setloc(int property, char *charset);
 int learnc_init_box(box *boxvar, int number);
 int learnc_init_boxes(box **boxes);
 int learnc_init_storage(void);
+int learnc_init_win32_storage(void);
+int learnc_init_win64_storage(void);
+int learnc_init_linux_storage(void);
 int learnc_init_macosx_storage(void);
 void learnc_init_instance(instance &data);
 

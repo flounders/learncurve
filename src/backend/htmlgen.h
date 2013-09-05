@@ -20,15 +20,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 
 #include "types.h"
 
-#ifdef __linux__
+#ifdef _WIN32 || _WIN64
+#define OUTPUT_PAGE     "C:\Temp\page.html"
+#define OUTPUT_PAGE_URI "file://C:\Temp\page.html"
+#else
 #define OUTPUT_PAGE     "/tmp/page.html"
 #define OUTPUT_PAGE_URI "file:///tmp/page.html"
 #endif
 
-#ifdef __darwin__
-#define OUTPUT_PAGE     "/tmp/page.html"
-#define OUTPUT_PAGE_URI "file:///tmp/page.html"
-#endif
+
 
 int learnc_html_card_front(voc_card card);
 int learnc_html_card_back_and_front(voc_card card, int answer);

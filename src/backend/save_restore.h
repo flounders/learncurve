@@ -22,6 +22,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include <vector>
 #include "types.h"
 
+#ifdef _WIN32 || _WIN64
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <direct.h>
+#else
+#include <sys/stat.h>
+#endif
+
 int learnc_save_box(box *box_to_save, std::ofstream &fout);
 int learnc_save_boxes(box *boxes, std::ofstream &fout);
 int learnc_restore_box(std::vector<int> &card_numbers, std::ifstream &fin);

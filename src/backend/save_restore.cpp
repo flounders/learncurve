@@ -22,7 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. 
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include <sys/stat.h>
 #include "types.h"
 #include "save_restore.h"
 
@@ -243,6 +242,20 @@ int learnc_get_storage_path(const char *filename, char *dirname)
         file_begin = strstr(file_begin+1, "/");
     } 
 
+#ifdef __APPLE__
+    file_begin = getenv("HOME");
+    if (file_begin != NULL) {
+        strncpy(dirname, file_begin, PATH_MAX);
+        strncat(dirname, "/Library/Application\ Support/learncurve", PATH_MAX);
+        strncat(dirname, last_pos, PATH_MAX);
+    }
+    else {
+        cerr << "learnc_get_storage_path: Encountered a problem with getenv().\n";
+        return 0;
+    }
+#elif _WIN32 || _WIN64
+
+#else
     file_begin = getenv("XDG_DATA_HOME");
     if (file_begin != NULL) {
         strncpy(dirname, file_begin, PATH_MAX);
@@ -253,7 +266,7 @@ int learnc_get_storage_path(const char *filename, char *dirname)
         file_begin = getenv("HOME");
         if (file_begin != NULL) {
             strncpy(dirname, file_begin, PATH_MAX);
-            strncat(dirname, "/learncurve", PATH_MAX);
+            strncat(dirname, ".local/share/learncurve", PATH_MAX);
             strncat(dirname, last_pos, PATH_MAX);
         }
         else {
@@ -261,7 +274,7 @@ int learnc_get_storage_path(const char *filename, char *dirname)
             return 0;
         }
     }
-
+#endif
     return 1;
 }
 
@@ -281,12 +294,21 @@ int learnc_make_storage_directory(const char *filename)
     }
 
     char buf[PATH_MAX];
+#ifdef _WIN32 || _WIN64
+    struct _stat st;
+
+    learnc_get_storage_path(filename, buf);
+
+    if (_stat(buf, &st) != 0) {
+        _mkdir(buf);
+    }
+#else
     struct stat st = {0};
 
     learnc_get_storage_path(filename, buf);
     if (stat(buf, &st) == -1) {
         mkdir(buf, 0700);
     }
-
+#endif
     return 1;
 }

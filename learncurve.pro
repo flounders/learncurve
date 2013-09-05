@@ -7,6 +7,10 @@ INCLUDEPATH +=
 
 INCLUDEPATH += /usr/include/libxml2
 
+win32 {
+LIBS += libxml2
+}
+
 macx {
 LIBS += /usr/lib/libxml2.dylib
 }
